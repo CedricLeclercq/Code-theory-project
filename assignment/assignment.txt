@@ -1,0 +1,25 @@
+Project: Deadline do 15 December
+
+4 boeken/teksten (kan ook krantenartikel zijn) -> Engels =, Frans , Nederlands, Duits en Spaans
+
+Mogelijk meerdere boeken in dezelfde taal
+Zonder spaties
+Zonder leestekens -> bv in frans ç -> c
+ADFGVX cijfers mogelijk in text
+Bij enigma krijg je ook de crib en welke roters die gebruikt zijn (zie website zeker voor enigma)
+Alles wat van internet gebruikt wordt moet erbij gezet worden (0 toleratantie plagiaat)
+Enigma is gemakkelijker dan de rest omdat we dat beter in de cursus gezien hebben
+Er komt een halverwege evaluatie voor ons groepje om te zien waar we zitten en om te helpen
+
+
+CODES:
+-> Enigma (crib gegeven)
+-> ADFGVX -> omgezet naar morse dus online eerst conversen van Morse naar normale tekst, maximale sleutellengte is 10 (omdat 10! Nog wel te doen is, 20! Herreessssss)
+-> Playfair: Enkel x tussen dubbele letters als het nodig is, bij bv VEEL geen x, maar wel bij succes bij cc
+-> Vigenere +: Eerst viginaire en dan een enkele kolom transpositie (twee verschillende sleutelwoorden, 1 voor visionaire en 1 voor transpositie)
+
+
+Wat moet je afgeven:
+- Code (in een programmeertaal naar keuze, README toevoegen, moet direct runbaar zijn, dingen mogen hardcoded zijn maar zet in verslag, comments toevoegen aan de code)
+- verslag, maximaal 2 pagina’s per code: aangeven welke methodes geprobeerd zijn en gelukt / niet gelukt zijn, wie welke code gemaakt heeft, wie de code heeft uitgewerkt, de moeilijkheden die we zijn tegen gekomen, gebruikte algoritmes ook geven)
+- Hou rekening met de 3 SP
