@@ -3,4 +3,4 @@ project(Playfair)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Playfair main.cpp)
+add_executable(Playfair main.cpp playfair.cpp playfair.h)
