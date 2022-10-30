@@ -60,14 +60,27 @@ int main() {
     loadCipherText("code.txt", cipherText);
     std::transform(cipherText.begin(), cipherText.end(), cipherText.begin(),
                    [](unsigned char c){ return std::tolower(c); });
-    cout << cipherText << endl;
-    decrypt(cipherText, dutch, english, french, german, spanish);
 
-//    string config = "abcdefghiklmnopqrtwvuzsyx";
+    string config = "robeacdfghiklmnpqstuvwxyz";
+    cipherText = "dezezinkanienogeensaanhetdenkenzettenwanneermaakthetlevenieeigenliikbangverledentoekomstofgewoonweghethedenhoezouieinhetlevenstaanalsiedageliiksinangstzoumoetenlevenweetiedanwelwatgelukisenwathouddatgelukeigenliikinwantkanmenwellevenzonderachteromtekiikenofstiekemtedromenoverdetoekomsthetgrasaandeoverkantliiktnogaltiidgroenermaarishetnietgewooneenmooieverschiiningwatmenwillatenoverkomenproberenweiuistnietonzedroomzomooimogeliiktelatenliikenendatdanookopdiemaniernaarbuitentedragenenhebiedanweldiepersoonnaastiestaannaarwieiezoukunnenkiikenwantlatenweeerliikziinishetnietveelmakkeliikeromdiemuurheelhoogtehoudenzodatniemandiemeerkanrakenmaarmissenwedannietdieenegoedeafslagdieiehadkunnennemenalsienetdieiuistegoedepersoonnaastiehadgehadenhaarraadhadaangenomenwantiuistdoordiemuurkomenookdegoededingennietbinnenenheefthetdanwelzinomnaastietekiikenalsietochmaarieeigenwegwilbliivenvolgenofkunnenwedanbeteronszelfnietaanlerenomweldieraadaantenemenennieteigenwiisteziinentebliivendoenwatwezelfwillenditdoetdanmiiweerdenkenaandewoordenvanmiinomadiezeialtiideigenwiisheidisookwiisheidmaarisdiewiisheidwelwiisheidlopenwiiiuistnietdaardoornoghardertegenonseigengebouwdemuuraandusmiineigenvisieopditallesiseigenliikheelsimpellatenwedantochmaarnaastonskiikenenproberenteleunenopdemensendieerwelvooronswillenziinenopdiemanierdiemuurdantochmaartelatenzakkenzodatwetocheenbeetieinhethedenkunnengaanlevenennietmeerzovaakachteromhoeventekiikenenopdezemanierdantochonzedromenwaartekunnenmaken";
+
+    stringstream encoded;
+    encode(config, cipherText, encoded);
+
+    cipherText = encoded.str();
+
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+//    decrypt(cipherText);
+    crack(cipherText);
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
+
+//    string config = "abcdefghiklmnopwrtuzyvqsx";
 //    string text = encrypt("dit is een test waarbii ik een aantal nederlandstalige woorden ga encrypten om zo erachter te komen wat er in deze tekst staat", config);
 //    cout << cipherText << endl;
 //    decrypt(cipherText, dutch, english, french, german, spanish);
 
+//    string config = "abcdefghiklmnopwrtuzyvqsx";
 //    stringstream s;
 //    decode(config, cipherText, s);
 //    cout << s.str() << endl;

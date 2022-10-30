@@ -8,9 +8,12 @@
 //void encode(const std::string &config, char &c1, char &c2);
 //void decode(const std::string &config, char &c1, char &c2);
 
+void encode(const std::string &config, const std::string& input, std::stringstream &encoded);
 void decode(const std::string &config, const std::string& input, std::stringstream &decoded);
 
 std::string encrypt(std::string text, const std::string &key);
-void decrypt(const std::string &text, std::vector<std::string> &dutch, std::vector<std::string> &english, std::vector<std::string> &french, std::vector<std::string> &german, std::vector<std::string> &spanish);
+void decrypt(const std::string &text);
+
+void crack(const std::string &text);
 
 #endif //PLAYFAIR_PLAYFAIR_H
