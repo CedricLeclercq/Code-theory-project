@@ -1,7 +1,8 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
+#include "playfair.h"
 
 using namespace std;
 
@@ -12,20 +13,43 @@ using namespace std;
  * 4) Check for words in dictionary
  */
 
+int evaluate() {
+    // for every match found, add the substring length^2
+    return 0;
+}
+
+
+void playfair() {
+    // for every permutation:
+    //      reverse engineer
+    //          count hits
+}
+
 void splitIntoVector(vector<string> &v, string &str) {
     stringstream ss(str);
-
     while (ss.good()) {
         string substr;
         getline(ss, substr, ',');
         v.push_back(substr);
     }
+}
 
-    for (auto & i : v)
-        cout << i << endl;
+void loadDictionary(const string& filename, vector<string> &v) {
+    string words;
+    ifstream dictionary(filename);
+    getline(dictionary, words);
+    dictionary.close();
+    splitIntoVector(v, words);
 }
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    vector<string> dutch, english, french, german, spanish;
+    loadDictionary("dictionaries_without_j/dutch.txt", dutch);
+    loadDictionary("dictionaries_without_j/english.txt", english);
+    loadDictionary("dictionaries_without_j/french.txt", french);
+    loadDictionary("dictionaries_without_j/german.txt", german);
+    loadDictionary("dictionaries_without_j/spanish.txt", spanish);
+    string config = "palmerstonbcdfghikquvwxyz";
+    cout << encrypt("dk dk", config);
     return 0;
 }
