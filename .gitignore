@@ -1,3 +1,8 @@
 .DS_Store
-Playfair/.idea
-Playfair/cmake-build-debug
+.idea
+cmake-build-debug
+CMakeFiles
+*.cmake
+CMakeCache.txt
+MakeFile
+Enigma.sh
