@@ -303,6 +303,25 @@ void decrypt(const string &text) {
 }
 
 void crack(const std::string &text) {
+//    map<string, int> digramCount;
+//
+//    for (int i = 0; i+1 < text.length(); i+=2) {
+//        stringstream digram;
+//        char c1 = text.at(i);
+//        char c2 = text.at(i+1);
+//        if (c1 < c2) {
+//            digram << c1 << c2;
+//        } else {
+//            digram << c2 << c1;
+//        }
+//        cout << digram.str() << endl;
+//        if(digramCount.find(digram.str()) == digramCount.end()) {
+//            digramCount.insert({digram.str(), 1});
+//        } else {
+//            digramCount[digram.str()] += 1;
+//        }
+//    }
+//    return;
     srand(time(NULL));
     std::string config = "abcdefghiklmnopqrstuvwxyz";
     stringstream output;
