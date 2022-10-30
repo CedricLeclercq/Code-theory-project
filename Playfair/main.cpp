@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -11,6 +12,17 @@ using namespace std;
  * 3) Generate decryption
  * 4) Check for words in dictionary
  */
+
+int evaluate() {
+    // for every match found, add the substring length^2
+}
+
+
+void playfair() {
+    // for every permutation:
+    //      reverse engineer
+    //          count hits
+}
 
 void splitIntoVector(vector<string> &v, string &str) {
     stringstream ss(str);
@@ -25,7 +37,20 @@ void splitIntoVector(vector<string> &v, string &str) {
         cout << i << endl;
 }
 
+void loadDictionary(const string& filename, vector<string> &v) {
+    string words;
+    ifstream dictionary(filename);
+    getline(dictionary, words);
+    dictionary.close();
+    splitIntoVector(v, words);
+}
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    vector<string> dutch, english, french, german, spanish;
+    loadDictionary("dictionaries/dutch.txt", dutch);
+    loadDictionary("dictionaries/english.txt", english);
+    loadDictionary("dictionaries/french.txt", french);
+    loadDictionary("dictionaries/german.txt", german);
+    loadDictionary("dictionaries/spanish.txt", spanish);
     return 0;
 }
