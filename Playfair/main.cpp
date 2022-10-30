@@ -42,6 +42,12 @@ void loadDictionary(const string& filename, vector<string> &v) {
     splitIntoVector(v, words);
 }
 
+void loadCipherText(const string& filename, string& cipherText) {
+    ifstream file(filename);
+    getline(file, cipherText);
+    file.close();
+}
+
 int main() {
     vector<string> dutch, english, french, german, spanish;
     loadDictionary("dictionaries_without_j/dutch.txt", dutch);
@@ -49,7 +55,23 @@ int main() {
     loadDictionary("dictionaries_without_j/french.txt", french);
     loadDictionary("dictionaries_without_j/german.txt", german);
     loadDictionary("dictionaries_without_j/spanish.txt", spanish);
-    string config = "palmerstonbcdfghikquvwxyz";
-    cout << encrypt("dk dk", config);
+
+    string cipherText;
+    loadCipherText("code.txt", cipherText);
+    std::transform(cipherText.begin(), cipherText.end(), cipherText.begin(),
+                   [](unsigned char c){ return std::tolower(c); });
+    cout << cipherText << endl;
+    decrypt(cipherText, dutch, english, french, german, spanish);
+
+//    string config = "abcdefghiklmnopqrtwvuzsyx";
+//    string text = encrypt("dit is een test waarbii ik een aantal nederlandstalige woorden ga encrypten om zo erachter te komen wat er in deze tekst staat", config);
+//    cout << cipherText << endl;
+//    decrypt(cipherText, dutch, english, french, german, spanish);
+
+//    stringstream s;
+//    decode(config, cipherText, s);
+//    cout << s.str() << endl;
+
+
     return 0;
 }
