@@ -3,7 +3,7 @@
 //
 
 #include "System/System.h"
-#include<exception>
+#include <exception>
 #include <iostream>
 
 int main() {

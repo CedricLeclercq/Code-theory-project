@@ -3,14 +3,16 @@
 //
 
 #include "System.h"
-#include "../Techniques/Enigma/Enigma.h"
+#include "../Techniques/Enigma//Enigma.h"
 #include "../Techniques/VigenerePlus//Vigenere.h"
+#include "../Techniques/VigenerePlus//Transposition.cpp"
 #include <vector>
 
 void System::runVigenerePlus() {
     Vigenere Code = Vigenere("PYRAMID");
     std::cout << Code.encrypt("attackatsundown") << std::endl;
     std::cout << Code.decrypt("prkaosdiqlnpwzc") << std::endl;
+    std::cout << DecryptEnkeleKolomTranspositie("OSYMANDIAS", "AHGARYDAHPLPCYNEOCRMOEASIMAR") << std::endl;
 }
 
 void System::runEnigma() {

@@ -5,6 +5,8 @@
 #include "Enigma.h"
 
 #include <utility>
+#include <cassert>
+
 using namespace std;
 
 Enigma::Enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib) {

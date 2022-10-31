@@ -4,6 +4,8 @@
 #include <vector>
 #include <map>
 #include <cmath>
+#include <cassert>
+#include <algorithm>
 
 #include "playfair.h"
 
