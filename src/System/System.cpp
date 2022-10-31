@@ -1,12 +1,19 @@
 //
-// Created by Cédric Leclercq on 30/10/2022.
+// Created by Cédric Leclercq on 31/10/2022.
 //
-#include "Enigma.h"
-#include <string>
+
+#include "System.h"
+#include "../Enigma/Enigma.h"
+#include "../VigenerePlus/Vigenere.h"
 #include <vector>
 
+void System::runVigenerePlus() {
+    Vigenere Code = Vigenere("PYRAMID");
+    std::cout << Code.encrypt("attackatsundown") << std::endl;
+    std::cout << Code.decrypt("prkaosdiqlnpwzc") << std::endl;
+}
 
-int main() {
+void System::runEnigma() {
     // Defining all the variables from the assignment
     std::string rotor0 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";        /// Rotor 0 string
     std::string rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";        /// Rotor 1 string
@@ -21,5 +28,8 @@ int main() {
     auto * enigma = new Enigma(rotors, reflector, crib);
 
     delete enigma;
-    return 0;
+}
+
+void System::runPlayfair() {
+    // todo ROBBE
 }
