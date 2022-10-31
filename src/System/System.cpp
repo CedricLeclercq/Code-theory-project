@@ -3,9 +3,9 @@
 //
 
 #include "System.h"
-#include "../Techniques/Enigma//Enigma.h"
-#include "../Techniques/VigenerePlus//Vigenere.h"
-#include "../Techniques/VigenerePlus//Transposition.cpp"
+#include "../Techniques/Enigma/Enigma.h"
+#include "../Techniques/VigenerePlus/Vigenere.h"
+#include "../Techniques/VigenerePlus/Transposition.cpp"
 #include <vector>
 
 void System::runVigenerePlus() {

@@ -18,9 +18,8 @@ set(PLAYFAIR
 
 set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
-        Techniques/VigenerePlus/Vigenere.cpp
-        Techniques/VigenerePlus/Transposition.cpp)
+        Techniques/VigenerePlus/Vigenere.cpp)
 
-add_executable(Enigma ${GENERAL} ${ENIGMA})
-add_executable(Playfair ${GENERAL} ${PLAYFAIR})
-add_executable(VigenerePlus ${GENERAL} ${VIGENEREPLUS})
+# add_executable(Enigma ${ENIGMA})
+add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS})
+# add_executable(VigenerePlus ${VIGENEREPLUS})
