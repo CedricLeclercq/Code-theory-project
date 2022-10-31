@@ -12,7 +12,7 @@ void System::runVigenerePlus() {
     Vigenere Code = Vigenere("PYRAMID");
     std::cout << Code.encrypt("attackatsundown") << std::endl;
     std::cout << Code.decrypt("prkaosdiqlnpwzc") << std::endl;
-    std::cout << DecryptEnkeleKolomTranspositie("OSYMANDIAS", "AHGARYDAHPLPCYNEOCRMOEASIMAR") << std::endl;
+    std::cout << DecryptSingleColumnTransposition("OSYMANDIAS", "AHGARYDAHPLPCYNEOCRMOEASIMAR") << std::endl;
 }
 
 void System::runEnigma() {
