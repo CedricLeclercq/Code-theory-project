@@ -8,18 +8,18 @@ set(GENERAL
         System/System.cpp
         main.cpp)
 
-set(ENIGMA
-        Enigma/Enigma.cpp
-        Enigma/Enigma.h)
+set(Techniques/Enigma
+        Techniques/Enigma/Enigma.cpp
+        Techniques/Enigma/Enigma.h)
 
-set(PLAYFAIR
-        Playfair/playfair.cpp
-        Playfair/playfair.h)
+set(Techniques/Playfair
+        Techniques/Playfair/playfair.cpp
+        Techniques/Playfair/playfair.h)
 
-set(VIGENEREPLUS
-        VigenerePlus/Vigenere.h
-        VigenerePlus/Vigenere.cpp)
+set(Techniques/VigenerePlus
+        Techniques/VigenerePlus/Vigenere.h
+        Techniques/VigenerePlus/Vigenere.cpp)
 
-add_executable(Enigma ${GENERAL} ${ENIGMA})
-add_executable(Playfair ${GENERAL} ${PLAYFAIR})
-add_executable(VigenerePlus ${GENERAL} ${VIGENEREPLUS})
+add_executable(Techniques/Enigma ${GENERAL} ${ENIGMA})
+add_executable(Techniques/Playfair ${GENERAL} ${PLAYFAIR})
+add_executable(Techniques/VigenerePlus ${GENERAL} ${VIGENEREPLUS})
