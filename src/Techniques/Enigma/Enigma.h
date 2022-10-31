@@ -20,9 +20,7 @@ private:
     /**
      * @brief Function that turns the rotors automatically by using modulo
      */
-    void turn_rotor() {
-
-    }
+    void turn_rotor() {}
 public:
     /**
      * @brief Default constructor
@@ -50,6 +48,10 @@ public:
      * @pre std::vector<std::string> length == 5    (We have 5 rotors, they all need to be set)
      */
     void setup_enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib);
+
+    std::string decrypt(const std::string & cypher);
+
+    std::string encrypt(const std::string & cypher);
 
 };
 

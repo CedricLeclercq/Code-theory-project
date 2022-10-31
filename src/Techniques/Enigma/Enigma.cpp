@@ -21,3 +21,11 @@ void Enigma::setup_enigma(vector<string> newRotors, string newReflector, string 
     this->reflector = std::move(newReflector);
     this->crib = std::move(newCrib);
 }
+
+std::string Enigma::decrypt(const string & cypher) {
+    return {};
+}
+
+std::string Enigma::encrypt(const string &cypher) {
+    return {};
+}

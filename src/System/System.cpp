@@ -3,8 +3,8 @@
 //
 
 #include "System.h"
-#include "../Enigma/Enigma.h"
-#include "../VigenerePlus/Vigenere.h"
+#include "../Techniques/Enigma/Enigma.h"
+#include "../Techniques/VigenerePlus//Vigenere.h"
 #include <vector>
 
 void System::runVigenerePlus() {
