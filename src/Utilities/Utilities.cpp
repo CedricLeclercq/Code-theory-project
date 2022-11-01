@@ -35,6 +35,7 @@ tuple< map<string, string>, string > Utilities::ReadContents(const string &input
                 ExtraInfo[key] = value;
             }
             else if(myline.size() > 0){
+                myline.erase(std::remove_if(myline.begin(), myline.end(), isWhitespace), myline.end());
                 Ciphertext = myline;
             }
         }

@@ -3,7 +3,7 @@
 Vigenere::Vigenere(const string &key) : key(key) {
 
     // temporarily flip the alphabet dictionary, so we can make the square easier
-    // {"A" : 0} -> {0 : A} ...
+    // {"A" : 0} -> {0 : "A"} ...
     map<int, char> flipped_aphabet;
     for (auto & i : this->alphabet) {
         flipped_aphabet[i.second] = i.first;
@@ -51,13 +51,12 @@ string Vigenere::decrypt(const string &Ciphertext) {
         vector<char> row = this->vigenere_square[key_row];
         // find the index of the letter of the Ciphertext text in the row
         auto it = find(row.begin(), row.end(),(char) toupper(Ciphertext[i]));
-        if (it != row.end())
-        {
+        if (it != row.end()){
             // look up the index in the alphabet and add the obtained letter to the result
             int plaintext_column = (int) (it - row.begin());
             result.push_back((char) tolower(flipped_aphabet[plaintext_column]));
         }
-        else{
+        else {
             cout << "Something went wrong. ";
             cout << "Check for strange character in the Ciphertext" << endl;
             break;

@@ -16,7 +16,7 @@ void System::runVigenerePlus() {
     map<string, string> extraInfo;
 
     // in this case there is no extra info
-    tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/04-OPGAVE-enigma.txt");
+    tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/01-OPGAVE-vigenerePlus.txt");
 
     // het the keys
     string key1 = "STRING";
