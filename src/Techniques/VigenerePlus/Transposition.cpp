@@ -46,18 +46,17 @@ namespace {
     }
 
     template<typename T>
-    std::vector<T> flatten(std::vector<std::vector<T>> const &vec)
-{
-    std::vector<T> flattened;
-    for (auto const &v: vec) {
-    flattened.insert(flattened.end(), v.begin(), v.end());
-}
-return flattened;
-}
+    std::vector<T> flatten(std::vector<std::vector<T>> const &vec){
+        std::vector<T> flattened;
+        for (auto const &v: vec) {
+            flattened.insert(flattened.end(), v.begin(), v.end());
+        }
+    return flattened;
+    }
 
 }
 
-string DecryptEnkeleKolomTranspositie(const string &key, const string &Ciphertext) {
+string DecryptSingleColumnTransposition(const string &key, const string &Ciphertext) {
     // put the key in a vector and sort the key alphabetically
     std::vector<char> keyVector(key.begin(), key.end());
     alphabaticallySort(keyVector);
@@ -88,8 +87,10 @@ string DecryptEnkeleKolomTranspositie(const string &key, const string &Ciphertex
         }
     }
 
+    // make list of matrix
     vector<char> CiphertextVector = flatten(CiphertextMatrix);
 
+    // make string of matrix
     string result(CiphertextVector.begin(), CiphertextVector.end());
     return result;
 }
