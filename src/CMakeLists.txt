@@ -20,6 +20,10 @@ set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
         Techniques/VigenerePlus/Vigenere.cpp)
 
+set(UTILITIES
+        Utilities/Utilities.h
+        Utilities/Utilities.cpp)
+
 # add_executable(Enigma ${ENIGMA})
-add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS})
+add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS} ${UTILITIES})
 # add_executable(VigenerePlus ${VIGENEREPLUS})

@@ -6,13 +6,29 @@
 #include "../Techniques/Enigma/Enigma.h"
 #include "../Techniques/VigenerePlus/Vigenere.h"
 #include "../Techniques/VigenerePlus/Transposition.cpp"
+#include "../Utilities/Utilities.h"
 #include <vector>
 
 void System::runVigenerePlus() {
-    Vigenere Code = Vigenere("PYRAMID");
-    std::cout << Code.encrypt("attackatsundown") << std::endl;
-    std::cout << Code.decrypt("prkaosdiqlnpwzc") << std::endl;
-    std::cout << DecryptSingleColumnTransposition("OSYMANDIAS", "AHGARYDAHPLPCYNEOCRMOEASIMAR") << std::endl;
+    Utilities utilities;
+
+    string Ciphertext;
+    map<string, string> extraInfo;
+
+    // in this case there is no extra info
+    tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/04-OPGAVE-enigma.txt");
+
+    // het the keys
+    string key1 = "STRING";
+    string key2 = "STRING";
+
+    // decode the Ciphertext
+    Vigenere Code = Vigenere(key1);
+    string NewCiphertext = Code.decrypt(Ciphertext);
+    string FinalText = DecryptSingleColumnTransposition(key2, NewCiphertext);
+
+    // print the result
+    std::cout << FinalText << std::endl;
 }
 
 void System::runEnigma() {
