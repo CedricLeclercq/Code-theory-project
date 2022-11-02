@@ -49,6 +49,10 @@ void Enigma::setup_cribGraph() {
         // Adding link to first node
         EnigmaNode * node1 = findInCribGraph(crib[i]);
         EnigmaNode * node2 = findInCribGraph(coded_message[i]);
+        if (node1 == nullptr || node2 == nullptr) {
+            std::cerr << "node cannot be found - Enigma.cpp - setup_cribGraph()" << std::endl;
+            throw (exception()); // should never happen
+        }
         node1->edges_cost.emplace_back(node2, i+1);
         node2->edges_cost.emplace_back(node1, i+1);
         // Checking if coded text is linked back to crib
