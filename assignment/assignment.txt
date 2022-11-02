@@ -1,7 +1,7 @@
 Project: Deadline do 15 December
 
 4 boeken/teksten (kan ook krantenartikel zijn) -> Engels =, Frans , Nederlands, Duits en Spaans
-
+ 
 Mogelijk meerdere boeken in dezelfde taal
 Zonder spaties
 Zonder leestekens -> bv in frans ç -> c

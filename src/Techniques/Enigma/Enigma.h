@@ -7,39 +7,21 @@
 
 #include <string>
 #include <vector>
+#include "EnigmaNode.h"
 
 class Enigma {
 private:
     // Variables
     std::string rotor0, rotor1, rotor2, rotor3, rotor4;    /// All rotors
     std::string reflector, crib;                           /// Reflector and crib
-    int rotor_turn_count = 0;                              /// Rotor turn count (indicates # rotor turns happened)
 
+
+    std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";   /// Just the alphabet
+    std::string coded_message{};
+
+    std::vector<EnigmaNode*> cribGraph{};
 
     // Functions
-    /**
-     * @brief Function that turns the rotors automatically by using modulo
-     */
-    void turn_rotor() {}
-public:
-    /**
-     * @brief Default constructor
-     */
-    Enigma()=default;
-
-    /**
-     * @brief Constructor that setups enigma directly
-     * @param newRotors         New rotors for the enigma
-     * @param newReflector      New reflector for the enigma
-     * @param newCrib           New crib for the enigma
-     */
-    Enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib);
-
-    /**
-     * @brief Default destructor
-     */
-     ~Enigma()=default;
-
     /**
      * @brief Setup enigma with new rotors, reflector and crib
      * @param newRotors     New rotors for the enigma
@@ -49,9 +31,24 @@ public:
      */
     void setup_enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib);
 
-    std::string decrypt(const std::string & cypher);
+    void setup_cribGraph();
 
-    std::string encrypt(const std::string & cypher);
+    EnigmaNode * findInCribGraph(char x);
+
+public:
+    /**
+     * @brief Constructor that setups enigma directly
+     * @param newRotors         New rotors for the enigma
+     * @param newReflector      New reflector for the enigma
+     * @param newCrib           New crib for the enigma
+     */
+    Enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib, std::string code);
+
+    /**
+     * @brief Default destructor
+     */
+     ~Enigma()=default;
+
 
 };
 

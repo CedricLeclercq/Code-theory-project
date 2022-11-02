@@ -6,12 +6,15 @@ set(CMAKE_CXX_STANDARD 14)
 set(GENERAL
         System/System.h
         System/System.cpp
+        Utilities/Utilities.h
+        Utilities/Utilities.cpp
         main.cpp)
 
 set(ENIGMA
         Techniques/Enigma/Enigma.cpp
-        Techniques/Enigma/Enigma.h)
-
+        Techniques/Enigma/Enigma.h
+        Techniques/Enigma/EnigmaNode.cpp
+        Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
         Techniques/Playfair/playfair.cpp
         Techniques/Playfair/playfair.h)
