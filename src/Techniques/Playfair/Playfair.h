@@ -8,6 +8,8 @@
 //void encode(const std::string &config, char &c1, char &c2);
 //void decode(const std::string &config, char &c1, char &c2);
 
+void loadCipherText(const std::string& filename, std::string& cipherText);
+
 void encode(const std::string &config, const std::string& input, std::stringstream &encoded);
 void decode(const std::string &config, const std::string& input, std::stringstream &decoded);
 

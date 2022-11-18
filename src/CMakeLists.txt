@@ -16,8 +16,8 @@ set(ENIGMA
         Techniques/Enigma/EnigmaNode.cpp
         Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
-        Techniques/Playfair/playfair.cpp
-        Techniques/Playfair/playfair.h)
+        Techniques/Playfair/Playfair.cpp
+        Techniques/Playfair/Playfair.h)
 
 set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h

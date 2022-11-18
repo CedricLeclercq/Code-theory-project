@@ -6,10 +6,34 @@
 #include <cmath>
 #include <cassert>
 #include <algorithm>
+#include <fstream>
 
-#include "playfair.h"
+#include "Playfair.h"
 
 using namespace std;
+
+void loadCipherText(const string& filename, string& cipherText) {
+    ifstream file(filename);
+    getline(file, cipherText);
+    file.close();
+}
+
+void splitIntoVector(vector<string> &v, string &str) {
+    stringstream ss(str);
+    while (ss.good()) {
+        string substr;
+        getline(ss, substr, ',');
+        v.push_back(substr);
+    }
+}
+
+void loadDictionary(const string& filename, vector<string> &v) {
+    string words;
+    ifstream dictionary(filename);
+    getline(dictionary, words);
+    dictionary.close();
+    splitIntoVector(v, words);
+}
 
 int indexof(const std::string& text, char& pattern) {
     std::string::size_type loc = text.find(pattern, 0);
