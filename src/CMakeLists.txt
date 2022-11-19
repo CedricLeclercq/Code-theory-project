@@ -19,8 +19,8 @@ set(ENIGMA
         Techniques/Enigma/EnigmaNode.cpp
         Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
-        Techniques/Playfair/PlayfairDeprecated.cpp
-        Techniques/Playfair/PlayfairDeprecated.h)
+        Techniques/Playfair/Playfair.cpp
+        Techniques/Playfair/Playfair.h)
 
 set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
@@ -28,7 +28,7 @@ set(VIGENEREPLUS
 
 set(UTILITIES
         Utilities/Utilities.h
-        Utilities/Utilities.cpp Techniques/Playfair/Playfair.cpp Techniques/Playfair/Playfair.h)
+        Utilities/Utilities.cpp)
 
 # add_executable(Enigma ${ENIGMA})
 add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS} ${UTILITIES})

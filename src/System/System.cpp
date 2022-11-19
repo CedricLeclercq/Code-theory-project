@@ -6,7 +6,6 @@
 #include "../Techniques/Enigma/Enigma.h"
 #include "../Techniques/VigenerePlus/Vigenere.h"
 #include "../Techniques/VigenerePlus/Transposition.cpp"
-#include "../Techniques/Playfair/PlayfairDeprecated.h"
 #include "../Utilities/Utilities.h"
 #include "../Techniques/Playfair/Playfair.h"
 #include <vector>
@@ -54,6 +53,12 @@ void System::runEnigma() {
     auto * enigma = new Enigma(rotors, reflector, crib, coded_text);
 
     delete enigma;
+}
+
+void loadCipherText(const string& filename, string& cipherText) {
+    ifstream file(filename);
+    getline(file, cipherText);
+    file.close();
 }
 
 void System::runPlayfair() {
