@@ -3,6 +3,9 @@ project(Code-Theory)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OWN_GXX_FLAGS} -O3 -pthread")
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${OWN_GXX_FLAGS} -O3 -pthread")
+
 set(GENERAL
         System/System.h
         System/System.cpp
@@ -16,8 +19,8 @@ set(ENIGMA
         Techniques/Enigma/EnigmaNode.cpp
         Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
-        Techniques/Playfair/Playfair.cpp
-        Techniques/Playfair/Playfair.h)
+        Techniques/Playfair/PlayfairDeprecated.cpp
+        Techniques/Playfair/PlayfairDeprecated.h)
 
 set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
@@ -25,7 +28,7 @@ set(VIGENEREPLUS
 
 set(UTILITIES
         Utilities/Utilities.h
-        Utilities/Utilities.cpp)
+        Utilities/Utilities.cpp Techniques/Playfair/Playfair.cpp Techniques/Playfair/Playfair.h)
 
 # add_executable(Enigma ${ENIGMA})
 add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS} ${UTILITIES})
