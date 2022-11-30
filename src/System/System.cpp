@@ -6,8 +6,8 @@
 #include "../Techniques/Enigma/Enigma.h"
 #include "../Techniques/VigenerePlus/Vigenere.h"
 #include "../Techniques/VigenerePlus/Transposition.cpp"
-#include "../Techniques/Playfair/Playfair.h"
 #include "../Utilities/Utilities.h"
+#include "../Techniques/Playfair/Playfair.h"
 #include <vector>
 
 void System::runVigenerePlus() {
@@ -55,6 +55,12 @@ void System::runEnigma() {
     delete enigma;
 }
 
+void loadCipherText(const string& filename, string& cipherText) {
+    ifstream file(filename);
+    getline(file, cipherText);
+    file.close();
+}
+
 void System::runPlayfair() {
 //    vector<string> dutch, english, french, german, spanish;
 //    loadDictionary("dictionaries_without_j/dutch.txt", dutch);
@@ -78,7 +84,9 @@ void System::runPlayfair() {
 
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 //    decrypt(cipherText);
-    crack(cipherText);
+//    crack(cipherText);
+    Playfair playfair = Playfair(cipherText);
+    playfair.decrypt();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
 
