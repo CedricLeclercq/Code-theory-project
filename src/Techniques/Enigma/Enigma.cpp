@@ -25,6 +25,8 @@ void Enigma::setup_enigma(vector<string> newRotors, string newReflector, string 
     this->reflector = std::move(newReflector);
     this->crib = std::move(newCrib);
     this->setup_cribGraph();
+    this->setup_raster();
+
     /*
     string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     for (auto x_letter: alphabet) {
@@ -47,31 +49,64 @@ void Enigma::setup_cribGraph() {
     // Setting up edges for crib
     for (int i = 0; i < crib.size(); i++) {
         // Adding link to first node
-        EnigmaNode * node1 = findInCribGraph(crib[i]);
-        EnigmaNode * node2 = findInCribGraph(coded_message[i]);
+        EnigmaNode * node1 = findInVectorGraph(crib[i], this->cribGraph);
+        EnigmaNode * node2 = findInVectorGraph(coded_message[i], this->cribGraph);
         if (node1 == nullptr || node2 == nullptr) {
             std::cerr << "node cannot be found - Enigma.cpp - setup_cribGraph()" << std::endl;
             throw (exception()); // should never happen
         }
         node1->edges_cost.emplace_back(node2, i+1);
         node2->edges_cost.emplace_back(node1, i+1);
-        // Checking if coded text is linked back to crib
-//        int index = static_cast<int>(coded_message.find(crib[i]));
-//        if (0 <= index && index <= static_cast<int>(crib.size())) {
-//            if (crib[index] == coded_message[index])
-//                node2->edges_cost.emplace_back(node1, index);
-//        }
+
     }
-    std::cout << "DIKKE";
 }
 
-EnigmaNode *Enigma::findInCribGraph(char x) {
-    for (auto elem: this->cribGraph) {
+EnigmaNode *Enigma::findInVectorGraph(char x, const vector<EnigmaNode*>& graph) {
+    for (auto elem: graph) {
         if (elem->letter == x) {
             return elem;
         }
     }
     return nullptr;
+}
+
+void Enigma::setup_raster() {
+    for (int i = 0; i < this->alphabet.size(); i++) {
+        std::vector<bool> letter_vector{};
+        for (int j = 0; j < this->alphabet.size(); j++) {
+            letter_vector.push_back(false);
+        }
+        this->rasterPlugboard.push_back(letter_vector);
+    }
+}
+
+void Enigma::setup_gamma_kGraph() {
+    for (auto letter: this->alphabet) {
+        auto * node = new EnigmaNode(letter);
+        auto * node2 = new EnigmaNode(letter);
+        cribGraph.push_back(node);
+        cribGraph.push_back(node2);
+    }
+    // Adding edges (L_1, L_2) --- (L_2, L_1)
+    for (auto letterA: this->alphabet) {
+        for (auto letterB: this->alphabet) {
+            EnigmaNode * L_1 = this->findInVectorGraph(letterA, this->gamma_kGraph);
+            EnigmaNode * L_2 = this->findInVectorGraph(letterB, this->gamma_kGraph);
+            L_1->edges_cost.emplace_back(L_2, 0);
+            L_2->edges_cost.emplace_back(L_1, 0);
+        }
+    }
+
+}
+
+std::string Enigma::encrypt_letter(const char &ch) {
+    // First go through plug board
+    // Then go through the rotors
+    // Then reflector
+    // Then go through the rotors
+    // Then go through plug board
+    // Return
+    return std::string();
 }
 
 

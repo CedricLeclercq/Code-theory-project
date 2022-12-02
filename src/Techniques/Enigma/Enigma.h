@@ -20,7 +20,8 @@ private:
     std::string coded_message{};
 
     std::vector<EnigmaNode*> cribGraph{};
-
+    std::vector<std::vector<bool>> rasterPlugboard{}; // 26x26, with on columns letters and rows Sigma(letters)
+    std::vector<EnigmaNode*> gamma_kGraph{};
     // Functions
     /**
      * @brief Setup enigma with new rotors, reflector and crib
@@ -33,7 +34,13 @@ private:
 
     void setup_cribGraph();
 
-    EnigmaNode * findInCribGraph(char x);
+    void setup_raster();
+
+    void setup_gamma_kGraph();
+
+    static EnigmaNode * findInVectorGraph(char x, const std::vector<EnigmaNode*>& graph);
+
+    std::string encrypt_letter(const char & ch);
 
 public:
     /**
@@ -48,6 +55,8 @@ public:
      * @brief Default destructor
      */
      ~Enigma()=default;
+
+
 
 
 };

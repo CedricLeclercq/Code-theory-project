@@ -17,6 +17,7 @@ public:
     Utilities();
 
     tuple< map< string, string >, string> ReadContents(const string &inputfile);
+    static std::vector<std::string> convertToPermutation(std::string dom, std::string ran);
 private:
 
 };

@@ -3,8 +3,8 @@ project(Code-Theory)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OWN_GXX_FLAGS} -O3 -pthread")
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${OWN_GXX_FLAGS} -O3 -pthread")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OWN_GXX_FLAGS}") # -O3 -pthread
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${OWN_GXX_FLAGS}") # -O3 -pthread
 
 set(GENERAL
         System/System.h
@@ -14,6 +14,8 @@ set(GENERAL
         main.cpp)
 
 set(ENIGMA
+        Techniques/Enigma.cpp
+        Techniques/Enigma.h
         Techniques/Enigma/Enigma.cpp
         Techniques/Enigma/Enigma.h
         Techniques/Enigma/EnigmaNode.cpp
