@@ -16,6 +16,8 @@ class Enigma {
     std::vector<std::string> sigma_perm; // Plugboard - permutation
     std::vector<std::string> tau_perm; // Reflector - permutation
     std::vector<std::string> pi_perm; // Cyclo-metric - permutation
+    std::vector<int> rotor_choice; // Slow - Mid - Fast
+    std::vector<char> cur_position; // Slow - Mid - Fast
 
 public:
     Enigma(std::vector<std::string> p0,
@@ -25,7 +27,11 @@ public:
            std::vector<std::string> p4,
            std::vector<std::string> sigma,
            std::vector<std::string> tau,
-           std::vector<std::string> pi);
+           std::vector<std::string> pi,
+           std::vector<int> rotor,
+           std::vector<char> cur_pos);
+
+    char encryptLetter(const char& ch);
 };
 
 
