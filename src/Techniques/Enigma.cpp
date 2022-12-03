@@ -26,6 +26,22 @@ char Enigma::encryptLetter(const char &ch) {
 //    if (ch == 'A') {
 //        std::cout << "here" << std::endl;
 //    }
+    // TODO debug printing
+    std::cout << "+--------------------------------------------+" << std::endl;
+    std::cout << "Current setting: ";
+    for (auto set: this->cur_position) {
+        std::cout << set;
+    } std::cout << std::endl;
+    std::cout << "Current rotor setting: ";
+    for (auto set: this->rotor_choice) {
+        std::cout << set;
+    } std::cout << std::endl;
+    std::cout << "Amount of rotations done: " << this->rotations << std::endl;
+
+
+    // TODO debug printing ended
+
+
     Utilities utils;
     char result{};
     // Plug board - in
@@ -130,23 +146,28 @@ char Enigma::encryptLetter(const char &ch) {
     this->rotateRotors();
     // Rotate rotors of Engima - out
     // DONE
+    // todo remove debug print
+    std::cout << "Found char: " << result << std::endl;
     return result;
 }
 
 void Enigma::rotateRotors() {
     this->rotations += 1;
-    // Always turn the fastest rotor
-    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->cur_position[2]);
-    // Turn middle rotor on full cycle
-    if (this->rotations % 26 == 0) {
-        this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->cur_position[1]);
-    }
-    if (this->rotations % 676 == 0) {
+
+    if (this->cur_position[1] == 'Z') {
         this->cur_position[0] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                              this->cur_position[0]);
     }
+    if (this->cur_position[2] == 'Z') {
+        this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                             this->cur_position[1]);
+    }
+
+    // Always turn the fastest rotor
+    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                             this->cur_position[2]);
+
+
 }
 
 
