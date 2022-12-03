@@ -108,14 +108,76 @@ std::vector<std::string> Utilities::convertToPermutation(std::string dom,  std::
     return all_perms;
 }
 
-void Utilities::left_rotate(string &s, int d) {
+void Utilities::leftRotate(string &s, int d) {
     reverse(s.begin(), s.begin()+d);
     reverse(s.begin()+d, s.end());
     reverse(s.begin(), s.end());
 }
 
-void Utilities::right_rotate(string &s, int d) {
-    left_rotate(s, s.length()-d);
+void Utilities::rightRotate(string &s, int d) {
+    leftRotate(s, s.length() - d);
 }
+
+char Utilities::followPermutation(const vector<std::string> &perm, const char &ch) {
+    // Assert that we can find the char in one permutation and that we can find that permutation
+    bool contains = false;
+    std::string needed_perm{};
+    for (const auto& ev_perm: perm) {
+        if (ev_perm.find(ch) != std::string::npos) {
+            contains = true;
+            needed_perm = ev_perm;
+        }
+    }
+    if (not contains or needed_perm.empty()) {
+        return ch;
+    }
+    // assert(contains && !needed_perm.empty());
+
+    // Find the next permutation
+    unsigned long pos_in_str = needed_perm.find(ch);
+    if (pos_in_str == needed_perm.size() - 1)
+        return needed_perm[0];
+    else return needed_perm[pos_in_str+1];
+}
+
+char Utilities::InverseFollowPermutation(const vector<std::string> &perm, const char& ch) {
+    // Assert that we can find the char in one permutation and that we can find that permutation
+    bool contains = false;
+    std::string needed_perm{};
+    for (const auto& ev_perm: perm) {
+        if (ev_perm.find(ch) != std::string::npos) {
+            contains = true;
+            needed_perm = ev_perm;
+        }
+    }
+    if (not contains or needed_perm.empty()) {
+        return ch;
+    }
+    //assert(contains && !needed_perm.empty());
+
+    // Find the previous permutation
+    unsigned long pos_in_str = needed_perm.find(ch);
+    if (pos_in_str == 0) {
+        return needed_perm.back();
+    }
+    else return needed_perm[pos_in_str-1];
+}
+
+char Utilities::cyclometric_continuation(const std::string& dom, const char& ch, int k) {
+    assert(k < static_cast<int>((2*dom.size() - 2)));
+    unsigned long pos = dom.find(ch);
+    assert(pos != std::string::npos);
+    if (k >= 0 && pos + k >= dom.size()) {
+        k -= static_cast<int>(dom.size() - pos);
+        return dom[k];
+    } else if (k < 0 && static_cast<int>(pos) - std::abs(k) < 0) {
+        k += static_cast<int>(pos);
+        return dom[dom.size() + k];
+    } // 1 2 3 4 5 6
+
+    return dom[pos + k];
+}
+
+
 
 

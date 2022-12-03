@@ -3,6 +3,7 @@
 //
 
 #include "Enigma.h"
+#include "../Utilities/Utilities.h"
 #include <string>
 
 Enigma::Enigma(std::vector<std::string> p0, std::vector<std::string> p1, std::vector<std::string> p2,
@@ -22,8 +23,130 @@ Enigma::Enigma(std::vector<std::string> p0, std::vector<std::string> p1, std::ve
 }
 
 char Enigma::encryptLetter(const char &ch) {
+//    if (ch == 'A') {
+//        std::cout << "here" << std::endl;
+//    }
+    Utilities utils;
+    char result{};
+    // Plug board - in
+    char prev = ch;
+    result = Utilities::followPermutation(this->sigma_perm, ch);
+    // Plug board - out
+    // Rotors - in
+    int it = -1;
+    reverse(this->rotor_choice.begin(), this->rotor_choice.end());
+    reverse(this->cur_position.begin(), this->cur_position.end());
+    for (int iterator : this->rotor_choice) {
+        it += 1;
+        switch (iterator) {
+            default:
+                throw std::exception();
+            case 0: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::followPermutation(this->p0_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 1: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::followPermutation(this->p1_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 2: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::followPermutation(this->p2_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 3: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::followPermutation(this->p3_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 4: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::followPermutation(this->p4_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+        }
+    }
+    reverse(this->rotor_choice.begin(), this->rotor_choice.end());
+    reverse(this->cur_position.begin(), this->cur_position.end());
+    // Rotors - out
+    // Reflector - in
+    result = Utilities::followPermutation(this->tau_perm,result);
+    // Reflector - out
+    // Rotors (reverse) - in
+    it = -1;
+    for (int iterator : this->rotor_choice) {
+        it += 1;
+        switch (iterator) {
+            default:
+                throw std::exception();
+            case 0: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::InverseFollowPermutation(this->p0_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 1: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::InverseFollowPermutation(this->p1_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 2: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::InverseFollowPermutation(this->p2_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 3: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::InverseFollowPermutation(this->p3_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+            case 4: {
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, Utilities::getAlphabet().find(this->cur_position[it]));
+                result = Utilities::InverseFollowPermutation(this->p4_perm, result);
+                result = Utilities::cyclometric_continuation(Utilities::getAlphabet(), result, -(Utilities::getAlphabet().find(this->cur_position[it])));
+                break;
+            }
+        }
+    }
+    // Rotors (reverse) - out
+    // Plug board (reverse) - in
+    prev = result;
+    result = Utilities::InverseFollowPermutation(this->sigma_perm, result);
+    if (result == '\0') {
+        result = prev;
+    }
+    // Plug board (reverse) - out
+    // Rotate rotors of Enigma - in
+    this->rotateRotors();
+    // Rotate rotors of Engima - out
+    // DONE
+    return result;
+}
 
-    return 0;
+void Enigma::rotateRotors() {
+    this->rotations += 1;
+    // Always turn the fastest rotor
+    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                             this->cur_position[2]);
+    // Turn middle rotor on full cycle
+    if (this->rotations % 26 == 0) {
+        this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                             this->cur_position[1]);
+    }
+    if (this->rotations % 676 == 0) {
+        this->cur_position[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                             this->cur_position[0]);
+    }
 }
 
 

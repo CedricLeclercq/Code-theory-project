@@ -56,7 +56,7 @@ void System::runEnigma() {
 
     // Hardcoding for testing
     perm0 = {"BJ","CDKLHUP","ESZ","FIXVYOMW","GR","NT"};
-    perm1 = {"AELTPHQXRU", "BKN", "W", "CMOY", "DFG", "IV", "JZ"};
+    perm1 = {"AELTPHQXRU", "BKN", "W", "CMOY", "DFG", "IV", "JZ", "S"};
     perm2 = {"ABDHPEJT", "CFLVMZOYQIRWUKXSG"};
     perm3 = {"ATV", "BHKOXYDQMNFI", "CEULWZG", "JRP"};
     perm4 = {"AXQCNDTHSGEIOVLWMUJKRFPB"};
@@ -76,6 +76,12 @@ void System::runEnigma() {
                                {},
                                rotor_choice,
                                current_pos);
+
+
+    std::string test_encrypt = "PASOPVOORSALAMANDER";
+    for (auto ch: test_encrypt) {
+        std::cout << enigma->encryptLetter(ch);
+    }
 
 
 //    Utilities::convertToPermutation("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "THEQUICKBROWNFXJMPSVLAZYDG");

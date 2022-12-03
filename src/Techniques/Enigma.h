@@ -18,6 +18,7 @@ class Enigma {
     std::vector<std::string> pi_perm; // Cyclo-metric - permutation
     std::vector<int> rotor_choice; // Slow - Mid - Fast
     std::vector<char> cur_position; // Slow - Mid - Fast
+    int rotations = 0;
 
 public:
     Enigma(std::vector<std::string> p0,
@@ -32,6 +33,8 @@ public:
            std::vector<char> cur_pos);
 
     char encryptLetter(const char& ch);
+
+    void rotateRotors();
 };
 
 

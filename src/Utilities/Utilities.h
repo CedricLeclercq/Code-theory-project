@@ -20,10 +20,20 @@ public:
     static std::vector<std::string> convertToPermutation(std::string dom, std::string ran);
 
     // In-place rotates s towards left by d
-    static void left_rotate(string &s, int d);
+    static void leftRotate(string &s, int d);
+
+    // Follow permutation
+    static char followPermutation(const std::vector<std::string>& perm, const char& ch);
 
     // In-place rotates s towards right by d
-    void right_rotate(string &s, int d);
+    void rightRotate(string &s, int d);
+
+    // Get alphabet
+    static std::string getAlphabet() {return "ABCDEFGHIJKLMNOPQRSTUVWXYZ";}
+
+    static char cyclometric_continuation(const std::string& dom,const char& ch, int k);
+
+    static char InverseFollowPermutation(const vector<std::string> &perm, const char& ch);
 };
 
 
