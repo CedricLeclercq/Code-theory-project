@@ -52,12 +52,30 @@ void System::runEnigma() {
     std::vector<std::string> perm3 = Utilities::convertToPermutation(alphabet, rotor3);
     std::vector<std::string> perm4 = Utilities::convertToPermutation(alphabet, rotor4);
     std::vector<std::string> permr = Utilities::convertToPermutation(alphabet, reflector);
+    std::vector<std::string> stekkerbord = {};
 
     // Hardcoding for testing
+    perm0 = {"BJ","CDKLHUP","ESZ","FIXVYOMW","GR","NT"};
+    perm1 = {"AELTPHQXRU", "BKN", "W", "CMOY", "DFG", "IV", "JZ"};
+    perm2 = {"ABDHPEJT", "CFLVMZOYQIRWUKXSG"};
+    perm3 = {"ATV", "BHKOXYDQMNFI", "CEULWZG", "JRP"};
+    perm4 = {"AXQCNDTHSGEIOVLWMUJKRFPB"};
+    permr = {"AY", "BR", "CU", "DH", "EQ", "FS", "GL", "IP", "JX", "KN", "MO", "TZ", "VW"};
+    stekkerbord = {"AP", "CM", "DE", "GL", "JZ", "TW"};
+
 
     std::vector<int> rotor_choice = {1,0,4};
     std::vector<char> current_pos = {'B', 'E', 'X'};
-    auto * enigma = new Enigma(perm0, perm1, perm2, perm3, perm4, {}, permr, {}, rotor_choice, current_pos);
+    auto * enigma = new Enigma(perm0,
+                               perm1,
+                               perm2,
+                               perm3,
+                               perm4,
+                               stekkerbord,
+                               permr,
+                               {},
+                               rotor_choice,
+                               current_pos);
 
 
 //    Utilities::convertToPermutation("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "THEQUICKBROWNFXJMPSVLAZYDG");

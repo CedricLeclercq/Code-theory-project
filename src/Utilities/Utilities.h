@@ -18,8 +18,12 @@ public:
 
     tuple< map< string, string >, string> ReadContents(const string &inputfile);
     static std::vector<std::string> convertToPermutation(std::string dom, std::string ran);
-private:
 
+    // In-place rotates s towards left by d
+    static void left_rotate(string &s, int d);
+
+    // In-place rotates s towards right by d
+    void right_rotate(string &s, int d);
 };
 
 

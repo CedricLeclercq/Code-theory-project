@@ -108,4 +108,14 @@ std::vector<std::string> Utilities::convertToPermutation(std::string dom,  std::
     return all_perms;
 }
 
+void Utilities::left_rotate(string &s, int d) {
+    reverse(s.begin(), s.begin()+d);
+    reverse(s.begin()+d, s.end());
+    reverse(s.begin(), s.end());
+}
+
+void Utilities::right_rotate(string &s, int d) {
+    left_rotate(s, s.length()-d);
+}
+
 
