@@ -16,8 +16,6 @@ set(GENERAL
 set(ENIGMA
         Techniques/Enigma.cpp
         Techniques/Enigma.h
-        Techniques/Enigma/Enigma.cpp
-        Techniques/Enigma/Enigma.h
         Techniques/Enigma/EnigmaNode.cpp
         Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR

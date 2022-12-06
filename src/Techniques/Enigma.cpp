@@ -26,23 +26,7 @@ char Enigma::encryptLetter(const char &ch) {
 //    if (ch == 'A') {
 //        std::cout << "here" << std::endl;
 //    }
-    // TODO debug printing
-    std::cout << "+--------------------------------------------+" << std::endl;
-    std::cout << "Current setting: ";
-    for (auto set: this->cur_position) {
-        std::cout << set;
-    } std::cout << std::endl;
-    std::cout << "Current rotor setting: ";
-    for (auto set: this->rotor_choice) {
-        std::cout << set;
-    } std::cout << std::endl;
-    std::cout << "Amount of rotations done: " << this->rotations << std::endl;
 
-
-    // TODO debug printing ended
-
-
-    Utilities utils;
     char result{};
     // Plug board - in
     char prev = ch;
@@ -138,16 +122,11 @@ char Enigma::encryptLetter(const char &ch) {
     // Plug board (reverse) - in
     prev = result;
     result = Utilities::InverseFollowPermutation(this->sigma_perm, result);
-    if (result == '\0') {
-        result = prev;
-    }
     // Plug board (reverse) - out
     // Rotate rotors of Enigma - in
     this->rotateRotors();
     // Rotate rotors of Engima - out
     // DONE
-    // todo remove debug print
-    std::cout << "Found char: " << result << std::endl;
     return result;
 }
 
