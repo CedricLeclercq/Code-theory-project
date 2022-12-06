@@ -8,7 +8,7 @@
 #include "../Utilities/Utilities.h"
 #include "../Techniques/Playfair/Playfair.h"
 #include <vector>
-#include "../Techniques/Enigma.h"
+#include "../Techniques/Enigma/Enigma.h"
 
 void System::runVigenerePlus() {
     Utilities utilities;

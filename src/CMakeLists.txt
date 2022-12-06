@@ -14,8 +14,10 @@ set(GENERAL
         main.cpp)
 
 set(ENIGMA
-        Techniques/Enigma.cpp
-        Techniques/Enigma.h
+        Techniques/Enigma/Enigma.cpp
+        Techniques/Enigma/Enigma.h
+        Techniques/Enigma/AdvancedTuringBombe.cpp
+        Techniques/Enigma/AdvancedTuringBombe.h
         Techniques/Enigma/EnigmaNode.cpp
         Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
