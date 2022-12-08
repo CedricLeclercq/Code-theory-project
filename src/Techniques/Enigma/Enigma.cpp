@@ -132,19 +132,45 @@ char Enigma::encryptLetter(const char &ch) {
 
 void Enigma::rotateRotors() {
     this->rotations += 1;
+    std::cout << this->cur_position[0] << this->cur_position[1] << this->cur_position[2] << std::endl;
+    // x x Z
+    if (this->cur_position[2] == 'Z' && this->cur_position[1] != 'Z') {
 
-    if (this->cur_position[1] == 'Z') {
-        this->cur_position[0] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->cur_position[0]);
-    }
-    if (this->cur_position[2] == 'Z') {
         this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->cur_position[1]);
+                                                          this->cur_position[1]);
+        this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->cur_position[2]);
+        return;
     }
+
+    // x Z Z
+    if (this->cur_position[2] == 'Z' && this->cur_position[1] == 'Z') {
+        this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->cur_position[2]);
+        this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->cur_position[1]);
+        this->cur_position[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->cur_position[0]);
+        return;
+    }
+
 
     // Always turn the fastest rotor
-    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->cur_position[2]);
+    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()}, this->cur_position[2]);
+
+//    if (this->cur_position[1] == 'Z') {
+//        this->cur_position[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+//                                                             this->cur_position[0]);
+//    }
+//    if (this->cur_position[2] == 'Z') {
+//        this->cur_position[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+//                                                             this->cur_position[1]);
+//
+//    }
+//
+//    // Always turn the fastest rotor
+//    this->cur_position[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+//                                                             this->cur_position[2]);
 
 
 }

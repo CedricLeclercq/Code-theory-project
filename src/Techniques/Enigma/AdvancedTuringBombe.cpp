@@ -76,29 +76,66 @@ std::string AdvancedTuringBombe::crack_enigma() {
 }
 
 void AdvancedTuringBombe::increase_k() {
-
+    //std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2] << std::endl;
+    // Z Z Z
     if (this->current_k[0] == 'Z' && this->current_k[1] == 'Z' && this->current_k[2] == 'Z') {
         // We have done a full rotation without any luck, cracking has failed :(
         throw std::exception();
     }
 
-    if (this->current_k[1] == 'Z') {
-        // std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2] << std::endl;
-        this->current_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->current_k[0]);
-    }
-    if (this->current_k[2] == 'Z') {
+    // x x Z
+    if (this->current_k[2] == 'Z' && this->current_k[1] != 'Z') {
+
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                             this->current_k[1]);
+                                                          this->current_k[1]);
+        this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->current_k[2]);
+        return;
     }
 
+    // x Z Z
+    if (this->current_k[2] == 'Z' && this->current_k[1] == 'Z' && this->current_k[0] != 'Z') {
+        this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->current_k[2]);
+        this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->current_k[1]);
+        this->current_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                          this->current_k[0]);
+        return;
+    }
+
+
+//    if (this->current_k[1] == 'Z') {
+//        // x Z x
+//        this->current_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+//                                                             this->current_k[0]);
+//        this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+//                                                          this->current_k[1]);
+//    }
+
+
     // Always turn the fastest rotor
-    this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
-                                                         this->current_k[2]);
+    this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()}, this->current_k[2]);
 }
 
 void AdvancedTuringBombe::setup_gamma_for_cur_k() {
     // Setting up: (L_1, L_2) - (L_2, L_1)
+    for (auto elemA: this->gammaGraph->nodes) {
+        for (auto elemB: this->gammaGraph->nodes) {
+            std::string full_a; full_a.push_back(elemA->letterA); full_a.push_back(elemA->letterB);
+            std::string full_b; full_b.push_back(elemB->letterB); full_b.push_back(elemB->letterA);
+            if (elemA != elemB && (full_a == full_b)) {
+                std::tuple<GammaNode*, GammaNode*, int> searchA{elemA, elemB, false};
+                std::tuple<GammaNode*, GammaNode*, int> searchB{elemB, elemA, false};
+                bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
+                                        searchA) != this->gammaGraph->transitions.end());
+                inside = inside && (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
+                                             searchB) != this->gammaGraph->transitions.end());
+                if (!inside)
+                    this->gammaGraph->transitions.emplace_back(elemA, elemB, false);
+            }
+        }
+    }
 
     // Setting up: (L_1, L_3) - (L_2, e_(k+l)(L_3))
 }

@@ -79,29 +79,28 @@ void System::runEnigma() {
     stekkerbord = {"AP", "CM", "DE", "GL", "JZ", "TW"};
 
 
-//    std::vector<int> rotor_choice = {1,0,4};
-//    std::vector<char> current_pos = {'B', 'E', 'X'};
-//    auto * enigma = new Enigma(perm0,
-//                               perm1,
-//                               perm2,
-//                               perm3,
-//                               perm4,
-//                               stekkerbord,
-//                               permr,
-//                               {},
-//                               rotor_choice,
-//                               current_pos);
-//
-//
-//    std::string test_encrypt = "PASOPVOORSALAMANDER";
-//    std::string result{};
-//    for (auto ch: test_encrypt) {
-//        result += enigma->encryptLetter(ch);
-//    }
-//
-//    std::cout << "+============================================+" << std::endl;
-//    std::cout << "RESULT: " << result << std::endl;
-//    std::cout << "+============================================+" << std::endl;
+    std::vector<int> rotor_choice = {1,0,4};
+    std::vector<char> current_pos = {'B', 'E', 'X'};
+    auto * enigma = new Enigma(perm0,
+                               perm1,
+                               perm2,
+                               perm3,
+                               perm4,
+                               stekkerbord,
+                               permr,
+                               {},
+                               rotor_choice,
+                               current_pos);
+
+    std::string test_encrypt = "PASOPVOORSALAMANDER";
+    std::string result{};
+    for (auto ch: test_encrypt) {
+        result += enigma->encryptLetter(ch);
+    }
+
+    std::cout << "+============================================+" << std::endl;
+    std::cout << "RESULT: " << result << std::endl;
+    std::cout << "+============================================+" << std::endl;
 
     auto * bombe = new AdvancedTuringBombe(perm0,perm1,perm2,perm3,perm4,permr, crib, coded_text);
     bombe->crack_enigma();

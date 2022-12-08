@@ -21,7 +21,7 @@ struct GammaNode {
 
 struct GammaGraph {
     std::vector<GammaNode*> nodes;
-    std::vector<std::pair<GammaNode*, GammaNode*>> transitions;
+    std::vector<std::tuple<GammaNode*, GammaNode*, bool>> transitions; // Node1, node2, true or false
     GammaGraph()=default;
 
     std::vector<GammaNode*> getNodesWithALetter(char letter) {
