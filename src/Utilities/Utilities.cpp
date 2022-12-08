@@ -4,6 +4,7 @@
 
 #include <algorithm>
 #include "Utilities.h"
+#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -50,6 +51,25 @@ tuple< map<string, string>, string > Utilities::ReadContents(const string &input
     // Close the file
     myfile.close();
     return tuple<map<string, string>, string>{ExtraInfo, Ciphertext};
+}
+
+void Utilities::WriteContents(const string &inputfile, const string &content){
+    std::ofstream myfile;
+    myfile.open(inputfile, fstream::app);
+    if (myfile.is_open())
+    {
+        myfile << content;
+        myfile.close();
+    }
+    else {
+        std::cout << "Couldn't open file\n";
+    }
+}
+
+void Utilities::ClearContents(const string &inputfile){
+    std::ofstream ofs;
+    ofs.open(inputfile);
+    ofs.close();
 }
 
 std::vector<std::string> Utilities::convertToPermutation(std::string dom,  std::string ran) {
@@ -178,6 +198,27 @@ char Utilities::cyclometric_continuation(const std::string& dom, const char& ch,
     return dom[pos + k];
 }
 
+void permute(string s, string temp, vector<string> & answer)
+{
+    if (s.length() == 0) {
+        answer.push_back(temp);
+        return;
+    }
+    for (int i = 0; i < s.length(); i++) {
+        char ch = s[i];
+        string left_substr = s.substr(0, i);
+        string right_substr = s.substr(i + 1);
+        string rest = left_substr + right_substr;
+        permute(rest, temp + ch, answer);
+    }
+}
+
+std::vector<std::string> Utilities::simplePermutations(const std::string& s) {
+    vector<string> answer;
+    string temp;
+    permute(s, temp, answer);
+    return answer;
+}
 std::vector<std::vector<int>> Utilities::createEnigmaRotorPermutations(std::vector<int> all_rotors) {
     std::vector<std::vector<int>> permutations{};
     while (std::next_permutation(all_rotors.begin(), all_rotors.end())) {
