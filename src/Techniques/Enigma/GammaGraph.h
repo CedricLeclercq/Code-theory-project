@@ -8,8 +8,8 @@
 #include <vector>
 
 struct GammaNode {
-    char letterA; // X coordinate
-    char letterB; // Y Coordinate
+    char letterA; // X coordinate - Letters
+    char letterB; // Y Coordinate - Sigma(letters)
     GammaNode(char new_letterA, char new_letterB) {
         this->letterA = new_letterA;
         this->letterB = new_letterB;

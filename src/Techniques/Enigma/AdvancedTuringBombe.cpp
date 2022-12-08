@@ -3,6 +3,7 @@
 //
 
 #include "AdvancedTuringBombe.h"
+#include "Enigma.h"
 #include "../../Utilities/Utilities.h"
 
 AdvancedTuringBombe::AdvancedTuringBombe(std::vector<std::string> p0, std::vector<std::string> p1,
@@ -56,7 +57,8 @@ std::string AdvancedTuringBombe::crack_enigma() {
     std::vector<std::vector<int>> permutations = Utilities::createEnigmaRotorPermutations({0,1,2,3,4});
     // MAIN LOOP
     // 2.2. Loop over all possible rotor settings (there are (6,5,4) = 6*5*4 = 60 possible ones)
-    for (auto setting: permutations) {
+    for (const auto& setting: permutations) {
+        this->current_setting = setting;
         try {
             while (!found) {
                 this->setup_gamma_for_cur_k();
@@ -104,28 +106,19 @@ void AdvancedTuringBombe::increase_k() {
         return;
     }
 
-
-//    if (this->current_k[1] == 'Z') {
-//        // x Z x
-//        this->current_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
-//                                                             this->current_k[0]);
-//        this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
-//                                                          this->current_k[1]);
-//    }
-
-
     // Always turn the fastest rotor
     this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()}, this->current_k[2]);
 }
 
 void AdvancedTuringBombe::setup_gamma_for_cur_k() {
+    this->gammaGraph->transitions.clear();
     // Setting up: (L_1, L_2) - (L_2, L_1)
     for (auto elemA: this->gammaGraph->nodes) {
         for (auto elemB: this->gammaGraph->nodes) {
             std::string full_a; full_a.push_back(elemA->letterA); full_a.push_back(elemA->letterB);
             std::string full_b; full_b.push_back(elemB->letterB); full_b.push_back(elemB->letterA);
             if (elemA != elemB && (full_a == full_b)) {
-                std::tuple<GammaNode*, GammaNode*, int> searchA{elemA, elemB, false};
+                std::tuple<GammaNode*, GammaNode*, int> searchA{elemA, elemB, false}; // TODO: How to assign this? true or false
                 std::tuple<GammaNode*, GammaNode*, int> searchB{elemB, elemA, false};
                 bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                         searchA) != this->gammaGraph->transitions.end());
@@ -136,8 +129,37 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             }
         }
     }
-
     // Setting up: (L_1, L_3) - (L_2, e_(k+l)(L_3))
+    for (auto transition: this->cribGraph->transitions) {
+        char L_1 = std::get<0>(transition)->letter;
+        char L_2 = std::get<1>(transition)->letter;
+        std::vector<GammaNode*> nodesInRow = this->gammaGraph->getNodesWithALetter(L_1);
+        std::vector<GammaNode*> nodesInRow2 = this->gammaGraph->getNodesWithALetter(L_2);
+        for (auto L_3: nodesInRow) {
+            char L_3_letter = L_3->letterB; // Letter to use for sigma calculation on row L_2
+            Enigma enigma(this->p0_perm,this->p1_perm, this->p2_perm, this->p3_perm, this->p4_perm,
+                          {}, // TODO: Plug board, what to enter here???
+                          this->tau_perm,
+                          {},
+                          this->current_setting,
+                          this->current_k
+                          );
+            char epsilonL_3 = enigma.encryptLetter(L_3_letter);
+            for (auto item: nodesInRow2) {
+                if (item->letterB == epsilonL_3) {
+                    std::tuple<GammaNode*, GammaNode*, int> searchA{L_3, item, false}; // TODO: how to assign this? true or false
+                    std::tuple<GammaNode*, GammaNode*, int> searchB{item, L_3, false};
+                    bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
+                                             searchA) != this->gammaGraph->transitions.end());
+                    inside = inside && (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
+                                                  searchB) != this->gammaGraph->transitions.end());
+
+                    if (!inside)
+                        this->gammaGraph->transitions.emplace_back(L_3, item, false);
+                }
+            }
+        }
+    }
 }
 
 

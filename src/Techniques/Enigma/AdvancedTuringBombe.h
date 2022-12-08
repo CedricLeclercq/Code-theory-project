@@ -15,6 +15,8 @@ class AdvancedTuringBombe {
 private:
     /// Current k of our Gamma_k gammaGraph
     std::vector<char> current_k = {'A','A', 'A'};
+    /// Current setting
+    std::vector<int> current_setting = {};
     /// Current gamma k gammaGraph
     GammaGraph * gammaGraph{};
     /// Crib graph
