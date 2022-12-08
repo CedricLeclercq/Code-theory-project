@@ -16,9 +16,9 @@ private:
     /// Current k of our Gamma_k gammaGraph
     std::vector<char> current_k = {'A','A', 'A'};
     /// Current gamma k gammaGraph
-    GammaGraph * gammaGraph;
+    GammaGraph * gammaGraph{};
     /// Crib graph
-    CribGraph * cribGraph;
+    CribGraph * cribGraph{};
     /// Rotor 0 - permutation
     std::vector<std::string> p0_perm;
     /// Rotor 1 - permutation
@@ -48,6 +48,8 @@ private:
      * Sets up the the gamma_k gammaGraph for the current k
      */
     void setup_gamma_for_cur_k();
+
+    void setup_cracking();
 
 public:
 

@@ -21,11 +21,14 @@ AdvancedTuringBombe::AdvancedTuringBombe(std::vector<std::string> p0, std::vecto
 
 
 bool AdvancedTuringBombe::check_graph() {
-    return false;
+    std::string alphabet = Utilities::getAlphabet();
+    for (auto ch: alphabet) {
+        std::vector<GammaNode *> nodesX = this->gammaGraph->getNodesWithALetter(ch);
+        std::vector<GammaNode *> nodesY = this->gammaGraph->getNodesWithBLetter(ch);
+    }
 }
 
-std::string AdvancedTuringBombe::crack_enigma() {
-
+void AdvancedTuringBombe::setup_cracking() {
     // 0. Setup gammaGraph nodes - begin
     std::string alphabet = Utilities::getAlphabet();
     this->gammaGraph = new GammaGraph();
@@ -39,17 +42,28 @@ std::string AdvancedTuringBombe::crack_enigma() {
     // 1. Setup crib graph fully - begin
     std::string meaning = this->code;
     meaning.substr(0, this->crib.size());
-    this->cribGraph = new CribGraph(this->crib, meaning);
+    this->cribGraph = new CribGraph(this->crib, meaning); // todo assume the crib is in the beginning?
     // 1. Setup crib graph fully - end
+}
 
+
+std::string AdvancedTuringBombe::crack_enigma() {
+
+    // 1. Setup cracking
+    this->setup_cracking();
     // 2. Run the main loop with testing all the different settings - begin
-    // TODO - loop over all rotors
     bool found = false;
+    std::vector<std::vector<int>> permutations = Utilities::createEnigmaRotorPermutations({0,1,2,3,4});
+    // MAIN LOOP
     while(!found) {
-        this->setup_gamma_for_cur_k();
-        found = this->check_graph();
-        this->increase_k();
+        // 2.2. Loop over all possible rotor settings (there are (6,5,4) = 6*5*4 = 60 possible ones)
+        for (auto setting: permutations) {
+            this->setup_gamma_for_cur_k();
+            found = this->check_graph();
+            this->increase_k();
+        }
     }
+    // END MAIN LOOP
     return {};
 }
 
@@ -73,6 +87,9 @@ void AdvancedTuringBombe::increase_k() {
 }
 
 void AdvancedTuringBombe::setup_gamma_for_cur_k() {
+    // Setting up: (L_1, L_2) - (L_2, L_1)
 
+    // Setting up: (L_1, L_3) - (L_2, e_(k+l)(L_3))
 }
+
 

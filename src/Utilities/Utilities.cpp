@@ -178,6 +178,21 @@ char Utilities::cyclometric_continuation(const std::string& dom, const char& ch,
     return dom[pos + k];
 }
 
+std::vector<std::vector<int>> Utilities::createEnigmaRotorPermutations(std::vector<int> all_rotors) {
+    std::vector<std::vector<int>> permutations{};
+    while (std::next_permutation(all_rotors.begin(), all_rotors.end())) {
+        std::vector<int> result = {all_rotors[0], all_rotors[1], all_rotors[2]};
+        bool add = true;
+        for (const auto& elem: permutations) {
+            if (elem == result)
+                add = false;
+        }
+        if (add)
+            permutations.push_back(result);
+    }
+    return permutations;
+}
+
 
 
 

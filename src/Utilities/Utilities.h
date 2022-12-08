@@ -34,6 +34,8 @@ public:
     static char cyclometric_continuation(const std::string& dom,const char& ch, int k);
 
     static char InverseFollowPermutation(const vector<std::string> &perm, const char& ch);
+
+    static std::vector<std::vector<int>> createEnigmaRotorPermutations(std::vector<int> all_rotors);
 };
 
 
