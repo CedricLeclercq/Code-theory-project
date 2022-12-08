@@ -55,30 +55,41 @@ std::string AdvancedTuringBombe::crack_enigma() {
     bool found = false;
     std::vector<std::vector<int>> permutations = Utilities::createEnigmaRotorPermutations({0,1,2,3,4});
     // MAIN LOOP
-    while(!found) {
-        // 2.2. Loop over all possible rotor settings (there are (6,5,4) = 6*5*4 = 60 possible ones)
-        for (auto setting: permutations) {
-            this->setup_gamma_for_cur_k();
-            found = this->check_graph();
-            this->increase_k();
+    // 2.2. Loop over all possible rotor settings (there are (6,5,4) = 6*5*4 = 60 possible ones)
+    for (auto setting: permutations) {
+        try {
+            while (!found) {
+                this->setup_gamma_for_cur_k();
+                found = this->check_graph();
+                this->increase_k();
+            }
+            // If found we have the correct K and the correct rotor stand and the correct plug board
+            // Now create new enigma and fill in the old text and find the original text
+            // todo What to do if found?
+        } catch (std::exception& e) {
+            continue;
         }
     }
+
     // END MAIN LOOP
     return {};
 }
 
 void AdvancedTuringBombe::increase_k() {
+
+    if (this->current_k[0] == 'Z' && this->current_k[1] == 'Z' && this->current_k[2] == 'Z') {
+        // We have done a full rotation without any luck, cracking has failed :(
+        throw std::exception();
+    }
+
     if (this->current_k[1] == 'Z') {
+        // std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2] << std::endl;
         this->current_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                              this->current_k[0]);
     }
     if (this->current_k[2] == 'Z') {
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                              this->current_k[1]);
-    }
-    if (this->current_k[0] == 'Z' && this->current_k[1] == 'Z' && this->current_k[2] == 'Z') {
-        // We have done a full rotation without any luck, cracking has failed :(
-        throw std::exception();
     }
 
     // Always turn the fastest rotor
