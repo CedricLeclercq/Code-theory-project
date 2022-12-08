@@ -18,8 +18,8 @@ set(ENIGMA
         Techniques/Enigma/Enigma.h
         Techniques/Enigma/AdvancedTuringBombe.cpp
         Techniques/Enigma/AdvancedTuringBombe.h
-        Techniques/Enigma/EnigmaNode.cpp
-        Techniques/Enigma/EnigmaNode.h)
+        Techniques/Enigma/GammaGraph.h
+        Techniques/Enigma/CribGraph.h)
 set(PLAYFAIR
         Techniques/Playfair/Playfair.cpp
         Techniques/Playfair/Playfair.h)

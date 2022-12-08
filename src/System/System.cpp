@@ -56,7 +56,7 @@ void System::runEnigma() {
 
     // Hardcoding for testing
     perm0 = {"BJ","CDKLHUP","ESZ","FIXVYOMW","GR","NT"};
-    perm1 = {"AELTPHQXRU", "BKN", "W", "CMOY", "DFG", "IV", "JZ", "S"};
+    perm1 = {"AELTPHQXRU", "BKNW", "CMOY", "DFG", "IV", "JZ", "S"};
     perm2 = {"ABDHPEJT", "CFLVMZOYQIRWUKXSG"};
     perm3 = {"ATV", "BHKOXYDQMNFI", "CEULWZG", "JRP"};
     perm4 = {"AXQCNDTHSGEIOVLWMUJKRFPB"};
