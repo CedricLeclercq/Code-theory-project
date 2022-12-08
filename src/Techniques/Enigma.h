@@ -6,6 +6,7 @@
 #define CODE_THEORY_ENIGMA_H
 
 #include <vector>
+#include <string>
 
 class Enigma {
     std::vector<std::string> p0_perm; // Rotor 0 - permutation

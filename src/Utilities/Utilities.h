@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <tuple>
+#include <vector>
+#include <chrono>
 #include <string>
 #include <map>
 
@@ -16,7 +18,16 @@ class Utilities {
 public:
     Utilities();
 
+    // read from file
     tuple< map< string, string >, string> ReadContents(const string &inputfile);
+
+    // write to file
+    void WriteContents(const string &inputfile, const string &content);
+
+    // clear file
+    void ClearContents(const string &inputfile);
+
+
     static std::vector<std::string> convertToPermutation(std::string dom, std::string ran);
 
     // In-place rotates s towards left by d
@@ -34,6 +45,8 @@ public:
     static char cyclometric_continuation(const std::string& dom,const char& ch, int k);
 
     static char InverseFollowPermutation(const vector<std::string> &perm, const char& ch);
+
+    vector<string> simplePermutations(const string& s);
 };
 
 

@@ -8,6 +8,7 @@
 #include "../Utilities/Utilities.h"
 #include "../Techniques/Playfair/Playfair.h"
 #include <vector>
+#include <chrono>
 #include "../Techniques/Enigma.h"
 
 void System::runVigenerePlus() {
@@ -19,17 +20,30 @@ void System::runVigenerePlus() {
     // in this case there is no extra info
     tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/01-OPGAVE-vigenerePlus.txt");
 
-    // het the keys
-    string key1 = "STRING";
-    string key2 = "STRING";
 
-    // decode the Ciphertext
-    Vigenere Code = Vigenere(key1);
-    string NewCiphertext = Code.decrypt(Ciphertext);
-    string FinalText = DecryptSingleColumnTransposition(key2, NewCiphertext);
+    // start timer
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-    // print the result
-    std::cout << FinalText << std::endl;
+    // search the key for column transposition
+    string fileColumnTranspose = "../../input/columnTranspose_test.txt";
+    utilities.ClearContents(fileColumnTranspose);
+    map<string, string> possible_column_transpositions;
+    pair<int,int> key_length_range_vinegere(4, 15);
+    for (int i = 3; i <= 8; i++) {
+        utilities.WriteContents(fileColumnTranspose, "--columnTranspose key size ("+to_string(i)+")--\n");
+        map<string, string> tmp = GetPossibleCipherByKeyLength(i, Ciphertext, fileColumnTranspose, key_length_range_vinegere);
+        possible_column_transpositions.insert(tmp.begin(), tmp.end());
+    }
+
+    // end timer
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    auto d = end - begin;
+    auto hrs = std::chrono::duration_cast<std::chrono::hours>(d);
+    auto mins = std::chrono::duration_cast<std::chrono::minutes>(d - hrs);
+    auto secs = std::chrono::duration_cast<std::chrono::seconds>(d - hrs - mins);
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(d - hrs - mins - secs);
+    cout << "Time: " << hrs.count()  << "h "<< mins.count()  << "m " <<  secs.count()  << "s " << ms.count()  << "ms" << endl;
+
 }
 
 void System::runEnigma() {

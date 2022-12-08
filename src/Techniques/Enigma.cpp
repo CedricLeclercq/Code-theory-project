@@ -5,6 +5,7 @@
 #include "Enigma.h"
 #include "../Utilities/Utilities.h"
 #include <string>
+#include <algorithm>
 
 Enigma::Enigma(std::vector<std::string> p0, std::vector<std::string> p1, std::vector<std::string> p2,
                std::vector<std::string> p3, std::vector<std::string> p4, std::vector<std::string> sigma,
