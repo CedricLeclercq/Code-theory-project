@@ -26,8 +26,21 @@ bool AdvancedTuringBombe::check_graph() {
     for (auto ch: alphabet) {
         std::vector<GammaNode *> nodesX = this->gammaGraph->getNodesWithALetter(ch);
         std::vector<GammaNode *> nodesY = this->gammaGraph->getNodesWithBLetter(ch);
+        int countX = 0; // Every Row should have one 1
+        int countY = 0; // Every Col should have one 1
+        for (auto node: nodesX) {
+            countX += node->correct;
+        } if (countX != 1) return false;
+        for (auto node: nodesY) {
+            countY += node->correct;
+        } if (countY != 1) return false;
+        // Now checking the transitions
+        for (auto vertex_pair: this->gammaGraph->transitions) {
+            if (vertex_pair.first->correct != vertex_pair.second->correct)
+                return false;
+        }
     }
-    return false;
+    return true;
 }
 
 void AdvancedTuringBombe::setup_cracking() {
