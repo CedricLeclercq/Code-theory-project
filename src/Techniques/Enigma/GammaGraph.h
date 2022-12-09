@@ -10,9 +10,11 @@
 struct GammaNode {
     char letterA; // X coordinate - Letters
     char letterB; // Y Coordinate - Sigma(letters)
-    GammaNode(char new_letterA, char new_letterB) {
+    bool correct;
+    GammaNode(char new_letterA, char new_letterB, bool correct) {
         this->letterA = new_letterA;
         this->letterB = new_letterB;
+        this->correct = correct;
     }
 };
 
@@ -21,7 +23,7 @@ struct GammaNode {
 
 struct GammaGraph {
     std::vector<GammaNode*> nodes;
-    std::vector<std::tuple<GammaNode*, GammaNode*, bool>> transitions; // Node1, node2, true or false
+    std::vector<std::pair<GammaNode*, GammaNode*>> transitions; // Node1, node2, true or false
     GammaGraph()=default;
 
     std::vector<GammaNode*> getNodesWithALetter(char letter) {

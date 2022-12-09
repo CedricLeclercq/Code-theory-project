@@ -27,6 +27,7 @@ bool AdvancedTuringBombe::check_graph() {
         std::vector<GammaNode *> nodesX = this->gammaGraph->getNodesWithALetter(ch);
         std::vector<GammaNode *> nodesY = this->gammaGraph->getNodesWithBLetter(ch);
     }
+    return false;
 }
 
 void AdvancedTuringBombe::setup_cracking() {
@@ -35,7 +36,7 @@ void AdvancedTuringBombe::setup_cracking() {
     this->gammaGraph = new GammaGraph();
     for (auto ch: alphabet) {
         for (auto ch2: alphabet) {
-            auto * new_node = new GammaNode(ch, ch2);
+            auto * new_node = new GammaNode(ch, ch2, false);
             this->gammaGraph->nodes.push_back(new_node);
         }
     }
@@ -118,14 +119,14 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             std::string full_a; full_a.push_back(elemA->letterA); full_a.push_back(elemA->letterB);
             std::string full_b; full_b.push_back(elemB->letterB); full_b.push_back(elemB->letterA);
             if (elemA != elemB && (full_a == full_b)) {
-                std::tuple<GammaNode*, GammaNode*, int> searchA{elemA, elemB, false}; // TODO: How to assign this? true or false
-                std::tuple<GammaNode*, GammaNode*, int> searchB{elemB, elemA, false};
+                std::pair<GammaNode*, GammaNode*> searchA{elemA, elemB}; // TODO: How to assign this? true or false
+                std::pair<GammaNode*, GammaNode*> searchB{elemB, elemA};
                 bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                         searchA) != this->gammaGraph->transitions.end());
                 inside = inside && (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                              searchB) != this->gammaGraph->transitions.end());
                 if (!inside)
-                    this->gammaGraph->transitions.emplace_back(elemA, elemB, false);
+                    this->gammaGraph->transitions.emplace_back(elemA, elemB);
             }
         }
     }
@@ -147,15 +148,15 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             char epsilonL_3 = enigma.encryptLetter(L_3_letter);
             for (auto item: nodesInRow2) {
                 if (item->letterB == epsilonL_3) {
-                    std::tuple<GammaNode*, GammaNode*, int> searchA{L_3, item, false}; // TODO: how to assign this? true or false
-                    std::tuple<GammaNode*, GammaNode*, int> searchB{item, L_3, false};
+                    std::pair<GammaNode*, GammaNode*> searchA{L_3, item}; // TODO: how to assign this? true or false
+                    std::pair<GammaNode*, GammaNode*> searchB{item, L_3};
                     bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                              searchA) != this->gammaGraph->transitions.end());
                     inside = inside && (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                                   searchB) != this->gammaGraph->transitions.end());
 
                     if (!inside)
-                        this->gammaGraph->transitions.emplace_back(L_3, item, false);
+                        this->gammaGraph->transitions.emplace_back(L_3, item);
                 }
             }
         }
