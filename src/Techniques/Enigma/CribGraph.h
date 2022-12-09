@@ -22,6 +22,7 @@ struct CribGraph {
     std::string meaning;
     std::vector<CribNode*> nodes;
     CribNode * most_edges_node;
+    std::vector<char> connectedWithMostEdges;
     std::vector<std::tuple<CribNode*, CribNode*, int>> transitions;
 
     explicit CribGraph(std::string crib, std::string meaning) {
@@ -67,7 +68,14 @@ struct CribGraph {
                 (const pair<CribNode*,int>& p1, const pair<CribNode*, int>& p2) {
             return p1.second < p2.second;})->first;
 
-
+        for (auto transition: this->transitions) {
+            if (std::get<0>(transition) == this->most_edges_node) {
+                this->connectedWithMostEdges.push_back(std::get<1>(transition)->letter);
+            }
+            if (std::get<1>(transition) == this->most_edges_node) {
+                this->connectedWithMostEdges.push_back(std::get<0>(transition)->letter);
+            }
+        }
     }
 };
 

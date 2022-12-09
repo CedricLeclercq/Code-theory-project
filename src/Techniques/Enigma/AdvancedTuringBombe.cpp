@@ -57,7 +57,7 @@ void AdvancedTuringBombe::setup_cracking() {
     // 1. Setup crib graph fully - begin
     std::string meaning = this->code;
     meaning.substr(0, this->crib.size());
-    this->cribGraph = new CribGraph("KEINEZUSAETZEZUMVORBERIQT", "DAEDAQOZSIQMMKBILGMPWHAIV"); // todo assume the crib is in the beginning?
+    // this->cribGraph = new CribGraph("KEINEZUSAETZEZUMVORBERIQT", "DAEDAQOZSIQMMKBILGMPWHAIV"); // todo assume the crib is in the beginning?
     this->cribGraph = new CribGraph(this->crib, meaning); // todo assume the crib is in the beginning?
     // 1. Setup crib graph fully - end
 }
@@ -173,7 +173,7 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             std::string full_a; full_a.push_back(elemA->letterA); full_a.push_back(elemA->letterB);
             std::string full_b; full_b.push_back(elemB->letterB); full_b.push_back(elemB->letterA);
             if (elemA != elemB && (full_a == full_b)) {
-                std::pair<GammaNode*, GammaNode*> searchA{elemA, elemB}; // TODO: How to assign this? true or false
+                std::pair<GammaNode*, GammaNode*> searchA{elemA, elemB};
                 std::pair<GammaNode*, GammaNode*> searchB{elemB, elemA};
                 bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                         searchA) != this->gammaGraph->transitions.end());
@@ -208,7 +208,7 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             char epsilonL_3 = enigma.encryptLetter(L_3_letter);
             for (auto item: nodesInRow2) {
                 if (item->letterB == epsilonL_3) {
-                    std::pair<GammaNode*, GammaNode*> searchA{L_3, item}; // TODO: how to assign this? true or false
+                    std::pair<GammaNode*, GammaNode*> searchA{L_3, item};
                     std::pair<GammaNode*, GammaNode*> searchB{item, L_3};
                     bool inside = (std::find(this->gammaGraph->transitions.begin(), this->gammaGraph->transitions.end(),
                                              searchA) != this->gammaGraph->transitions.end());
@@ -221,6 +221,10 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             }
         }
     }
+    // Fixing which nodes should be turned on and off
+    this->gammaGraph->turnNodesConnectedOn(this->cribGraph->most_edges_node->letter,
+                                           this->cribGraph->connectedWithMostEdges);
+
 }
 
 
