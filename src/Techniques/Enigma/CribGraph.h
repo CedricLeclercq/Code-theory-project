@@ -21,12 +21,14 @@ struct CribGraph {
     std::string crib;
     std::string meaning;
     std::vector<CribNode*> nodes;
+    CribNode * most_edges_node;
     std::vector<std::tuple<CribNode*, CribNode*, int>> transitions;
 
     explicit CribGraph(std::string crib, std::string meaning) {
         this->crib = std::move(crib);
         this->meaning = std::move(meaning);
         this->setupCribGraph();
+        this->selectMostConnected();
     }
 
     CribNode * findCharNodeInGraph(char letter) {
@@ -50,6 +52,21 @@ struct CribGraph {
             CribNode * two = this->findCharNodeInGraph(this->meaning[i]);
             this->transitions.emplace_back(one, two, i+1);
         }
+
+    }
+
+    void selectMostConnected() {
+        std::map<CribNode*, int> result;
+        for (auto transition: this->transitions) {
+            ++result[std::get<0>(transition)];
+            ++result[std::get<1>(transition)];
+        }
+
+        this->most_edges_node =
+                std::max_element(result.begin(), result.end(),[]
+                (const pair<CribNode*,int>& p1, const pair<CribNode*, int>& p2) {
+            return p1.second < p2.second;})->first;
+
 
     }
 };

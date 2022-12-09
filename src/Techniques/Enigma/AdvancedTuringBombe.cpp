@@ -57,6 +57,7 @@ void AdvancedTuringBombe::setup_cracking() {
     // 1. Setup crib graph fully - begin
     std::string meaning = this->code;
     meaning.substr(0, this->crib.size());
+    this->cribGraph = new CribGraph("KEINEZUSAETZEZUMVORBERIQT", "DAEDAQOZSIQMMKBILGMPWHAIV"); // todo assume the crib is in the beginning?
     this->cribGraph = new CribGraph(this->crib, meaning); // todo assume the crib is in the beginning?
     // 1. Setup crib graph fully - end
 }
