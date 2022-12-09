@@ -14,6 +14,7 @@ public:
     explicit Playfair(std::string  cipher);
 
     void decrypt();
+    std::string simulatedAnnealing(int kMax);
 
 private:
 
@@ -48,13 +49,17 @@ private:
             {'z', 0.0027}
     };
 
-    static void transform(const std::vector<char> &config, char &c1, char &c2, int sign);
+    static void transform(const std::string &config, char &c1, char &c2, int sign);
 
-    double decodeScore(const std::vector<char> &config);
+    double decodeScore(std::string &config);
 
-    void hillClimbing(std::vector<char> &charSeq, double &bestScore, std::string &bestConfig);
+    void hillClimbing(std::string &charSeq, double &bestScore, std::string &bestConfig);
 
-    std::string decode(const std::vector<char> &config);
+    std::string decode(const std::string &config);
+
+    double temperature(int k, int kMax);
+
+    double energy(const std::string &config);
 };
 
 

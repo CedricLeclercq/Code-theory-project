@@ -86,7 +86,8 @@ void System::runPlayfair() {
 //    decrypt(cipherText);
 //    crack(cipherText);
     Playfair playfair = Playfair(cipherText);
-    playfair.decrypt();
+    string outcome = playfair.simulatedAnnealing(1000000);
+//    playfair.decrypt();
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
 
