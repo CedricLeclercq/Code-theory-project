@@ -81,6 +81,14 @@ std::string AdvancedTuringBombe::crack_enigma() {
             }
             // If found we have the correct K and the correct rotor stand and the correct plug board
             // Now create new enigma and fill in the old text and find the original text
+            std::cout << "Setting: ";
+            for (auto item: setting) {
+                std::cout << item;
+            } std::cout << std::endl;
+            std::cout << "Current k: ";
+            for (auto ch: this->current_k) {
+                std::cout << ch;
+            } std::cout << std::endl;
             // todo What to do if found?
         } catch (std::exception& e) {
             continue;
@@ -124,6 +132,38 @@ void AdvancedTuringBombe::increase_k() {
     this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()}, this->current_k[2]);
 }
 
+std::vector<char> AdvancedTuringBombe::increase_k(std::vector<char> cur_k) {
+    if (cur_k[0] == 'Z' && cur_k[1] == 'Z' && cur_k[2] == 'Z') {
+        // We have done a full rotation without any luck, cracking has failed :(
+        throw std::exception();
+    }
+
+    // x x Z
+    if (cur_k[2] == 'Z' && cur_k[1] != 'Z') {
+
+        cur_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                cur_k[1]);
+        cur_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                cur_k[2]);
+        return cur_k;
+    }
+
+    // x Z Z
+    if (cur_k[2] == 'Z' && cur_k[1] == 'Z' && cur_k[0] != 'Z') {
+        cur_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                cur_k[2]);
+        cur_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                cur_k[1]);
+        cur_k[0] = Utilities::followPermutation({Utilities::getAlphabet()},
+                                                cur_k[0]);
+        return cur_k;
+    }
+
+    // Always turn the fastest rotor
+    cur_k[2] = Utilities::followPermutation({Utilities::getAlphabet()}, cur_k[2]);
+    return cur_k;
+}
+
 void AdvancedTuringBombe::setup_gamma_for_cur_k() {
     this->gammaGraph->transitions.clear();
     // Setting up: (L_1, L_2) - (L_2, L_1)
@@ -149,14 +189,20 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
         char L_2 = std::get<1>(transition)->letter;
         std::vector<GammaNode*> nodesInRow = this->gammaGraph->getNodesWithALetter(L_1);
         std::vector<GammaNode*> nodesInRow2 = this->gammaGraph->getNodesWithALetter(L_2);
+        std::vector<char> copy_k(this->current_k);
+        int transition_weight = std::get<2>(transition);
+        for (int i = 0; i < transition_weight; i++) {
+            copy_k = AdvancedTuringBombe::increase_k(copy_k); // Increasing by the weight of l
+        }
         for (auto L_3: nodesInRow) {
             char L_3_letter = L_3->letterB; // Letter to use for sigma calculation on row L_2
+
             Enigma enigma(this->p0_perm,this->p1_perm, this->p2_perm, this->p3_perm, this->p4_perm,
                           {}, // TODO: Plug board, what to enter here???
                           this->tau_perm,
                           {},
                           this->current_setting,
-                          this->current_k
+                          copy_k
                           );
             char epsilonL_3 = enigma.encryptLetter(L_3_letter);
             for (auto item: nodesInRow2) {

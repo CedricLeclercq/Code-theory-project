@@ -47,6 +47,10 @@ private:
      */
     void increase_k();
     /**
+     * Increases k and returns the vector
+     */
+     static std::vector<char> increase_k(std::vector<char> cur_k);
+    /**
      * Sets up the the gamma_k gammaGraph for the current k
      */
     void setup_gamma_for_cur_k();
