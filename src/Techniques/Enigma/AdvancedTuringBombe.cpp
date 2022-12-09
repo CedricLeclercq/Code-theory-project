@@ -82,6 +82,7 @@ std::string AdvancedTuringBombe::crack_enigma() {
             }
             // If found we have the correct K and the correct rotor stand and the correct plug board
             // Now create new enigma and fill in the old text and find the original text
+            std::cout << "SUCCESSSS!!!!" << std::endl;
             std::cout << "Setting: ";
             for (auto item: setting) {
                 std::cout << item;
@@ -91,6 +92,7 @@ std::string AdvancedTuringBombe::crack_enigma() {
                 std::cout << ch;
             } std::cout << std::endl;
             // todo What to do if found?
+            abort();
         } catch (std::exception& e) {
             continue;
         }
@@ -103,6 +105,7 @@ std::string AdvancedTuringBombe::crack_enigma() {
 void AdvancedTuringBombe::increase_k() {
     //std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2] << std::endl;
     // Z Z Z
+    this->count += 1;
     if (this->current_k[0] == 'Z' && this->current_k[1] == 'Z' && this->current_k[2] == 'Z') {
         // We have done a full rotation without any luck, cracking has failed :(
         throw std::exception();
@@ -110,7 +113,9 @@ void AdvancedTuringBombe::increase_k() {
 
     // x x Z
     if (this->current_k[2] == 'Z' && this->current_k[1] != 'Z') {
-
+        std::cout << "Testing setting " <<  26 << " * " << to_string((this->count)/26) << ": ";
+        std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2];
+        std::cout << " \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                           this->current_k[1]);
         this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
@@ -120,6 +125,9 @@ void AdvancedTuringBombe::increase_k() {
 
     // x Z Z
     if (this->current_k[2] == 'Z' && this->current_k[1] == 'Z' && this->current_k[0] != 'Z') {
+        std::cout << "Testing setting " <<  26 << " * " << to_string((this->count)/26) << ": ";
+        std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2];
+        std::cout << " \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
         this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                           this->current_k[2]);
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
@@ -141,7 +149,6 @@ std::vector<char> AdvancedTuringBombe::increase_k(std::vector<char> cur_k) {
 
     // x x Z
     if (cur_k[2] == 'Z' && cur_k[1] != 'Z') {
-
         cur_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                 cur_k[1]);
         cur_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},

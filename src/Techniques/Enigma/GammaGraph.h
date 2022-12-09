@@ -43,7 +43,6 @@ struct GammaGraph {
         }
         return result;
     }
-
     void turnNodesOff() {
         for (auto node: this->nodes) {
             node->correct = false;
@@ -64,7 +63,12 @@ struct GammaGraph {
         bool new_updated = true;
         while (new_updated) {
             new_updated = false;
-
+            for (auto transition: this->transitions) {
+                if (transition.first->correct) {
+                    transition.second->correct = true;
+                    new_updated = true;
+                }
+            }
         }
     }
 };

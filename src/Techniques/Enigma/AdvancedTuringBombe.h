@@ -7,6 +7,7 @@
 
 #include<vector>
 #include <string>
+#include <chrono>
 #include "GammaGraph.h"
 #include "CribGraph.h"
 
@@ -17,6 +18,10 @@ private:
     std::vector<char> current_k = {'A','A', 'A'};
     /// Current setting
     std::vector<int> current_setting = {};
+    /// Iteration count
+    int count = 0;
+    /// Time past
+    std::chrono::steady_clock::time_point start = std::chrono::high_resolution_clock::now();
     /// Current gamma k gammaGraph
     GammaGraph * gammaGraph{};
     /// Crib graph
