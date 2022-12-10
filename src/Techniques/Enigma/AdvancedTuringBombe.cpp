@@ -4,6 +4,7 @@
 
 #include "AdvancedTuringBombe.h"
 #include "Enigma.h"
+#include <thread>
 #include "../../Utilities/Utilities.h"
 
 AdvancedTuringBombe::AdvancedTuringBombe(std::vector<std::string> p0, std::vector<std::string> p1,
@@ -21,7 +22,7 @@ AdvancedTuringBombe::AdvancedTuringBombe(std::vector<std::string> p0, std::vecto
 }
 
 
-bool AdvancedTuringBombe::check_graph() {
+bool AdvancedTuringBombe::check_permutation_graph() {
     std::string alphabet = Utilities::getAlphabet();
     for (auto ch: alphabet) {
         std::vector<GammaNode *> nodesX = this->gammaGraph->getNodesWithALetter(ch);
@@ -34,11 +35,11 @@ bool AdvancedTuringBombe::check_graph() {
         for (auto node: nodesY) {
             countY += node->correct;
         } if (countY != 1) return false;
-        // Now checking the transitions
-        for (auto vertex_pair: this->gammaGraph->transitions) {
-            if (vertex_pair.first->correct != vertex_pair.second->correct)
-                return false;
-        }
+        // Now checking the transitions // todo run with this turned off
+//        for (auto vertex_pair: this->gammaGraph->transitions) {
+//            if (vertex_pair.first->correct != vertex_pair.second->correct)
+//                return false;
+//        }
     }
     return true;
 }
@@ -77,7 +78,7 @@ std::string AdvancedTuringBombe::crack_enigma() {
         try {
             while (!found) {
                 this->setup_gamma_for_cur_k();
-                found = this->check_graph();
+                found = this->check_permutation_graph();
                 this->increase_k();
             }
             // If found we have the correct K and the correct rotor stand and the correct plug board
@@ -113,9 +114,11 @@ void AdvancedTuringBombe::increase_k() {
 
     // x x Z
     if (this->current_k[2] == 'Z' && this->current_k[1] != 'Z') {
-        std::cout << "Testing setting " <<  26 << " * " << to_string((this->count)/26) << ": ";
+        std::cout << "Testing ENIGMA rotors [";
+        std::cout << this->current_setting[0] << this->current_setting[1] << this->current_setting[2];
+        std::cout << "] on iteration [" <<  26 << " * " << to_string((this->count)/26) << "] with rotation: [";
         std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2];
-        std::cout << " \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
+        std::cout << "] \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                           this->current_k[1]);
         this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
@@ -125,9 +128,11 @@ void AdvancedTuringBombe::increase_k() {
 
     // x Z Z
     if (this->current_k[2] == 'Z' && this->current_k[1] == 'Z' && this->current_k[0] != 'Z') {
-        std::cout << "Testing setting " <<  26 << " * " << to_string((this->count)/26) << ": ";
+        std::cout << "Testing ENIGMA rotors [";
+        std::cout << this->current_setting[0] << this->current_setting[1] << this->current_setting[2];
+        std::cout << "] on iteration [" <<  26 << " * " << to_string((this->count)/26) << "] with rotation: [";
         std::cout << this->current_k[0] << this->current_k[1] << this->current_k[2];
-        std::cout << " \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
+        std::cout << "] \t \t | Time used: " << chrono::duration_cast<chrono::seconds>(std::chrono::high_resolution_clock::now() - this->start).count() << " seconds |" << std::endl;
         this->current_k[2] = Utilities::followPermutation({Utilities::getAlphabet()},
                                                           this->current_k[2]);
         this->current_k[1] = Utilities::followPermutation({Utilities::getAlphabet()},
@@ -199,16 +204,15 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
         std::vector<GammaNode*> nodesInRow2 = this->gammaGraph->getNodesWithALetter(L_2);
         std::vector<char> copy_k(this->current_k);
         int transition_weight = std::get<2>(transition);
-        for (int i = 0; i < transition_weight; i++) {
+        for (int i = 0; i < transition_weight; i++) { // todo should i do this, increase weight of l?
             copy_k = AdvancedTuringBombe::increase_k(copy_k); // Increasing by the weight of l
         }
         for (auto L_3: nodesInRow) {
             char L_3_letter = L_3->letterB; // Letter to use for sigma calculation on row L_2
-
             Enigma enigma(this->p0_perm,this->p1_perm, this->p2_perm, this->p3_perm, this->p4_perm,
                           {}, // TODO: Plug board, what to enter here???
                           this->tau_perm,
-                          {},
+                          {}, // should be empty no worries
                           this->current_setting,
                           copy_k
                           );

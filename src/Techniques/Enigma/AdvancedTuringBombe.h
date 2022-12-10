@@ -46,7 +46,7 @@ private:
      * Checks if our gammaGraph applies to the two given rules.
      * @return      True if code is cracked
      */
-    bool check_graph();
+    bool check_permutation_graph();
     /**
      * Increases k of the turing bombe
      */
