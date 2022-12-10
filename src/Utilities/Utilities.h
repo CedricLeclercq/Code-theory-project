@@ -47,6 +47,8 @@ public:
     static char InverseFollowPermutation(const vector<std::string> &perm, const char& ch);
 
     vector<string> simplePermutations(const string& s);
+
+    static std::vector<std::vector<int>> createEnigmaRotorPermutations(std::vector<int> all_rotors);
 };
 
 

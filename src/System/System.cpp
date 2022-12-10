@@ -8,8 +8,9 @@
 #include "../Utilities/Utilities.h"
 #include "../Techniques/Playfair/Playfair.h"
 #include <vector>
+#include "../Techniques/Enigma/Enigma.h"
+#include "../Techniques/Enigma/AdvancedTuringBombe.h"
 #include <chrono>
-#include "../Techniques/Enigma.h"
 
 void System::runVigenerePlus(const string & arg) {
     Utilities utilities;
@@ -111,7 +112,7 @@ void System::runEnigma() {
 
     // Hardcoding for testing
     perm0 = {"BJ","CDKLHUP","ESZ","FIXVYOMW","GR","NT"};
-    perm1 = {"AELTPHQXRU", "BKN", "W", "CMOY", "DFG", "IV", "JZ", "S"};
+    perm1 = {"AELTPHQXRU", "BKNW", "CMOY", "DFG", "IV", "JZ", "S"};
     perm2 = {"ABDHPEJT", "CFLVMZOYQIRWUKXSG"};
     perm3 = {"ATV", "BHKOXYDQMNFI", "CEULWZG", "JRP"};
     perm4 = {"AXQCNDTHSGEIOVLWMUJKRFPB"};
@@ -119,28 +120,33 @@ void System::runEnigma() {
     stekkerbord = {"AP", "CM", "DE", "GL", "JZ", "TW"};
 
 
-    std::vector<int> rotor_choice = {1,0,4};
-    std::vector<char> current_pos = {'B', 'E', 'X'};
-    auto * enigma = new Enigma(perm0,
-                               perm1,
-                               perm2,
-                               perm3,
-                               perm4,
-                               stekkerbord,
-                               permr,
-                               {},
-                               rotor_choice,
-                               current_pos);
+//    std::vector<int> rotor_choice = {1,0,4};
+//    std::vector<char> current_pos = {'B', 'E', 'X'};
+//    auto * enigma = new Enigma(perm0,
+//                               perm1,
+//                               perm2,
+//                               perm3,
+//                               perm4,
+//                               stekkerbord,
+//                               permr,
+//                               {},
+//                               rotor_choice,
+//                               current_pos);
+//
+//    std::string test_encrypt = "PASOPVOORSALAMANDER";
+//    std::string result{};
+//    for (auto ch: test_encrypt) {
+//        result += enigma->encryptLetter(ch);
+//    }
+//
+//    std::cout << "+============================================+" << std::endl;
+//    std::cout << "RESULT: " << result << std::endl;
+//    std::cout << "+============================================+" << std::endl;
+
+    auto * bombe = new AdvancedTuringBombe(perm0,perm1,perm2,perm3,perm4,permr, crib, coded_text);
+    bombe->crack_enigma();
 
 
-    std::string test_encrypt = "PASOPVOORSALAMANDER";
-    std::string result{};
-    for (auto ch: test_encrypt) {
-        result += enigma->encryptLetter(ch);
-    }
-    std::cout << "+============================================+" << std::endl;
-    std::cout << "RESULT: " << result << std::endl;
-    std::cout << "+============================================+" << std::endl;
 
 //    Utilities::convertToPermutation("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "THEQUICKBROWNFXJMPSVLAZYDG");
 //

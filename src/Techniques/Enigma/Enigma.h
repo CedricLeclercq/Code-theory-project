@@ -1,65 +1,41 @@
 //
-// Created by Cédric Leclercq on 30/10/2022.
+// Created by Cédric Leclercq on 30/11/2022.
 //
 
-#ifndef CODE_THEORY_PROJECT_ENIGMA_H
-#define CODE_THEORY_PROJECT_ENIGMA_H
+#ifndef CODE_THEORY_ENIGMA_H
+#define CODE_THEORY_ENIGMA_H
 
-#include <string>
 #include <vector>
-#include "EnigmaNode.h"
 
 class Enigma {
-private:
-    // Variables
-    std::string rotor0, rotor1, rotor2, rotor3, rotor4;    /// All rotors
-    std::string reflector, crib;                           /// Reflector and crib
-
-
-    std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";   /// Just the alphabet
-    std::string coded_message{};
-
-    std::vector<EnigmaNode*> cribGraph{};
-    std::vector<std::vector<bool>> rasterPlugboard{}; // 26x26, with on columns letters and rows Sigma(letters)
-    std::vector<EnigmaNode*> gamma_kGraph{};
-    // Functions
-    /**
-     * @brief Setup enigma with new rotors, reflector and crib
-     * @param newRotors     New rotors for the enigma
-     * @param newReflector  New reflector for the enigma
-     * @param newCrib       New crib for the enigma
-     * @pre std::vector<std::string> length == 5    (We have 5 rotors, they all need to be set)
-     */
-    void setup_enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib);
-
-    void setup_cribGraph();
-
-    void setup_raster();
-
-    void setup_gamma_kGraph();
-
-    static EnigmaNode * findInVectorGraph(char x, const std::vector<EnigmaNode*>& graph);
-
-    std::string encrypt_letter(const char & ch);
+    std::vector<std::string> p0_perm; // Rotor 0 - permutation
+    std::vector<std::string> p1_perm; // Rotor 1 - permutation
+    std::vector<std::string> p2_perm; // Rotor 2 - permutation
+    std::vector<std::string> p3_perm; // Rotor 3 - permutation
+    std::vector<std::string> p4_perm; // Rotor 4 - permutation
+    std::vector<std::string> sigma_perm; // Plugboard - permutation
+    std::vector<std::string> tau_perm; // Reflector - permutation
+    std::vector<std::string> pi_perm; // Cyclo-metric - permutation
+    std::vector<int> rotor_choice; // Slow - Mid - Fast
+    std::vector<char> cur_position; // Slow - Mid - Fast
+    int rotations = 0;
 
 public:
-    /**
-     * @brief Constructor that setups enigma directly
-     * @param newRotors         New rotors for the enigma
-     * @param newReflector      New reflector for the enigma
-     * @param newCrib           New crib for the enigma
-     */
-    Enigma(std::vector<std::string> newRotors, std::string newReflector, std::string newCrib, std::string code);
+    Enigma(std::vector<std::string> p0,
+           std::vector<std::string> p1,
+           std::vector<std::string> p2,
+           std::vector<std::string> p3,
+           std::vector<std::string> p4,
+           std::vector<std::string> sigma,
+           std::vector<std::string> tau,
+           std::vector<std::string> pi,
+           std::vector<int> rotor,
+           std::vector<char> cur_pos);
 
-    /**
-     * @brief Default destructor
-     */
-     ~Enigma()=default;
+    char encryptLetter(const char& ch);
 
-
-
-
+    void rotateRotors();
 };
 
 
-#endif //CODE_THEORY_PROJECT_ENIGMA_H
+#endif //CODE_THEORY_ENIGMA_H
