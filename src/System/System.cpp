@@ -22,7 +22,7 @@ void System::runVigenerePlus(const string & arg) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
     /// ----- editable parameters ------
-    pair<int,int> key_length_range_column_transpose(3, 9);
+    pair<int,int> key_length_range_column_transpose(3, 8);
     pair<int,int> key_length_range_vinegere(3, 10);
     // in this case there is no extra info
     tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/01-OPGAVE-vigenerePlus.txt");
