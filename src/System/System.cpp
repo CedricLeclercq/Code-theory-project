@@ -62,42 +62,22 @@ void loadCipherText(const string& filename, string& cipherText) {
 }
 
 void System::runPlayfair() {
-//    vector<string> dutch, english, french, german, spanish;
-//    loadDictionary("dictionaries_without_j/dutch.txt", dutch);
-//    loadDictionary("dictionaries_without_j/english.txt", english);
-//    loadDictionary("dictionaries_without_j/french.txt", french);
-//    loadDictionary("dictionaries_without_j/german.txt", german);
-//    loadDictionary("dictionaries_without_j/spanish.txt", spanish);
-
     string cipherText;
     loadCipherText("input/02-OPGAVE-playfair.txt", cipherText);
     std::transform(cipherText.begin(), cipherText.end(), cipherText.begin(),
                    [](unsigned char c){ return std::tolower(c); });
 
-
-
-//    string config = "robeacdfghiklmnpqstuvwxyz";
-//    cipherText = "dezezinkanienogeensaanhetdenkenzettenwanneermaakthetlevenieeigenliikbangverledentoekomstofgewoonweghethedenhoezouieinhetlevenstaanalsiedageliiksinangstzoumoetenlevenweetiedanwelwatgelukisenwathouddatgelukeigenliikinwantkanmenwellevenzonderachteromtekiikenofstiekemtedromenoverdetoekomsthetgrasaandeoverkantliiktnogaltiidgroenermaarishetnietgewooneenmooieverschiiningwatmenwillatenoverkomenproberenweiuistnietonzedroomzomooimogeliiktelatenliikenendatdanookopdiemaniernaarbuitentedragenenhebiedanweldiepersoonnaastiestaannaarwieiezoukunnenkiikenwantlatenweeerliikziinishetnietveelmakkeliikeromdiemuurheelhoogtehoudenzodatniemandiemeerkanrakenmaarmissenwedannietdieenegoedeafslagdieiehadkunnennemenalsienetdieiuistegoedepersoonnaastiehadgehadenhaarraadhadaangenomenwantiuistdoordiemuurkomenookdegoededingennietbinnenenheefthetdanwelzinomnaastietekiikenalsietochmaarieeigenwegwilbliivenvolgenofkunnenwedanbeteronszelfnietaanlerenomweldieraadaantenemenennieteigenwiisteziinentebliivendoenwatwezelfwillenditdoetdanmiiweerdenkenaandewoordenvanmiinomadiezeialtiideigenwiisheidisookwiisheidmaarisdiewiisheidwelwiisheidlopenwiiiuistnietdaardoornoghardertegenonseigengebouwdemuuraandusmiineigenvisieopditallesiseigenliikheelsimpellatenwedantochmaarnaastonskiikenenproberenteleunenopdemensendieerwelvooronswillenziinenopdiemanierdiemuurdantochmaartelatenzakkenzodatwetocheenbeetieinhethedenkunnengaanlevenennietmeerzovaakachteromhoeventekiikenenopdezemanierdantochonzedromenwaartekunnenmaken";
-//    stringstream encoded;
-//    encode(config, cipherText, encoded);
-//    cipherText = encoded.str();
-
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-//    decrypt(cipherText);
-//    crack(cipherText);
-    Playfair playfair = Playfair(cipherText);
-    string outcome = playfair.simulatedAnnealing(1000000);
-//    playfair.decrypt();
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
-
-//    string config = "abcdefghiklmnopwrtuzyvqsx";
-//    string text = encrypt("dit is een test waarbii ik een aantal nederlandstalige woorden ga encrypten om zo erachter te komen wat er in deze tekst staat", config);
-//    cout << cipherText << endl;
-//    decrypt(cipherText, dutch, english, french, german, spanish);
-
-//    string config = "abcdefghiklmnopwrtuzyvqsx";
+    for(int i = 0; i < 20; i++) {
+        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+        Playfair playfair = Playfair(cipherText);
+        string outcome = playfair.simulatedAnnealing(1000000);
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
+        cout << endl << "[=========================================================================================]"
+             << endl << endl;
+    }
+//    string config = "anclusfzvdgoqkribmytewhxp";
 //    stringstream s;
-//    decode(config, cipherText, s);
-//    cout << s.str() << endl;
+//    Playfair playfair1(cipherText);
+//    cout << playfair1.decode(config) << endl;
 }
