@@ -16,10 +16,8 @@ set(GENERAL
 set(ENIGMA
         Techniques/Enigma/Enigma.cpp
         Techniques/Enigma/Enigma.h
-        Techniques/Enigma/AdvancedTuringBombe.cpp
-        Techniques/Enigma/AdvancedTuringBombe.h
-        Techniques/Enigma/GammaGraph.h
-        Techniques/Enigma/CribGraph.h)
+        Techniques/Enigma/EnigmaNode.cpp
+        Techniques/Enigma/EnigmaNode.h)
 set(PLAYFAIR
         Techniques/Playfair/Playfair.cpp
         Techniques/Playfair/Playfair.h)
@@ -27,6 +25,10 @@ set(PLAYFAIR
 set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
         Techniques/VigenerePlus/Vigenere.cpp)
+
+set(ADFGVX
+        Techniques/adfgvx/adfgvx.h
+        Techniques/adfgvx/adfgvx.cpp)
 
 set(UTILITIES
         Utilities/Utilities.h

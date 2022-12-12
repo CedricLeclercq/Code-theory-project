@@ -19,6 +19,10 @@ public:
      * @brief Run Playfair
      */
     static void runPlayfair();
+    /**
+     * @brief Run adfgvx
+     */
+    static void ADFGVX();
 };
 
 

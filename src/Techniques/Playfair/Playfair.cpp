@@ -4,65 +4,35 @@
 
 #include "Playfair.h"
 #include <algorithm>
-#include <cassert>
 #include <cmath>
 #include <utility>
-#include <vector>
 #include <random>
 #include <sstream>
 #include <iostream>
 
-#define HILLCLIMB_AMOUNT 10
-#define HILLCLIMB_DEPTH 100
-
-// nqbuthlmafekzivprwocyxdsg : 0299568
 
 using namespace std;
 
 double Playfair::getFrequencyScore(const string &decoded) {
     double score = 0;
     auto length = (double) decoded.length();
-    for(auto const& [c, predicted]: letterFrequency) {
-        double observed = (double) count(decoded.begin(), decoded.end(), c);
+    for(auto const& frequency: letterFrequency) {
+        double observed = (double) count(decoded.begin(), decoded.end(), frequency.first);
         observed /= length;
-        score += pow(observed - predicted, 2);
-//        score += abs(observed - predicted);
+        score += std::sqrt(std::pow(observed - frequency.second, 2));
     }
     return score;
 }
 
-Playfair::Playfair(string  cipher): cipherText(move(cipher)) {}
-
-void Playfair::decrypt() {
-    // Construct a square 1000 times
-    std::random_device random_dev;
-    std::mt19937       generator(random_dev());
-    std::vector<char> characters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p','q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    double score = std::numeric_limits<double>::infinity();
-    string config;
-    for(int i = 0; i < HILLCLIMB_AMOUNT; i++) {
-        shuffle(characters.begin(), characters.end(), generator);
-        hillClimbing(characters, score, config);
-        cout << i << ":\t" << score << " : " << config << endl;
-    }
-//    characters = vector<char>(config.begin(), config.end());
-//    for(int i = 0; i < HILLCLIMB_AMOUNT; i++) {
-//        hillClimbing(characters, score, config);
-//        cout << i << ":\t" << score << " : " << config << endl;
-//    }
-    vector<char> solution(config.begin(), config.end());
-    cout << decode(solution) << endl;
-}
-
-void Playfair::transform(const vector<char> &config, char &c1, char &c2, int sign) {
-    auto it = find(config.begin(), config.end(), c1);
-    assert(it != config.end());
-    int index1 = it - config.begin();
-    it = find(config.begin(), config.end(), c2);
-    assert(it != config.end());
-    int index2 = it - config.begin();
-    int row1 = index1/5, col1 = index1%5;
-    int row2 = index2/5, col2 = index2%5;
+void Playfair::transform(const string &config, char &c1, char &c2, int sign) {
+    auto index1 = config.find(c1);
+    auto index2 = config.find(c2);
+    if(index1 == string::npos or index2 == string::npos)
+        return;
+    assert(index1 != string::npos);
+    assert(index2 != string::npos);
+    int row1 = (int) index1/5, col1 = (int) index1%5;
+    int row2 = (int) index2/5, col2 = (int) index2%5;
     assert(!(row1 == row2 && col1 == col2));
     if (row1 == row2) {
         col1 = (col1+sign+5)%5;
@@ -81,41 +51,12 @@ void Playfair::transform(const vector<char> &config, char &c1, char &c2, int sig
     c2 = config.at(index2);
 }
 
-double Playfair::decodeScore(const vector<char> &config) {
+string Playfair::decode(const string &config, const string & cipher) {
     stringstream decoded;
-    bool digram = false, potential_double = false;
+    bool digram = false;
+    bool potential_double = false;
     char c1, c2, doubled;
-    for (char const &c: this->cipherText) {
-        if (!digram) {
-            c1 = c;
-            digram = true;
-        } else {
-            c2 = c;
-            digram = false;
-            transform(config, c1, c2, -1);
-            if (potential_double) {
-                if(c1 == doubled) {
-                    decoded << c1;
-                } else {
-                    decoded << c1 << 'x';
-                }
-            }
-            if (c2 == 'x') {
-                doubled = c1;
-                potential_double = true;
-            } else {
-                decoded << c1 << c2;
-            }
-        }
-    }
-    return this->getFrequencyScore(decoded.str());
-}
-
-string Playfair::decode(const vector<char> &config) {
-    stringstream decoded;
-    bool digram = false, potential_double = false;
-    char c1, c2, doubled;
-    for (char const &c: this->cipherText) {
+    for (char const c: cipher) {
         if (!digram) {
             c1 = c;
             digram = true;
@@ -141,25 +82,186 @@ string Playfair::decode(const vector<char> &config) {
     return decoded.str();
 }
 
-void Playfair::hillClimbing(std::vector<char> &charSeq, double &bestScore, string& bestConfig) {
-    double score = this->decodeScore(charSeq);
-    string config(charSeq.begin(), charSeq.end());
-    for(int i = 0; i < HILLCLIMB_DEPTH; i++) {
-        int index1 = rand() % (charSeq.size());
-        int index2 = rand() % (charSeq.size());
-        char temp = charSeq.at(index1);
-        charSeq.at(index1) = charSeq.at(index2);
-        charSeq.at(index2) = temp;
-        double new_score = this->decodeScore(charSeq);
-        if(new_score < score) {
-            score = new_score;
-            config = string(charSeq.begin(), charSeq.end());
+string Playfair::encode(const string &config, const string& input) {
+    stringstream encoded;
+    bool digram = false;
+    char c1, c2;
+    for (char const &c: input) {
+        if (!digram) {
+            c1 = c;
+            digram = true;
+        } else {
+            if (c1 == c) {
+                c2 = 'x';
+                transform(config, c1, c2, 1);
+                encoded << c1 << c2;
+                c1 = c;
+            } else {
+                c2 = c;
+                digram = false;
+                transform(config, c1, c2, 1);
+                encoded << c1 << c2;
+            }
         }
     }
-    if(score < bestScore) {
-        bestScore = score;
-        bestConfig = config;
-    }
+    return encoded.str();
+}
 
+double Playfair::energy(const string& config) {
+    return getFrequencyScore(decode(config, this->cipherText));
+}
+
+double Playfair::temperature(int k, int kMax) {
+    return 1-((double) k/(double) kMax);
+}
+
+void progressBar(double progress, long long remaining=0, int barWidth=70) {
+    std::cout << "[";
+    int pos = (int) (barWidth * progress);
+    for (int i = 0; i < barWidth; ++i) {
+        if (i < pos) std::cout << "=";
+        else if (i == pos) std::cout << ">";
+        else std::cout << " ";
+    }
+    std::cout << "] " << int(progress * 100.0) << " % ";
+    int sec = (int) (remaining/1000);
+    tm time{};
+    time.tm_hour = sec / 3600;
+    sec = sec % 3600;
+    time.tm_min = sec / 60;
+    sec = sec % 60;
+    time.tm_sec = sec;
+    char timestr[200];
+    strftime(timestr, 200, "%H:%M:%S", &time);
+    cout << " " << timestr << "\r";
+    std::cout.flush();
+}
+
+string Playfair::simulatedAnnealing(const std::string &cipher, int kMax=0) {
+    // Save best shot
+    string bestConfig;
+    double bestScore = 1000000000;
+    string s = "abcdefghiklmnopqrstuvwxyz";
+    shuffle(s.begin(), s.end(), default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
+    // Randomness
+    std::random_device rd; // obtain a random number from hardware
+    std::mt19937 gen(rd()); // seed the generator
+    std::uniform_int_distribution<> firstIndex(0, 24);
+    std::uniform_int_distribution<> secondIndex(1, 24);
+    std::uniform_real_distribution<> move(0, 1);
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    for(int k = 0; k < kMax; k++) {
+        string s_next = string(s);
+        double T = temperature(k, kMax);
+        int randIndex = firstIndex(gen);
+        int randIndex2 = (randIndex + secondIndex(gen)) % 25;
+        assert(randIndex != randIndex2);
+        char c1 = s_next[randIndex];
+        char c2 = s_next[randIndex2];
+        s_next[randIndex] = c2;
+        s_next[randIndex2] = c1;
+        assert(s.compare(s_next) != 0);
+        double energyNext = energy(s_next);
+        double dE = energyNext - energy(s);
+        //
+        if(energyNext < bestScore) {
+            bestConfig = string(s_next);
+            bestScore = energyNext;
+        }
+        // Calculate probability
+        double P = 0;
+        if(dE < 0) {
+            P = 1;
+        } else if(T == 0) {
+            P = 0;
+        } else {
+            P = expf((float) -(dE / T));
+        }
+        if(P >= move(gen)) {
+            s = string(s_next);
+        }
+//        if(k % (kMax/100) == 0) {
+        if(k % 1000 == 0) {
+            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+            auto remaining = (elapsed/(k+1))*(kMax-(k+1));
+            progressBar((double) k/kMax, remaining);
+        }
+    }
+    cout << "Best: " << bestScore << "\tConfig: " << bestConfig << endl;
+    cout << "Decrypted: " << decode(bestConfig, cipher) << endl;
+
+    cout << "Current: " << s << endl;
+    cout << "Decrypted: " << decode(s, cipher) << endl;
+    return s;
+}
+
+string Playfair::simulatedAnnealing(const string &cipher, int kMax, int max_misses) {
+    // Save best shot
+    string bestConfig = "bwxhoitqmeaflsurdzpgnkyvc";
+    double bestScore = 1000000000;
+    string s = "abcdefghiklmnopqrstuvwxyz";
+    shuffle(s.begin(), s.end(), default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
+    // Randomness
+    std::random_device rd; // obtain a random number from hardware
+    std::mt19937 gen(rd()); // seed the generator
+    std::uniform_int_distribution<> firstIndex(0, 24);
+    std::uniform_int_distribution<> secondIndex(1, 24);
+    std::uniform_real_distribution<> move(0, 1);
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    // Try at least 5 times before jumping away
+    int misses = max_misses;
+    int barWidth = 70;
+    for(int k = 0; k < kMax; k++) {
+        string s_next = string(s);
+        double T = temperature(k, kMax);
+        int randIndex = firstIndex(gen);
+        int randIndex2 = (randIndex + secondIndex(gen)) % 25;
+        assert(randIndex != randIndex2);
+        char c1 = s_next[randIndex];
+        char c2 = s_next[randIndex2];
+        s_next[randIndex] = c2;
+        s_next[randIndex2] = c1;
+        assert(s.compare(s_next) != 0);
+        double energyNext = energy(s_next);
+        double dE = energyNext - energy(s);
+        //
+        if(energyNext < bestScore) {
+            bestConfig = string(s_next);
+            bestScore = energyNext;
+//            cout << "New best: " << bestScore << "\tConfig: " << bestConfig << endl;
+        }
+        // Calculate probability
+        double P = 0;
+        if(dE < 0) {
+            misses = max_misses;
+            P = 1;
+        } else if(T == 0) {
+            P = 0;
+        } else {
+            if (--misses <= 0) {
+                misses = max_misses;
+                P = expf((float) -(dE / T));
+            }
+        }
+        if(P >= move(gen)) {
+            s = string(s_next);
+        }
+//        if(k % (kMax/100) == 0) {
+        if(k % 1000 == 0) {
+            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+            auto remaining = (elapsed/k)*(kMax-k);
+            progressBar((double) k/kMax, remaining);
+//            cout << "K: " << k << "\tT: " << T << "\tE: " << energy(s) << "\tS: " << s;
+//            cout << "\tTime: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
+        }
+    }
+    cout << "Best: " << bestScore << "\tConfig: " << bestConfig << endl;
+    cout << "Decrypted: " << decode(bestConfig, cipher) << endl;
+
+    cout << "Current: " << s << endl;
+    cout << "Decrypted: " << decode(s, cipher) << endl;
+    return s;
 }
 
