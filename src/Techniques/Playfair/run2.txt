@@ -1,0 +1,11 @@
+K: 0	T: 1	E: 0.67799	S: sumiehglowkpxbfcrvanzdytq	Time: 1ms
+K: 10000	T: 0.9	E: 0.888628	S: alqbmyvdxzohegsntpurwfkci	Time: 10551ms
+K: 20000	T: 0.8	E: 0.888657	S: mykacworbdxzpqenhlgiftsvu	Time: 21075ms
+K: 30000	T: 0.7	E: 1.00756	S: gvqhkutbiowlndpmsaxcerzfy	Time: 31587ms
+K: 40000	T: 0.6	E: 0.793844	S: owpcdnqmtgvhlfxaysizurkbe	Time: 42113ms
+K: 50000	T: 0.5	E: 0.892203	S: cyvshwrmuabqtdekzfnxiogpl	Time: 52623ms
+K: 60000	T: 0.4	E: 0.930549	S: peaotsgmlzuhvkidynwbqcfrx	Time: 63134ms
+K: 70000	T: 0.3	E: 0.921707	S: uqpksdbzntwxcheirgmyvoafl	Time: 73649ms
+K: 80000	T: 0.2	E: 0.841797	S: kardgtsnhecxiqovfybpwmulz	Time: 84165ms
+K: 90000	T: 0.1	E: 0.824772	S: dxzrcbtlhgynkoaufwmsqpvei	Time: 94681ms
+Best: 0.575616	Config: ipunagrwkomxlvqfzyhdebtsc

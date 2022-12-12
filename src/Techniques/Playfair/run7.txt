@@ -1,0 +1,288 @@
+New best: 0.466618	Config: bwxhoitqmeafksurdzpgnlyvc
+K: 0	T: 1	E: 0.466618	S: bwxhoitqmeafksurdzpgnlyvc	Time: 0ms
+K: 10000	T: 0.99	E: 0.941044	S: lypofkwmbaicdqtezvghrsnxu	Time: 10651ms
+K: 20000	T: 0.98	E: 0.992619	S: gqhezrxmldtifkwosyubcvnpa	Time: 21180ms
+K: 30000	T: 0.97	E: 0.875738	S: kftipyxdlngwsbuqcmoerhavz	Time: 31761ms
+K: 40000	T: 0.96	E: 0.868869	S: cbyalzvpqstfmuoixrwhgdkne	Time: 42495ms
+K: 50000	T: 0.95	E: 1.01445	S: eopfykaxqtzhgbvuwidrmsncl	Time: 53151ms
+K: 60000	T: 0.94	E: 0.94428	S: okqhgcnlyzewubmatdrpvxifs	Time: 63677ms
+K: 70000	T: 0.93	E: 0.909634	S: wvkrqtiodxspcuzlbhygfmean	Time: 74253ms
+K: 80000	T: 0.92	E: 0.923446	S: zpwcyimevhxgqonalbtrdusfk	Time: 84756ms
+K: 90000	T: 0.91	E: 0.921272	S: gdrokezybqwunvspmlfhaixct	Time: 95266ms
+K: 100000	T: 0.9	E: 0.866547	S: atvxwudznfrpqolkhimbegcsy	Time: 105748ms
+K: 110000	T: 0.89	E: 0.838887	S: zmbulxtadkwciyorvsgqenfhp	Time: 116325ms
+K: 120000	T: 0.88	E: 0.831566	S: plmxsagndwqyzecfbrkohitvu	Time: 126805ms
+K: 130000	T: 0.87	E: 0.988093	S: secraukzbxmdvilytgfqowhnp	Time: 137300ms
+K: 140000	T: 0.86	E: 0.915597	S: muwpihlrgetfbzansxcoqkdvy	Time: 147888ms
+K: 150000	T: 0.85	E: 0.925249	S: anbxkiphcqswuformylvdgzet	Time: 158384ms
+K: 160000	T: 0.84	E: 0.87155	S: fhoekwxnmydtqucvsglpzbari	Time: 168910ms
+K: 170000	T: 0.83	E: 0.973268	S: cztdhpauqlbefsnikmorwygvx	Time: 179464ms
+K: 180000	T: 0.82	E: 0.836723	S: qsiuewbycdrlxvnmtogazphfk	Time: 190002ms
+K: 190000	T: 0.81	E: 0.895773	S: ancdltyowszvxbimpfgqrheuk	Time: 200524ms
+K: 200000	T: 0.8	E: 0.960939	S: oibsnhgvwmcrpuytlfeqkzaxd	Time: 211095ms
+K: 210000	T: 0.79	E: 0.938727	S: xqupwltvfgynhsikcmeaorzbd	Time: 221695ms
+K: 220000	T: 0.78	E: 0.878268	S: edturhbiyaxmonwkczvgfsqlp	Time: 232296ms
+K: 230000	T: 0.77	E: 0.867434	S: fewckzybxaqposdturilmnhgv	Time: 242872ms
+K: 240000	T: 0.76	E: 0.939102	S: ahtodpczvesnbrwiuyfgxkqlm	Time: 253454ms
+K: 250000	T: 0.75	E: 0.947208	S: plbtdcnqyieugsvkfarmzwoxh	Time: 264026ms
+K: 260000	T: 0.74	E: 0.911076	S: qgbhoayckxtwnivspzedulfrm	Time: 274631ms
+K: 270000	T: 0.73	E: 0.911941	S: cehlwyivsutgxaompzqfnbkdr	Time: 285198ms
+K: 280000	T: 0.72	E: 0.825501	S: dnieqrscglpwuvobzkmyftahx	Time: 295654ms
+K: 290000	T: 0.71	E: 0.928239	S: cunmwgfkzepiqlhabdrtxyovs	Time: 306130ms
+K: 300000	T: 0.7	E: 0.833641	S: rskegptauznblwofhqvycixdm	Time: 316592ms
+K: 310000	T: 0.69	E: 0.901512	S: mnicfpyqthdxrvbokszaugewl	Time: 327045ms
+K: 320000	T: 0.68	E: 0.898342	S: rtaghzkfsucmxdbeqlinoyvwp	Time: 337561ms
+K: 330000	T: 0.67	E: 0.957727	S: bfciewyztanroslgupdkmqhxv	Time: 348172ms
+K: 340000	T: 0.66	E: 0.976989	S: htsygweolfrivkbuqzacmdnpx	Time: 358682ms
+K: 350000	T: 0.65	E: 0.933442	S: ufwdpnsxylzktvmecqarohigb	Time: 369224ms
+K: 360000	T: 0.64	E: 1.02097	S: axpmkubhngcysroqfletwzdiv	Time: 379743ms
+K: 370000	T: 0.63	E: 0.81571	S: cwxzknmtsueigvorqybhfplda	Time: 390308ms
+K: 380000	T: 0.62	E: 0.948186	S: ckxtmvgweqhuyloszpfrnbida	Time: 400809ms
+K: 390000	T: 0.61	E: 0.924616	S: mtpbxofszrwkqayenivduglch	Time: 411373ms
+K: 400000	T: 0.6	E: 0.857698	S: bpcvzwnysgdftmakhixqruelo	Time: 421924ms
+K: 410000	T: 0.59	E: 0.84053	S: kysgbutawcpnfmxheodqvlizr	Time: 432439ms
+K: 420000	T: 0.58	E: 0.914436	S: mudtwbqkvcelnoxigprzahfys	Time: 442926ms
+K: 430000	T: 0.57	E: 0.979037	S: mycsdezfkoixntbplrhwvuaqg	Time: 453405ms
+K: 440000	T: 0.56	E: 0.814952	S: rczymuktdsiowalghfpxebnqv	Time: 463916ms
+K: 450000	T: 0.55	E: 0.870827	S: awyqfblvkosdgutenhrzmicpx	Time: 474435ms
+K: 460000	T: 0.54	E: 0.882389	S: pmyoighaslfqkdutbnzrwcevx	Time: 484937ms
+K: 470000	T: 0.53	E: 0.8885	S: mbxzgfyotcqnwviedpahruksl	Time: 495505ms
+K: 480000	T: 0.52	E: 0.795354	S: gcmwvsfhrzkiundyeatqpblox	Time: 506025ms
+K: 490000	T: 0.51	E: 0.965225	S: fpkgdwtqhviobunryszlxcmae	Time: 516642ms
+K: 500000	T: 0.5	E: 0.873819	S: bzkvgactodfwnliemqsyhrupx	Time: 527283ms
+K: 510000	T: 0.49	E: 0.814425	S: uabntwqzhsvimkyxfclgoepdr	Time: 537894ms
+K: 520000	T: 0.48	E: 0.954245	S: htlqcmfxesavngbokidwrzupy	Time: 548482ms
+K: 530000	T: 0.47	E: 1.0013	S: wxitfgyklrahcmenpzdoqsubv	Time: 558995ms
+K: 540000	T: 0.46	E: 0.946111	S: iuwkqvoasedzlrcmfhnytgbpx	Time: 569520ms
+K: 550000	T: 0.45	E: 0.95574	S: kvmlguqfzesrocnwyxaitbdhp	Time: 580074ms
+K: 560000	T: 0.44	E: 0.856079	S: suwztxaevdncymfkpriqhoglb	Time: 590628ms
+K: 570000	T: 0.43	E: 0.842198	S: gexfaiuprtdklsqhwocnzyvmb	Time: 601187ms
+K: 580000	T: 0.42	E: 0.863817	S: qlyxtkucnziosawbemhprdvgf	Time: 611780ms
+K: 590000	T: 0.41	E: 0.925915	S: dufrkgyhlqibwvpsnxmeozatc	Time: 622238ms
+K: 600000	T: 0.4	E: 0.984735	S: qkfbgewhropvazxlmdcunsity	Time: 632771ms
+K: 610000	T: 0.39	E: 0.845431	S: zkuqxcrnmdypgavbehowsiltf	Time: 643254ms
+K: 620000	T: 0.38	E: 0.956088	S: vpdoatuqhyzgreknfiwbcmlxs	Time: 653710ms
+K: 630000	T: 0.37	E: 0.887424	S: tomfdkyxlbwqzeuvhcpirsang	Time: 664176ms
+K: 640000	T: 0.36	E: 0.885878	S: aulcxovfirpgmdywnqktesbhz	Time: 674628ms
+K: 650000	T: 0.35	E: 0.937598	S: qbnzcuftmkyehgxvipswdlaor	Time: 685092ms
+K: 660000	T: 0.34	E: 0.843297	S: qnkhvredbmpwzyfltxuoagisc	Time: 695604ms
+K: 670000	T: 0.33	E: 0.962684	S: wzsuxkgbiclqvadfhntmeyrpo	Time: 706074ms
+K: 680000	T: 0.32	E: 0.997447	S: owugmvkqatelpdxcrnzfiybhs	Time: 716612ms
+K: 690000	T: 0.31	E: 0.820994	S: xfwzotqhupcvyskebandilrmg	Time: 727144ms
+K: 700000	T: 0.3	E: 0.84752	S: sagwoqvdplxrmfthibnuzecyk	Time: 737701ms
+K: 710000	T: 0.29	E: 0.87785	S: hvnrkxypdgislfwacqmzbteou	Time: 748258ms
+K: 720000	T: 0.28	E: 0.860063	S: ayloescgrtwvupibhnqfkxdmz	Time: 758804ms
+K: 730000	T: 0.27	E: 0.902433	S: fbxtdewsypolczvgikmnahruq	Time: 769289ms
+K: 740000	T: 0.26	E: 0.995329	S: imqbkcupvsyahnrxeoftzldwg	Time: 779842ms
+K: 750000	T: 0.25	E: 0.879284	S: rvmhnqoukgcexizfwpystdlba	Time: 790442ms
+K: 760000	T: 0.24	E: 0.907744	S: vkyetdxcmzwhaolpubsfringq	Time: 800971ms
+K: 770000	T: 0.23	E: 0.77635	S: vkwzxadgihlfseqtobumrcynp	Time: 811661ms
+K: 780000	T: 0.22	E: 0.959491	S: khyqocbtpzdaifxnlrwguvsem	Time: 822158ms
+K: 790000	T: 0.21	E: 0.863064	S: afrmitpkhlqbcvwnzyduesgxo	Time: 832768ms
+K: 800000	T: 0.2	E: 0.833073	S: aofnbmuvitdsgpewqxrhlzcyk	Time: 843452ms
+K: 810000	T: 0.19	E: 0.851193	S: byowsfmacdxhvleiqzngpktur	Time: 854079ms
+K: 820000	T: 0.18	E: 0.902664	S: fzxushvkcortmyelwdnqgpbia	Time: 864625ms
+K: 830000	T: 0.17	E: 0.979881	S: oqtypenkldcwugbhxfavsmirz	Time: 875180ms
+K: 840000	T: 0.16	E: 0.818346	S: auhdgkowmqtfcliszxvynebrp	Time: 885695ms
+K: 850000	T: 0.15	E: 0.817052	S: vzhdqrkgabmxtuefnolwcpysi	Time: 896164ms
+K: 860000	T: 0.14	E: 0.869192	S: fcdmwevubaihnpskzxlogyrtq	Time: 906669ms
+K: 870000	T: 0.13	E: 0.853837	S: xyqfanmbvreucospzdlkiwhtg	Time: 917146ms
+K: 880000	T: 0.12	E: 0.848207	S: xmiunleswkahyzovtbgcpfqrd	Time: 927623ms
+K: 890000	T: 0.11	E: 0.833455	S: odyxebhqsvnkzfacuprtwglmi	Time: 938092ms
+K: 900000	T: 0.1	E: 0.920666	S: ifrxhdepzaktolbysuqwgvmcn	Time: 948559ms
+K: 910000	T: 0.09	E: 0.937735	S: giwczoaturdlymspfbqnkehvx	Time: 959050ms
+K: 920000	T: 0.08	E: 1.05637	S: sbikdqalfurhwnvyoxtgczmpe	Time: 969640ms
+K: 930000	T: 0.07	E: 0.919934	S: owpfiylbzuxvsrtagqhnckmed	Time: 980159ms
+K: 940000	T: 0.06	E: 0.848184	S: vklhzudqmrbnostpixeywfcag	Time: 990723ms
+K: 950000	T: 0.05	E: 0.774494	S: agowhqeckfznrpybmxlvsiudt	Time: 1001202ms
+K: 960000	T: 0.04	E: 0.839726	S: edbvumpzkrlfytahqwosgxinc	Time: 1011662ms
+K: 970000	T: 0.03	E: 0.848066	S: xkrupmacetbnqsidzhglyofwv	Time: 1022114ms
+K: 980000	T: 0.02	E: 0.714655	S: pznshxyaqvrmkdgwlfticbeuo	Time: 1032549ms
+New best: 0.462576	Config: cbnwmfeoyqaiukstrgvzldhxp
+New best: 0.446966	Config: cbowmteakqniuysfdgvzlrhxp
+New best: 0.44271	Config: cgowmteakqniuysfdbvzlrhxp
+New best: 0.428188	Config: giowstaekqnbuymfdcvzlrhxp
+New best: 0.41213	Config: utbwsiarveonckqmgfyzldhxp
+New best: 0.407365	Config: utbwsiarkeoncvmqgfyzldhxp
+New best: 0.407251	Config: utbwriaskeoncvqmgfyzldhxp
+New best: 0.407193	Config: utawrinskeobcvqmgfyzldhxp
+New best: 0.405857	Config: utawrinskfobcvqmgeyzldhxp
+New best: 0.403818	Config: seqvbatwkoiuhcgnfmyzdlrxp
+New best: 0.403045	Config: seqvbatwkhiuocfngmyzdlrxp
+New best: 0.400382	Config: oiqlwgzmksaunctbrfyehdvxp
+New best: 0.399271	Config: oiqlwgtmkhaunczerfybsdvxp
+New best: 0.381681	Config: muwlobtikqfancdzeryghsvxp
+New best: 0.356712	Config: muwlobtikdzancqferyghsvxp
+New best: 0.349338	Config: mublowticdzankqferyghsvxp
+New best: 0.348986	Config: zadligebctouqwnfrkymhsvxp
+New best: 0.333626	Config: gizwoatudemchkqnflybsrvxp
+New best: 0.333354	Config: gizwoatudemchyqnflkbsrvxp
+New best: 0.309279	Config: gizwoatudemclyqnfhkbsrvxp
+New best: 0.30284	Config: gizwoatudefclyqnmhkbsrvxp
+New best: 0.297868	Config: qctwogeadihnulbzfrkmyvsxp
+K: 990000	T: 0.01	E: 0.391423	S: foergbiadhctukzlqnwmyvsxp	Time: 1040987ms
+New best: 0.296937	Config: fhewcbnadtlzukmqgiroyvsxp
+New best: 0.284623	Config: fhewbcnadtlzukmqgoriyvsxp
+Best: 0.284623	Config: fhewbcnadtlzukmqgoriyvsxp
+Decrypted: eoyeniknhiobpolobmvnulbafheduzcmlahinimbesfbriahesiyhptqhpeystziaixbidizraobrirtftaedsahrhqrsnmrivscpqkgeonrfltssdhirmcvzuesbcitopcsbtlbwazhgrmihetcsthcblzkbpastnkzneahaewzbinkividhiyearnahchpbtscvnhqhglaeshiriespazihiqtnktioboaneqryvelqthinizdyecimpaololambhiloceihmqwgtigcrafrlbsicosaithrzdtiovzdzkamcuihlohylnzauixtassapbcnfmyeoznlrhhcissaamrdrbafodzdaupezhetntzdkmeaqkgalcyeuzinnrmbouxtassaarcgellahinizdzhemhracoeoetkntnksapazdizuiktqonezheyrtftcvaszdolahpazdrhqkirzoozbinaeoiutchtsaoumaasbdmpsclmsthrfrnuahwerhfhedvrvimbinlfsewtkzlahcnppuaeginieateulfrnuahwerhtnvnwqzamechrbasxbibeatwtutevizakzneeohiyendeyrpeonitusatscurvdrgyalaufrrortnqtssgktqonebmynhinisahiloupzuoabphoasdyheodnegrtsqhauudizraobrmtiuozdtsraivmrneozmehinizdabirdisdstismeheesbazhyezameiznkrhtqntzdgwbazamendhpbtorwmalelwztnnmeohcwehinizdaiollasnhiiuisvmkzeyxyiroanizufdzhhiaebphrhocgtbtqhpeysttcizolyvwmazwqmbahpasicorzyetqklahpbauntibaetezdivrtctfdzdasdibgcvoncvflvrniyehcpmrgctesfbafyezdgrvmkzlaiteyneuzvieyneuzgyalaurhtctrolmbesfbriahziozqurmitansaiznkituppqhiodbmmehezaguzhinupsahiesvzitodquzkwcivpnviedabseinvgmrtwhirigyalauiutchtsaarcgellahcnppudzedabwsodtcbtoeolbtirfrrortnqtsnozhoerghiesbhnezihchyauglesresazihiriyehinihcapqtcesempntnreswzlolaqtcehttsmpastqivpcahfrnazoyfibnaeoyepqglellfulhinizdgrxzzoelzekbcseoivsazihiriahpezdolizolfrrortxeyeeohcgrhpbtstmbzdciireytqasxbicabeystizrazhdfodahpezdeckghyhereitfrrohetqmehiridyhiritqhlqtvrsoxslozhtpsnvnwnqtoevnwnnttnkmitmbfrgtolmbzhmebtirmbahfrovzdxyiuvaneuzygceihellffrnazdtcbpzihicgaudfgyalaufrqmozwetnuiaeldracnzerdrbdzmagywbaucoevzanaydnaaosthrilntaspeibzawshiesudewuaitoahagltsspvrasdnsiahzhblpodutisddgamcuihlohpwbcocuihrhecpqkblohiesbhnezizdtisdtctgdfestrwmabtqbmdegrpimbtsrhovasorwmtctgdfrhhiesqievnagyalaufrrortoemecvlareahpacvrixtesfbafvraszdciireytehrzdsacevbodymxbideoyeisolhiaheaneairmitnchptrolfrcanacimpaolofrnkamcuihlobtzefdhchfvrniahqtinnwyebyasoeonodqktciztisazihirieyguleelrgahkqmaluwambaulantloyvsapeersilozufrtezhinfpciobvoitesudsauaulodfhedhiafopeyetstcsciirktesallafrrortqgziiteosnvnwnaegitbeynwrmitrtrhopeyhivypufrcksthrfrgtolkblodakngdqorttrolulaoauqtheiuvaneuzkvlewnqploxdozpetbcvafodahoasnvnwcasammrnzesqtdyfrnabdhptrolhciszprdzarawusttqterhhchyauglesuehcwmqplozdwmxbtbqtzihiduzkwchiodwzvyrtwehitisnhareiddelmizuilueonrzuzsgnaoqtzkafodsnvnqksttbwaihhcneelypgnyetsinvaftnttnrazhtezdhrzdktahoargtrolwbaepmhrzhhqbtzhmebtirmbncsatsymzolberxbidzcisnklambuloacdnafrgtolzondynecopnezdrazdilrmloasldhiafzhpqtssazihiriorwmrholcixyirmehiriolgweafmntzdeholzowcleulahoaenitahnrhbcohiloeckgdtnaelypgnzhhpbtirhieseqitcoukotlrsahpbpzhpiloeybplohyxtassahiedabwsodcdrtafodtisdwmlemlasestrwmdnhefrnaholazuceihespqghneirfrczrbasicsigahpeyststgyiyitsaklqtfrroyeinlfirgyalauchrbzahcwzolptdlvoitfrnksaklqthiafaurifrqkmkeameeyzhpqzdaunlodirtetutezdgseomwsteyaluaoesthiqtntsctelvfaaubmnrzabphzfrcksthrfhedvrniyeqmmrxtnachyiafodsnvnbfntkbloeoahkqponttbcvriahlvfrobeqasziiznkhiodbmmehezarcsiaetehrzdsacevbodymxbideosnvnwnasodtqrhrtpuonasdftrwmwbodqkciireyhwafodsnvnezhropeywehirialgcmedgsteogyalauhinivrashilozaolonasdfnslehlyeeohirizowqxtassaonmbbtidamyvewnkcoukotlrgarahpbmrcmboewmroodvmoltqklzameabilsontzhwehicvcvgckzasldzihiolzameonasdffaauwbmatcasestrvguposaswerhgrlfhcnppumomelobpahfmyewmaubatnymloyvmendcwqtappuupawrnrhalpqqotpzdndbmdegrtszpzabomelobpahoaneelwenraegbitgroestahkchwloinestngilovraswbcsmboadasttntelawbrmahoslazdktzubglobkrthictrtesqtbtrzloelmrndbperntzdlmtgwztnktgrvmkzlaeohpbtozldndbqyeeoesiamesapn
+Time: 1048686ms
+
+[=========================================================================================]
+
+New best: 0.632601	Config: uwxhoitqmeaflsbrdzpgnkyvc
+K: 0	T: 1	E: 0.632601	S: uwxhoitqmeaflsbrdzpgnkyvc	Time: 0ms
+New best: 0.628633	Config: uwxhoitqmeaflsdrbzpgnkyvc
+K: 10000	T: 0.99	E: 0.913516	S: znropcekshqdugifxmtalwbvy	Time: 10580ms
+K: 20000	T: 0.98	E: 0.977686	S: vbuqzscfnkoydlgepahimrtxw	Time: 21224ms
+K: 30000	T: 0.97	E: 0.897775	S: fzyhtmukecnibqlsopxvdgrwa	Time: 31754ms
+K: 40000	T: 0.96	E: 0.903262	S: kvrdxhucmoqfbgeatzslnpwiy	Time: 42373ms
+K: 50000	T: 0.95	E: 0.970849	S: kafxlhrdsuiqmnygbzoepvtwc	Time: 52970ms
+K: 60000	T: 0.94	E: 0.968026	S: bltxvorzemfhgqudnykpicwas	Time: 63562ms
+K: 70000	T: 0.93	E: 0.886254	S: ihcvpzswgraoebtyfdnqxkmul	Time: 74144ms
+K: 80000	T: 0.92	E: 1.04223	S: szugqnfdxohwlekvbrptyicam	Time: 84735ms
+K: 90000	T: 0.91	E: 0.839668	S: ebhmvfiurzoqgdsntkaxwlycp	Time: 95354ms
+K: 100000	T: 0.9	E: 0.984935	S: wlrventykhbouzfipsadqxgcm	Time: 105997ms
+K: 110000	T: 0.89	E: 0.897743	S: bimrsewdxnkltcgpfzuayvqho	Time: 116621ms
+K: 120000	T: 0.88	E: 0.834895	S: nwvochdgsbaplfzequikrxtmy	Time: 127168ms
+K: 130000	T: 0.87	E: 0.892672	S: gbxcpswvydutzaqoemrnhiklf	Time: 137742ms
+K: 140000	T: 0.86	E: 0.959024	S: aftyekdriguwlsxovqhnpbzcm	Time: 148327ms
+K: 150000	T: 0.85	E: 0.891617	S: irysnfxozbcmqvlwepduktgah	Time: 158794ms
+K: 160000	T: 0.84	E: 0.930973	S: hwkafzniyxcqrdgumveolbtsp	Time: 169305ms
+K: 170000	T: 0.83	E: 0.970693	S: qyobaviturzpgnsfhdxcewkml	Time: 179903ms
+K: 180000	T: 0.82	E: 0.826059	S: hfpzbuesdxratciwyonlgvqkm	Time: 190493ms
+K: 190000	T: 0.81	E: 0.915777	S: tgpxubvykaeizrsfnowcdqlhm	Time: 201043ms
+K: 200000	T: 0.8	E: 0.862623	S: bkwmytvsgdcefolhrnuiqxzpa	Time: 211570ms
+K: 210000	T: 0.79	E: 0.805406	S: kgvlrwozcemihpnfxbyaudsqt	Time: 222108ms
+K: 220000	T: 0.78	E: 0.975173	S: bmfwghxlerqvtospkunidczay	Time: 232637ms
+K: 230000	T: 0.77	E: 0.898613	S: itosbgkmyhxdzqpnlwaevfucr	Time: 243289ms
+K: 240000	T: 0.76	E: 0.950959	S: fbalxnvuepwodzkictyghrsmq	Time: 253761ms
+K: 250000	T: 0.75	E: 0.941212	S: kqxpwrzodcnyiubaetlfghmsv	Time: 264225ms
+K: 260000	T: 0.74	E: 0.868987	S: srtdqmveiknhwbaoxfpyzgcul	Time: 274685ms
+K: 270000	T: 0.73	E: 0.936831	S: dipvozykmawxstuqhrnlegbfc	Time: 285202ms
+K: 280000	T: 0.72	E: 0.914023	S: tgowkadhxcrfniqlyzepuvbsm	Time: 295699ms
+K: 290000	T: 0.71	E: 1.00835	S: nixmrhwkuzvdsctpoyblgafqe	Time: 306295ms
+K: 300000	T: 0.7	E: 0.948689	S: wlamtdghroynfcsxkpqzibuev	Time: 316888ms
+K: 310000	T: 0.69	E: 0.953477	S: dpfkixtgwbhvcmleuqosrynaz	Time: 327504ms
+K: 320000	T: 0.68	E: 1.05628	S: otwvciyqgbxeprnfzukmhslad	Time: 338107ms
+K: 330000	T: 0.67	E: 0.942416	S: wvracbgpqotdelnisfykumhzx	Time: 348740ms
+K: 340000	T: 0.66	E: 0.92219	S: paltxwgqoenuscvhfyzkmdbri	Time: 359295ms
+K: 350000	T: 0.65	E: 0.841898	S: cxgzkqfwmbnptiruodeyslhav	Time: 369822ms
+K: 360000	T: 0.64	E: 0.856559	S: fahrpwobxdsqcmzuinlykgevt	Time: 380342ms
+K: 370000	T: 0.63	E: 0.915039	S: chuyzxfbglorakstidmvpewnq	Time: 390875ms
+K: 380000	T: 0.62	E: 0.911279	S: xkvydmortzeabsqgpifchwlnu	Time: 401342ms
+K: 390000	T: 0.61	E: 0.932678	S: tnkqdilsopverfbmhcaywzugx	Time: 411816ms
+K: 400000	T: 0.6	E: 0.860709	S: fxztpwkicvlsmnabyohqgdeur	Time: 422288ms
+K: 410000	T: 0.59	E: 0.903938	S: yatukvwzmcxprenqlfbghidso	Time: 432752ms
+K: 420000	T: 0.58	E: 0.865848	S: tkschpmydfwuxobaingrzqvel	Time: 443248ms
+K: 430000	T: 0.57	E: 0.971921	S: xtwgmhcayqindrflpkubovesz	Time: 453863ms
+K: 440000	T: 0.56	E: 0.824103	S: nywduelboazrqihsvfmtkxpcg	Time: 464531ms
+K: 450000	T: 0.55	E: 0.95947	S: hqdfwvmneyixgtkasozbcprlu	Time: 475202ms
+K: 460000	T: 0.54	E: 0.881402	S: wkqgcvdeszuinlomrpabyhtfx	Time: 485833ms
+K: 470000	T: 0.53	E: 0.891801	S: lywzsmdavfneqixghupkrbtoc	Time: 496445ms
+K: 480000	T: 0.52	E: 0.855964	S: zvraokbldiftqpcneumwysxhg	Time: 506971ms
+K: 490000	T: 0.51	E: 1.02776	S: idowxlmrungfyevtpszbkahcq	Time: 517815ms
+K: 500000	T: 0.5	E: 0.911996	S: lknqwpfaiedvyzxthbmscuogr	Time: 528362ms
+K: 510000	T: 0.49	E: 0.892377	S: lbhxrgievptqdfwkacszynoum	Time: 538890ms
+K: 520000	T: 0.48	E: 0.971332	S: kvetbfqarsndpohmyzcguilxw	Time: 549372ms
+K: 530000	T: 0.47	E: 0.841784	S: kotewlzagqinrbsvyuxhdfcmp	Time: 559948ms
+K: 540000	T: 0.46	E: 0.947162	S: wdkltmfeugcznparhsivxoqyb	Time: 570487ms
+K: 550000	T: 0.45	E: 0.804538	S: ysmkihdgbeftalcpurvnwzqxo	Time: 581032ms
+K: 560000	T: 0.44	E: 0.945671	S: rhpbtuqclyizkodgeafvsxnmw	Time: 591512ms
+K: 570000	T: 0.43	E: 0.883306	S: vdpfawikqxnhtzbouleygsrcm	Time: 601972ms
+K: 580000	T: 0.42	E: 1.03607	S: wvqebtzdacxomrgsipkuhlnfy	Time: 612544ms
+K: 590000	T: 0.41	E: 0.973768	S: lgpiaubdomtzekyrfqvnhwcsx	Time: 623087ms
+K: 600000	T: 0.4	E: 1.02551	S: gcoikdsypqvbernlzhmfauwtx	Time: 633612ms
+K: 610000	T: 0.39	E: 0.875355	S: qhcxiltnpamdkougezwvfsrby	Time: 644144ms
+K: 620000	T: 0.38	E: 0.897201	S: fydisahmuekbvcqzortnlpxgw	Time: 654697ms
+K: 630000	T: 0.37	E: 0.940006	S: timpxoauldcfhrygnvskbzwqe	Time: 665206ms
+K: 640000	T: 0.36	E: 1.02248	S: itksveomlfwzhrupqdaxcnbyg	Time: 675719ms
+K: 650000	T: 0.35	E: 0.821873	S: taghniobvplequfmszkcdwyxr	Time: 686246ms
+K: 660000	T: 0.34	E: 1.05368	S: boflqkuiegcdzrmnatpvwyxhs	Time: 696907ms
+K: 670000	T: 0.33	E: 1.00143	S: kipothfervqgdbxauylzsmnwc	Time: 707436ms
+K: 680000	T: 0.32	E: 0.939959	S: sbhndrmaowytcizuxpveglqkf	Time: 717976ms
+K: 690000	T: 0.31	E: 0.98999	S: vcxamnluobwgpekytfzsrhqid	Time: 728498ms
+K: 700000	T: 0.3	E: 0.884794	S: bhltfekpyxuodncqwrsimzgav	Time: 739041ms
+K: 710000	T: 0.29	E: 0.861368	S: aeytuzlhbkvwmxpsfdiocqrgn	Time: 749569ms
+K: 720000	T: 0.28	E: 0.759996	S: loigrzxycvfbhtmausenkpwdq	Time: 760201ms
+K: 730000	T: 0.27	E: 0.945419	S: ylxpaefdntohcivqburswkgmz	Time: 770881ms
+K: 740000	T: 0.26	E: 0.817332	S: ovisblxnqkeuhfycwatrgmdpz	Time: 781565ms
+K: 750000	T: 0.25	E: 0.905805	S: entauqvgfbkszpolxhryiwmdc	Time: 792602ms
+K: 760000	T: 0.24	E: 0.875416	S: kulqnxwcobdhgmszrvtieafpy	Time: 803113ms
+K: 770000	T: 0.23	E: 0.920675	S: ycognuizsmxvwtrpkhqaefldb	Time: 813671ms
+K: 780000	T: 0.22	E: 1.03819	S: nibuzhxdrtqlowgyasvemkcfp	Time: 824242ms
+K: 790000	T: 0.21	E: 0.969272	S: gqxbftvymslpewirazchdukno	Time: 834768ms
+K: 800000	T: 0.2	E: 0.865521	S: npacdextlqhrumowkfvgbzysi	Time: 845254ms
+K: 810000	T: 0.19	E: 0.928904	S: sicntlzdvpqywfbrheaoxugmk	Time: 855715ms
+K: 820000	T: 0.18	E: 0.81055	S: voinkrcsumegxhtfzydaqwpbl	Time: 866174ms
+K: 830000	T: 0.17	E: 0.9062	S: bulqhdtgspwacervyzmoifxkn	Time: 876763ms
+K: 840000	T: 0.16	E: 0.940258	S: exlpzhmygrsibcodatfknquvw	Time: 887283ms
+K: 850000	T: 0.15	E: 0.930527	S: duhfotzpwmbvsarxqgkynlcei	Time: 897799ms
+K: 860000	T: 0.14	E: 0.90796	S: mocysrnwpfkahezgxqlutvbdi	Time: 908343ms
+K: 870000	T: 0.13	E: 0.853476	S: szyqpdcrfvniekaotlxwgmubh	Time: 918887ms
+K: 880000	T: 0.12	E: 0.789165	S: uqxolmcvdsienagpzyfwrbthk	Time: 929419ms
+K: 890000	T: 0.11	E: 0.834891	S: ptzxdskcbhlwmfgriuyqeaovn	Time: 939940ms
+K: 900000	T: 0.1	E: 0.920119	S: vmbcyhsgownutpfelaqrizkxd	Time: 950538ms
+K: 910000	T: 0.09	E: 0.922086	S: eqvkywhirtcxdoubgpnsfalmz	Time: 961026ms
+K: 920000	T: 0.08	E: 0.905186	S: omgwkalufhqsnxivbyzdpcter	Time: 971547ms
+K: 930000	T: 0.07	E: 0.92846	S: fadltumzeoqwikcvpysnrghxb	Time: 982029ms
+K: 940000	T: 0.06	E: 0.822235	S: hpotsvdanqryxkbfwumlgzeic	Time: 992488ms
+K: 950000	T: 0.05	E: 0.749097	S: nklbxgeqhtompicsvrwzadyfu	Time: 1002955ms
+K: 960000	T: 0.04	E: 0.812493	S: vblczudeipmsranhgtfywkxoq	Time: 1013441ms
+K: 970000	T: 0.03	E: 0.780685	S: dbzpkgclixfovahrmtnewsuqy	Time: 1024036ms
+K: 980000	T: 0.02	E: 0.765065	S: vgwfdpzcaolryqmxthsbknuie	Time: 1034616ms
+New best: 0.622032	Config: lzsmouvyntkxphbiwqdecfrag
+New best: 0.621348	Config: lzimouvyntkxphbswqdecfrag
+New best: 0.615893	Config: lzimouvfntkxphbswqdecyrag
+New best: 0.588017	Config: lznmouvfdtkxphbswcieqyrag
+New best: 0.566694	Config: cvnqwfkulxmzshpiotadrbegy
+New best: 0.558607	Config: cveqwlkufxmzohpisatdrbngy
+New best: 0.529978	Config: qvecwlkufxmzohpisatdrbngy
+New best: 0.517598	Config: ctaeqknguswbhmzxpvyrdfilo
+New best: 0.513465	Config: ctaeqknguswbhmzxrvypdfilo
+New best: 0.505851	Config: csaeqkngutwbhzmxrvypdoilf
+New best: 0.479518	Config: csieqkngutwbhzmxpryvdoalf
+New best: 0.465923	Config: chaiqknoutwbszlxpryvdgemf
+New best: 0.457237	Config: claiqknostwbuzhxpryvdgemf
+New best: 0.456658	Config: claiqknostwbufhxpryvdgemz
+New best: 0.446283	Config: wqteukhagsclbmzxprvydfion
+New best: 0.445673	Config: wzteukhagsclbmqxprvydfion
+New best: 0.441123	Config: wzteukoagsclbmqxprvydfihn
+New best: 0.430838	Config: wzteukoagrclbmqxpsvydfihn
+New best: 0.416904	Config: wzteukoagrclhmqxpsvydfibn
+New best: 0.409028	Config: wzteucoagrklhmqxpsvydfibn
+New best: 0.406444	Config: wzteucfinrklgmqxpsyvdhabo
+New best: 0.402866	Config: wnteucfizrklgmqxpsyvdhabo
+New best: 0.36428	Config: wgteucfizrklnmqxpsyvdhabo
+New best: 0.361614	Config: wgteucfizhklnmqxpsyvdrabo
+New best: 0.347813	Config: cgteukfizhwdnmqxpsyvloabr
+New best: 0.347262	Config: cgteuwhiqfkdnmzxpsyvloabr
+New best: 0.340892	Config: cgteuwriqfkdnmzxpsyvloabh
+New best: 0.326995	Config: cgteuwriqfkdnmhxpsyvloabz
+New best: 0.326795	Config: cgteuwrimfkdnqhxpsyvloabz
+New best: 0.325912	Config: cgteuwrimfkdnqhxpsvyloabz
+K: 990000	T: 0.01	E: 0.342495	S: cmteuwgirfkdnqhxpsvyloabz	Time: 1044658ms
+New best: 0.313568	Config: cmteuwbnrfkhiqdxpsvyloagz
+New best: 0.307603	Config: cieufkmthzwogqlxpsvydnarb
+New best: 0.304674	Config: cteufkmihzwogqlxpsvydnarb
+New best: 0.302477	Config: cteufkmnhzwogqlxpsvydiarb
+New best: 0.293761	Config: cteumkbnhzwogqlxpsvydiarf
+New best: 0.284601	Config: cteumkbnhzwogqlxprvydiasf
+New best: 0.283982	Config: cteuqkgfhzwnmblxrvypdaiso
+Best: 0.283982	Config: cteuqkgfhzwnmblxrvypdaiso
+Decrypted: diihatkonhviiaeueafhzhtcfundhcqneqnhataeitfgoemtitolmyedmyhironfqaxlnafnsovioeaowutsdrmtknfarifdzrrsvsgpdiakquorrdnhdfbrchitgevlaisrenfecitgsaovcmtwrogmefebunettdbesgmttsfzqrokzrnanhihosdogmmyenrsfhgkmreqitnhoeitaunfnhdeoklvviyssgfayihedenhatgwihcusmsyeueqaenheuighnmogylvtlsolcfelpottevlnkgwlvhagwebceonhneuemkqtblixoettenugrmbihhtqkkngmpltecewcdmqtnrgwqsyhtgnsdtgwnbstpnalozihhctaakaeisxoetteosltheeqnhatgwtghsnkawididiwdtokteaugwfnliwitnsgtghiaowubretgwuemtaugwknpneothhtqrdodiiltwmwteisecetncsmrsqzronklcogmtmlknfundrkrzaetauqtiwsbeeqgmeribtspoatstsnzhlcogmtmlkntdfhgvtbshmgdmetxlrqstswinsnrztbbesgdinhihrahidvdiatinteoronkrcwepqeqslcavaotkorpiwitnsgeaxenhattenheubichysuntfetdwcmnrsgsaorkgqsgdfnsovidflvsigworsozrfdsghtshnhatgwcteoanrdroplshcmittctgihtbshfnokkneddtgwygtctbshramyenvawhqehefztdqgdigmmlnhatgwqaueeqrinhilpllqbehiyreoysatchkdtgnhtsunnktfltneedmyhirotwfnueyiwhbtgvaemtaulpotkzihedlfmtnuqsdtrqtssngwzraowtkdgwetanfsbrtrbrqurkatihgmmsaswtitfgqtihgwsalqbeeqvlhisghcrzhisghcepqeqskntwoaueaeitfgoemtnfhtpzdfvlodtefnokvlbivsnhnreashcmtbpqtgtabitenhitfkvlnrpzebkizrrerzndcttitafyfdswnhoeepqeqsiltwmwteosltheeqgmeribwgndctcvnrtwenidueeneolcavaotkorrttgidasnhiteisgnfgmemqsoqitdltenfnhoeihnhatgmuadeigtismdtakitfzeueqdeigmworsmetedzrrumtlcdothkerqdodiihvsoqheuqzhnhatgwsaxfthhesunlsrdizrtenfnhoemtyhgwuefnuelcavaodbihdigmsamyenroaegwcueohiedetxluccthirofnsotgdknrmtyhgwgigpemcmdlvllcavcmedshnhoedwnhoeedghderkuiypeutgnmrifhksdeidfhksdttdnbvlaelcamueaetgsheneoaemtlchagwyrilabsghcpeighnheuqlcdogwtwunnfnhltqsdkepqeqslcomhtmltdlitscdsogrsuwcdmwgecepmhqsotuytbdowddosyronkeldtetyhrqtbcvnhitgdlmsqvlystmoqorpvrketarlpmttgefiadglvrdgnceonhneumymhotonhnkngivsnleunhiteisgnfgwlvrdtwmadkitoawhctedeadnsalyaeorknhaetvawhtwmadkknnhitztuydoepqeqslcavaoidshbreqdlmtaubroexoitfgqtrketgwcueohisnnkgwteigyznrlzxlnadiihpluenhmtstsgqadfvlrgmyoauelcwadocusmsyeulcokceonhneuensukdgmufrkatmtdetaskihzvetidtrnrpntwfnlvtenfnhoehipqehheasmtnpechzciaeqseqdteuyiteyhldlpeuchlcsntgtahbcuviahvlitgdtesqzhnrfundnhqtaihinsrosrcueowiitqeeqlcavaozanfvldirifhkstsponehiskdfvlaoknaihinhiyiblcowronklcamuenleucakongtnaooauezhsyqsdecmilabsghckpehkssveukchtyhnebrqtnrmtysrifhkietcefdhkitdedwlcdoncmyoauegmplfmwctbsocfroedsnkngmemqsoqitsdgmwhsveugwwhxlnedenfnhdgebkinhnrfziyaomlnhlvritmdlnadnqzfnlihzdiakcheypfsydeebqtnrrifhpnronecihngmsghervpfihortaabwudttdsotgsngwnkgwwimtysasoauemhtsmsnktggkentgsheneoaergteorlzthfeldxlnabwplokeqaezhysgadolcamuethraxegiaisggwsogweldfeuetcdnhqttgvsortenfnhoevawhknuecuyreoshnhoeueygstmbdtgwmcuethkiehzhmtysgsvlmtakieotnheugigpcqdohervpftgmyeneonhitzivlotfwadzctemyuntglyeuhiuneuemxoettenhndctcvnrgaaoqtnrlvrdwhehzqetitoawharcmlcdotfeqchighnitvsrmsgeolcwbdmetuclpalmyhiroroepolvltelfdelcavihtauqeoepqeqsmgdmtbgmfzuemndcahvllcoktelfdenhqtqsoelcpnbnstshhitgvsgwqsqknreosninsngwipdihwrohiqesqidronhdedtrssnhptqqseaaktbungtlcowronkfundrkatihomfdxodomgloqtnrrifhgfdtnleudimtnpiadtnebroemthplcvizietnffnoknhnreashcmtbcolptssnnkgwteigyznrlzxlnadirifhksetnredknaoibtretdkoawhmhnrpncueohiumqtnrrifhusnkaihimlnhoeqetlshgnrodiepqeqsnhatrketnheutbuetretdkirehghihdinhoethgvxoettetraeennaceyilmokotfwadzcalsomyeacoaeidwhavnrlqueedlftbshcteluidttgmlnhbrbrtlbeetcdnfnhuetbshtretdktqqsmhectwetitoafybiiuetmlknsauqgmeribessheuunmtmbihwhqstctdlzeuyishraikdeuaibbiickaknqevstnnmgwraeadnsaorfmtbivsheuunmtyssghemlaktssfvlsaidromtwoumeutaittdpoeurketmhsraeyscarotdsneqmhdfmtiueqgwwichfseulnaonhwtaoitdeenkzeuhefdraunlddtgwqzmafztdwisalqbeeqdimyenhtcdraevihdiitaqshtere
+Time: 1052278ms
+
+[=========================================================================================]
+
+New best: 0.664435	Config: bwxhoitqmeafcsurdzpgnkyvl
+K: 0	T: 1	E: 0.300725	S: bwxhoitqmeaflsurdzpgnkyvc	Time: 0ms
+K: 10000	T: 0.99	E: 0.942912	S: soquwiefpvtxgkacmyznhldrb	Time: 10490ms
+K: 20000	T: 0.98	E: 0.805939	S: lnikveqrycuxsdahfmtbgwpzo	Time: 20950ms
+K: 30000	T: 0.97	E: 0.880458	S: sfdaiokgzyrnluqpetxbmvcwh	Time: 31420ms
+K: 40000	T: 0.96	E: 0.84206	S: orvsukaylmipcfdntwzhbexgq	Time: 41892ms
+K: 50000	T: 0.95	E: 0.870756	S: lgvkrzbsdpoyhaqtncemwuixf	Time: 52358ms
+K: 60000	T: 0.94	E: 0.902734	S: equzhwgxvliprmnobfdstkayc	Time: 62822ms
+K: 70000	T: 0.93	E: 0.890893	S: ukptldqwoisrzmafxcyvbnheg	Time: 73285ms
+K: 80000	T: 0.92	E: 0.963376	S: zxliynqbafturwvspgkcohdme	Time: 83784ms
+K: 90000	T: 0.91	E: 0.902968	S: rvmgwzadoncsikbltpuyqexhf	Time: 94427ms
+K: 100000	T: 0.9	E: 0.909859	S: amygkwsqzxnvrubptlifcdheo	Time: 105068ms
