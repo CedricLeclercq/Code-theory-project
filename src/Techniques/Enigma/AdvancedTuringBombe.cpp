@@ -5,6 +5,7 @@
 #include "AdvancedTuringBombe.h"
 #include "Enigma.h"
 #include "../../Utilities/Utilities.h"
+#include <algorithm>
 
 AdvancedTuringBombe::AdvancedTuringBombe(std::vector<std::string> p0, std::vector<std::string> p1,
                                          std::vector<std::string> p2, std::vector<std::string> p3,
