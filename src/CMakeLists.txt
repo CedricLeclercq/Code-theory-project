@@ -4,7 +4,7 @@ project(Code-Theory)
 set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ${OWN_GXX_FLAGS}") # -O3 -pthread
-set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${OWN_GXX_FLAGS}") # -O3 -pthread
+set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${OWN_GXX_FLAGS} -O3 -pthread") #
 
 set(GENERAL
         System/System.h
@@ -28,10 +28,14 @@ set(VIGENEREPLUS
         Techniques/VigenerePlus/Vigenere.h
         Techniques/VigenerePlus/Vigenere.cpp)
 
-set(UTILITIES
-        Utilities/Utilities.h
-        Utilities/Utilities.cpp)
+set(VIGENEREPLUS
+        Techniques/VigenerePlus/Vigenere.h
+        Techniques/VigenerePlus/Vigenere.cpp)
+
+set(ADFGVX
+        Techniques/adfgvx/adfgvx.h
+        Techniques/adfgvx/adfgvx.cpp)
 
 # add_executable(Enigma ${ENIGMA})
-add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS} ${UTILITIES})
+add_executable(System ${GENERAL} ${ENIGMA} ${PLAYFAIR} ${VIGENEREPLUS} ${ADFGVX} ${UTILITIES})
 # add_executable(VigenerePlus ${VIGENEREPLUS})

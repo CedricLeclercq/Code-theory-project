@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// I put the helper functions in an unnamed namespace, so it is not accessible to the user
+// I put the specific helper functions in an unnamed namespace, so it is not accessible to the user
 namespace {
 
     vector<vector<double>> BIGRAMSQUARE{{3.40008157684157,2.69262260305957,2.38293189544025,2.46337633776572,3.72422806569787,2.87982813518528,2.69095880781716,3.28851581870791,2.49054923237858,3.69624851126805,2.9251626741056,2.05370349068739,2.43243099636807,1.79219757243754,3.76108865282038,2.70373380444589,4.13749423559963,2.00901166690972,2.05870695840607,1.95218017166687,2.94710793783851,2.71740241745513,3.04272770098262,3.81581140989685,2.57431729135585,3.75033434908219}, //A,A-Z
@@ -38,21 +38,6 @@ namespace {
                                         {2.77618707979261,3.20505204679329,3.1406244288353,3.30908418627499,2.82303161367312,3.27318163139997,3.61508909620118,3.27582169425258,2.98644547531517,4.05762731015119,4.04266453885442,3.33185221961693,3.23514077414625,3.4639805628124,2.67740646353394,3.22396533792238,4.69164787427943,3.33013048253483,2.75854901633142,2.80890742750747,3.79359390424858,4.02154241251668,3.10710211427284,5.40685695855756,4.11348951271837,4.74224216681822}, // Y,A-Z
                                         {3.66782719046757,4.93130193352892,5.02272292746024,5.11862343836115,3.40293518514083,5.17865265339021,5.21480487151343,4.60392887735217,3.82698906205153,5.78056112726142,5.2509719333388,4.73259687776872,4.97281981835226,5.25134800016724,4.00851628697642,5.15318212258973,5.87449697423233,5.12155004242902,4.65820692826717,4.88036667553548,4.58075729197908,5.47937966698393,4.79789997990926,6.24443411989185,4.61112151652201,4.29096618231055} // Z,A-Z
     };
-
-    vector<char> alphabaticallySort(vector<char> &a) {
-        sort(a.begin(), a.end(), [](const char &a, const char &b) { return a < b; });
-        return a;
-    }
-
-    vector<pair<char, int>> keyOrderSort(vector<pair<char, int>> KeyAndVal, const string &key){
-        vector<pair<char, int>> result;
-        for (auto const & chars : key) {
-            int index = distance(KeyAndVal.begin(), find_if( KeyAndVal.begin(), KeyAndVal.end(), [&chars](const pair<char, int>& element) { return element.first == chars; }));
-            result.push_back(KeyAndVal[index]);
-            std::remove(KeyAndVal.begin(), KeyAndVal.end(), KeyAndVal[index]);
-        }
-        return result;
-    }
 
     vector<vector<char>> makeEmptyMatrix(const string &key, const string &Ciphertext){
         vector<vector<char>> result;
@@ -87,45 +72,6 @@ namespace {
 
 }
 
-string DecryptSingleColumnTranspositionAlphabatKey(const string &key, const string &Ciphertext) {
-    // put the key in a vector and sort the key alphabetically
-    std::vector<char> keyVector(key.begin(), key.end());
-    alphabaticallySort(keyVector);
-
-    // Link the correct value to the character
-    int counter = 0;
-    vector<pair<char, int>> KeyAndVal;
-    for (auto const & chars : keyVector) {
-        KeyAndVal.push_back(make_pair(chars, counter));
-        counter++;
-    }
-
-    // put the letters back in the order of the key
-    vector<pair<char, int>> SortedKeyAndVal = keyOrderSort(KeyAndVal, key);
-
-    // make the empty matrix
-    vector<vector<char>> CiphertextMatrix = makeEmptyMatrix(key, Ciphertext);
-
-    // fill the matrix
-    string text = Ciphertext;
-    for (int i = 0; i < key.size(); i++) {
-        int index = distance(SortedKeyAndVal.begin(), find_if( SortedKeyAndVal.begin(), SortedKeyAndVal.end(), [&i](const pair<char, int>& element) { return element.second == i; }));
-        for (int j = 0; j < CiphertextMatrix.size(); j++) {
-            if (CiphertextMatrix[j].size() > index && text.size() > 0){
-                CiphertextMatrix[j][index] = (char) tolower(text[0]);
-                text.erase(text.begin());
-            }
-        }
-    }
-
-    // make list of matrix
-    vector<char> CiphertextVector = flatten(CiphertextMatrix);
-
-    // make string of matrix
-    string result(CiphertextVector.begin(), CiphertextVector.end());
-    return result;
-}
-
 string DecryptSingleColumnTranspositionIntKey(const string &key, const string &Ciphertext) {
 
     // make the empty matrix
@@ -151,6 +97,8 @@ string DecryptSingleColumnTranspositionIntKey(const string &key, const string &C
     return result;
 }
 
+
+/// ----- code for deciphering ------
 
 struct SequenceValue {
     vector<int> indexes;
@@ -226,44 +174,9 @@ pair<bool, vector<int>> IsPossibleVinegere(const map<string, SequenceValue>& rep
             }
         }
     }
-    /*
-    for (auto const& devisor : devisors){
-        cout << devisor.first << ": " << devisor.second << ", ";
-    }
-    cout << endl;
-     */
 
     bool isPossibleVinegere = false;
 
-    // Create a boxplot to find outliers
-    /*
-    vector<int> devisors_values;
-    devisors_values.reserve(devisors.size());
-    for (auto const& devisor : devisors){
-        devisors_values.push_back(devisor.second);
-    }
-    sort(devisors_values.begin(), devisors_values.end());
-    int mid = devisors_values.size() / 2 +1;
-    int lower_Quartile = devisors_values[mid/2];
-    int upper_quartile = devisors_values[(devisors_values.size() + mid)/2 + 1];
-    int IQR = upper_quartile - lower_Quartile;
-    int upper_boundary = (1.5 * IQR) + upper_quartile;
-    vector<int> key_lengths;
-    for (auto const& devisor : devisors) {
-        if (devisor.second > upper_boundary) {
-            key_lengths.push_back(devisor.first);
-            cout << "-----------------:" << devisor.first << ": " << devisor.second << endl;
-            for (auto const& devisor_ : devisors){
-                if (devisor_.first % devisor.first == 0){
-                    cout << devisor_.first << ": " << devisor_.second << ", ";
-                }
-            }
-            cout << endl;
-            cout << endl;
-            isPossibleVinegere = true;
-        }
-    }
-    */
     // find outliers
     vector<int> devisors_values;
     devisors_values.reserve(devisors.size());
@@ -275,7 +188,9 @@ pair<bool, vector<int>> IsPossibleVinegere(const map<string, SequenceValue>& rep
     int mean = sum / devisors_values.size();
     vector<int> key_lengths;
     for (auto const& devisor : devisors) {
-        if (devisor.second > (2*mean)) {
+        // we assume that the key length is greater than 4
+        //cout << devisor.second << " > " <<  (2*mean) << endl;
+        if (devisor.second > (2*mean) && devisor.first > 4) {
             key_lengths.push_back(devisor.first);
             isPossibleVinegere = true;
         }
@@ -291,11 +206,11 @@ struct Keys {
     string columnTranspose;
 
     bool operator<(const Keys& rhs) const{
-        return columnTranspose < rhs.columnTranspose && columnTranspose.size() <= rhs.columnTranspose .size();
+        return columnTranspose < rhs.columnTranspose;
     }
 
     bool operator>(const Keys& rhs) const{
-        return columnTranspose > rhs.columnTranspose && columnTranspose.size() >= rhs.columnTranspose .size();
+        return columnTranspose > rhs.columnTranspose;
     }
 
     bool operator==(const Keys& rhs) const{
@@ -303,7 +218,7 @@ struct Keys {
     }
 };
 
-map<Keys, string> GetPossibleCipherByKeyLength(const int &keyLengthColumnTranspose, const string &Ciphertext, const string &inputfile, const pair<int,int> & keyLengthVinegere, bool select = true){
+map<Keys, string> GetPossibleCipherByKeyLength(const int &keyLengthColumnTranspose, const string &Ciphertext, const string &inputfile, const pair<int,int> & keyLengthVinegere){
     assert(keyLengthColumnTranspose > 1);
     assert(keyLengthVinegere.first > 1);
     assert(keyLengthVinegere.second > 1);
@@ -319,27 +234,20 @@ map<Keys, string> GetPossibleCipherByKeyLength(const int &keyLengthColumnTranspo
     for (const string & key : all_permutations) {
         // do the column transposition with a possible (column transposition key) key
         string possible_ciphertext = DecryptSingleColumnTranspositionIntKey(key, Ciphertext);
-        if(select){
-            // find the repeated sequence in the possible ciphertexts
-            map<string, SequenceValue> repeated_sequences = FindRepeatedSequences(possible_ciphertext);
-            // test whether the outcome can be a possible vinegere cipher
-            auto possible_vinegere = IsPossibleVinegere(repeated_sequences, keyLengthVinegere.first, keyLengthVinegere.second);
-            // if that is the case we write it to a file
-            if( possible_vinegere.first ){
-                string possible_key_sizes = " ";
-                Keys key_;
-                for (const int &i: possible_vinegere.second ){
-                    possible_key_sizes += to_string(i) +" ";
-                    key_.vinegereLenght.push_back(i);
-                }
-                utilities.WriteContents(inputfile, key+"(possible vinegere keys:"+ possible_key_sizes +"): "+possible_ciphertext+"\n");
-
-                key_.columnTranspose = key;
-                results[key_] = possible_ciphertext;
-            }
-        }
-        else{
+        // find the repeated sequence in the possible ciphertexts
+        map<string, SequenceValue> repeated_sequences = FindRepeatedSequences(possible_ciphertext);
+        // test whether the outcome can be a possible vinegere cipher
+        auto possible_vinegere = IsPossibleVinegere(repeated_sequences, keyLengthVinegere.first, keyLengthVinegere.second);
+        // if that is the case we write it to a file
+        if( possible_vinegere.first ){
+            string possible_key_sizes = " ";
             Keys key_;
+            for (const int &i: possible_vinegere.second ){
+                possible_key_sizes += to_string(i) +" ";
+                key_.vinegereLenght.push_back(i);
+            }
+            utilities.WriteContents(inputfile, key+"(possible vinegere keys:"+ possible_key_sizes +"): "+possible_ciphertext+"\n");
+
             key_.columnTranspose = key;
             results[key_] = possible_ciphertext;
         }
@@ -472,17 +380,15 @@ double getEntropy(const string &Plaintext){
     return entropy;
 }
 
-void DecipherVinegere(const int &maxkeylenght, const string &Ciphertext, const string &inputfile, const string &ColumnTransposeKey){
+void DecipherVinegere(const int &keylenght, const string &Ciphertext, const string &inputfile, const string &ColumnTransposeKey){
     Utilities utilities;
 
-    for(int i=3; i <= maxkeylenght; i++){
-        string key = BruteForceKey(i, Ciphertext);
-        Vigenere vinegere(key);
-        string Plaintext = vinegere.decrypt(Ciphertext);
-        double entropy = getEntropy(Plaintext);
-        if (entropy <= 7000){
-            string result = "ColumnTransposeKey: " + ColumnTransposeKey + " | VigenereKey: " + key + " | entropy: " + to_string(entropy)+ " | plaintext: " + Plaintext + "\n";
-            utilities.WriteContents(inputfile, result);
-        }
+    string key = BruteForceKey(keylenght, Ciphertext);
+    Vigenere vinegere(key);
+    string Plaintext = vinegere.decrypt(Ciphertext);
+    double entropy = getEntropy(Plaintext);
+    if (entropy <= 7000){
+        string result = "ColumnTransposeKey: " + ColumnTransposeKey + " | VigenereKey: " + key + " | entropy: " + to_string(entropy)+ " | plaintext: " + Plaintext + "\n";
+        utilities.WriteContents(inputfile, result);
     }
 }

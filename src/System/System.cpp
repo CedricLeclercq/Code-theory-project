@@ -22,8 +22,8 @@ void System::runVigenerePlus(const string & arg) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
     /// ----- editable parameters ------
-    pair<int,int> key_length_range_column_transpose(3, 8);
-    pair<int,int> key_length_range_vinegere(3, 10);
+    pair<int,int> key_length_range_column_transpose(3, 9);
+    pair<int,int> key_length_range_vinegere(3, 15);
     // in this case there is no extra info
     tie(extraInfo, Ciphertext) =  utilities.ReadContents("../../input/01-OPGAVE-vigenerePlus.txt");
     // search the key for column transposition
@@ -31,17 +31,19 @@ void System::runVigenerePlus(const string & arg) {
     // we read the possibilities from the file and search the key
     string file_solutions = "../../input/vinigere_solutions.txt";
     // make a selection of possible vinegere cipher after a column transposition
-    bool make_selection = false;
     /// ----- ------------------- ------
 
 
     map<Keys, string> possible_column_transpositions;
     if (arg == "Part1" || arg == "all"){
 
+        // clear the file
         utilities.ClearContents(fileColumn_transpose);
         for (int i = key_length_range_column_transpose.first; i <=  key_length_range_column_transpose.second; i++) {
             utilities.WriteContents(fileColumn_transpose, "--columnTranspose key size ("+to_string(i)+")--\n");
-            map<Keys, string> tmp = GetPossibleCipherByKeyLength(i, Ciphertext, fileColumn_transpose, key_length_range_vinegere, make_selection);
+            // We will perform the column transposition with all keys of length i.
+            // Then we select some possibilities based on the kasiski test.
+            map<Keys, string> tmp = GetPossibleCipherByKeyLength(i, Ciphertext, fileColumn_transpose, key_length_range_vinegere);
             possible_column_transpositions.insert(tmp.begin(), tmp.end());
         }
         cout << "possibilities: " << possible_column_transpositions.size() << endl;
@@ -65,15 +67,13 @@ void System::runVigenerePlus(const string & arg) {
         }
         utilities.ClearContents(file_solutions);
 
-        int counter = 0;
-        int prev = key_length_range_column_transpose.first;
+        // loop over all the selected opportunities
+        // (possible solutions will then appear in vinigere_solutions.txt)
         for (auto &i: column_transpositions) {
-            DecipherVinegere(key_length_range_vinegere.second, i.second, file_solutions, i.first.columnTranspose);
-            counter = i.first.columnTranspose.size();
-            if (counter > prev){
-                cout << "tried all posibilities for columnTransposeKey of size :" + to_string(prev) << endl;
+            // find the key for the suggested vinegere keylengts
+            for (auto &j: i.first.vinegereLenght) {
+                DecipherVinegere(j, i.second, file_solutions, i.first.columnTranspose);
             }
-            prev = counter;
         }
 
         std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
@@ -205,4 +205,8 @@ void System::runPlayfair() {
 //    stringstream s;
 //    decode(config, cipherText, s);
 //    cout << s.str() << endl;
+}
+
+void System::ADFGVX() {
+
 }

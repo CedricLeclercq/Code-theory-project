@@ -16,6 +16,7 @@ int main(int argc, char *argv[]) {
 
         if (static_cast<std::string>(argv[1]) == "Enigma") System::runEnigma();
         else if (static_cast<std::string>(argv[1]) == "Playfair") System::runPlayfair();
+        else if (static_cast<std::string>(argv[1]) == "adfgvx") System::ADFGVX();
         else if (static_cast<std::string>(argv[1]) == "VigenerePlus"){
             if(argv[2]){
                 System::runVigenerePlus(argv[2]);
