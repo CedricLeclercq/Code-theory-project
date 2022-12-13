@@ -12,6 +12,9 @@
 #include "../Techniques/Enigma/AdvancedTuringBombe.h"
 #include "../Techniques/adfgvx/adfgvx.h"
 #include <chrono>
+#include <set>
+#include <map>
+#include<algorithm>
 
 void System::runVigenerePlus(const string & arg) {
     Utilities utilities;
@@ -277,6 +280,86 @@ void System::ADFGVX() {
     for(int index = 0; index < best.length(); index+=2) {
         substrings.push_back(best.substr(index, 2));
     }
+    set<string> singles;
+    for(string& s: substrings) {
+        singles.insert(s);
+    }
+    for(const string& s: singles) {
+        occurences.insert({s, (double) count(substrings.begin(), substrings.end(), s)/(double)substrings.size()});
+    }
+
+    multimap<double, string> multiMap;
+
+    for(auto& m: occurences){
+        multiMap.insert(make_pair(m.second, m.first));
+    }
+
+
+
+    const std::map<string, double> letterFrequency = {
+            {"a", 0.0812},
+            {"b", 0.0149},
+            {"c", 0.0271},
+            {"d", 0.0432},
+            {"e", 0.1202},
+            {"f", 0.0230},
+            {"g", 0.0203},
+            {"h", 0.0592},
+            {"i", 0.0768},
+            {"j", 0.0010},
+            {"k", 0.0069},
+            {"l", 0.0398},
+            {"m", 0.0261},
+            {"n", 0.0695},
+            {"o", 0.0768},
+            {"p", 0.0182},
+            {"q", 0.0011},
+            {"r", 0.0602},
+            {"s", 0.0628},
+            {"t", 0.0910},
+            {"u", 0.0288},
+            {"v", 0.0111},
+            {"w", 0.0209},
+            {"x", 0.0017},
+            {"y", 0.0211},
+            {"z", 0.0007}
+    };
+
+
+    map<string, vector<string>> mappins;
+
+
+    for(auto pairke: multiMap){
+        vector<pair<string, double>> TenBest;
+        double highesValue = 1000000;
+        for(auto letterke: letterFrequency){
+            if(abs(letterke.second - pairke.first) < 0.01) {
+                TenBest.push_back({letterke.first, abs(letterke.second - pairke.first)});
+            }
+        }
+        vector<string> vals;
+        for(auto kaka : TenBest){
+            vals.push_back(kaka.first);
+        }
+        mappins.insert({pairke.second, vals});
+    }
+
+    for(auto m : multiMap){
+        cout << m.second << " -> " << m.first << endl;
+    }
+    for( auto val : mappins){
+        cout << val.first << " -> ";
+        for( auto value : val.second){
+            cout << value << " ";
+        }
+        cout << endl;
+    }*/
+    // TODO write the output to file.
+
+    // manual https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing
+
+    cout << ADFGVX.decode(Ciphertext, "012hbid3pl4gqxynfjuk5crms6789vaotzwe", "032145") << endl;
+
 
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
