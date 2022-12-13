@@ -201,6 +201,9 @@ std::vector<std::vector<int>> Utilities::createEnigmaRotorPermutations(std::vect
     return permutations;
 }
 
+double Utilities::IOC(const string & Ciphertext){
+
+}
 
 
 
