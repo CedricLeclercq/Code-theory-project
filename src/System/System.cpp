@@ -227,10 +227,10 @@ void System::ADFGVX() {
     string file_solutions = "../../src/Techniques/adfgvx/adfgvx_solutions.txt";
     /// ----- ------------------- ------
 
-    string best = "agxxxvxavaxafgxddgdagxxafgxvagxdfvaxvaagxxdaxadgxdfgxxaxfgxavagdaxfvfvaxfgxfagxxdxgadgfvvaxfgvxxxagxxafgdaagxxagxadadxxdfgxxxxaxdxagxffffvxdgagvdaxaffvafgxdxvxvaxxfagxdgaxfxfxagdaxfgdxxafvaxvaagaxfgxfagxxfvaxgvvaxffvxdgvxfffdaxaffvaxaavxdffagxadaavxxxxfgxvaxxfagagaxgxavgaxfxafvxfxxgvfvxdgvxfffdaxaffvaxvaxxfagxdgaxfxafvaxvaagxfagxxavxdffvadfxagvxxfgxfvaagxadaxfxddgdaagaxgxxfagxaxfxfagxxxddgdagxxafgxvxavafgxdxvdaxxfvaxfgaxxfxxdgffxafgdafvaxfgxadgdgffvaxadgxaxdxvagaxggagaxvaxfagxxxvxdgvvaxffvxdgvgxxdfvgafgdggagggdffxafgdaxfagxxavxdffagxadadxxdfgxxxaxfxfagxxaxgvxdgvdaxxgvvaaxfgxafgxdxfagxxgvavxdxaxfxvagaxggagggxagadxagxfxfaggvxxxxdxxdxddafvaxvaagxfagxxfvaxgvvaxfxvxxxxgdaxxfgxxadaxxxfagxxavxdffvaxadaxfxdvaxxxxxfagxxxddgdagxxafgggxdgxxxaxfgxxxaggagdaxaffxvaxxfagagaxvavagdaxfvfvxxgxdfxfffxafgdaagxxxadgxvxaffvaxvxxfgxfdaxdxvfgxfxdagxxdgdfagaxgxggxagvgvffxxaxxfagxxgvxfagxxggxdaxdgxxdadgaxfgxxvaxdgvxfagxxdxxafvfvxafgdaagxagvdfxdxdfgxafgdaxfagxxvaxaaxdgxfagxaxfxvxavafvgagvdgxxdaxagvxdgafgdaxfagxxgxxavaxfxfagxxvaxaaxdgxvxavadfxaxfggagxxdaxvaxxfagfvdgxdgagvvaxagggdvaxafgdafvgagvdgxxdaaxxfdgxdxdgdxxdadgaxgdxxxfagxxfvdgxadxxdfvdfxxgvgxxafgxxfgxfdaxxfvxxxaxfxfagxxxddgdagxxafgxvxavaxfagaxfgxafgdadxxagafgxfxvaxxfagdaxxxxdfxvgvaxfggddgxxvaaxfgxfagxxavxagggdxdfvagaxvafgxxgggdxfagxxavgvxdxvfgavdgxdxfggagxxvaxdfvxfagxxavxxfgxxvxxddgxxfgxfvagdaxfgggxafgggxxgvxfagxxvagafgavgvaxfgdxvafvgvxdgxaxxfvagvxxfvdgxxggxfaxxdfgxdfgxfagxxxfgvxddfaxggvaxxxaxvxxgvxxxdfgagaxvaggagxxxxgdvaxfagxxavdgxdxfggagxxvagvxafgxvxxdgdgdaxdxvfgxfagxxvaaxdaxxvaxdfvagaxvafvxaggxxxafgdaagaxvaagxafgdavaagxadaxfagxxdaxxxxdfgggvxxxavaxxdavaggxagvvafvgvxdgxagxafgdadgaxfgdxagxxxavxfffvaxvaagxdfgxfagxxggxdgvdavaavgaxffgxdfgxxxdfvxfagxxvaxxvaggxagvvaxvxxgvxxfvgvxxvaagxfagxxffxvxxgvxxxavaxddgdaxavaxxgvxdvaaxxdfgvaaxfgxafvaxvaagdgxxvavadaxxvaxxgvxfxxvxxxgvffxfagaxfgdxxaavxdgaxfagaxgxxvxavaxddgdaxxfdggxxdfxfagaxvaxxffxxvaxafgdaxfagxxffxvxxgvxxxfagxxvaxagxxxggxddgxdgvxavaxfagxxvaxxxaxafgdaxvxxgvxxggagxxxxgvfvgadgxafgdagafgdaxxfvxxxaxfxxdavaxafgxfaxxadxxdxfagxxavxdffvaxaaxdaxfxdagaxgxxavaxfagxxffggdgaxgxavxxdaxfagxxavxafggdfvgvxdgxxvagxxgvxxxfagxxvagdaxfvfvxvxavaagxagadgxxdagadfaxggxdgadgdadxxdxvaxxfagffxdgaxadxxaaxfgxvxxvxxxgxxadaxxvaxdgxxxgxxdfgxxffxfagxxxddgdagxxafgagxadaxfxagadxagxfxfagxxavxdffxfxdfvaxvaagxafgdaxfagxxavxdffdgxdvxxxdaagaxgxfgxdxfagxxxddgdagxxafgvaxaaxdaffxdgagvxxxvaxxfagxadggagggdffavxdxaxfvaxfxaffxvaxxfagxfagxxgxavgaxfgvxxgxxxgxavxxgvagxdxvffxdgaxvxxfgxfxxaxdxagxfffvaxxvxxxfgdaxaffvaxvaxxfagxdgaxffvaxvaagxafgdaxfagxxfgxvxxggxagadxagxfavaxdxxdfgxxvaxxvxxxgvffdaxafffvxdgvxfaggvxxxxxvxxxxgdvaaxgvxxgxxxgxavxxgvxfagxxxddgdagxxafgvaxaaxdaaxgdfgxdxvffxdgadaaxdafgxdxfdgxxxavxxxgxxxavxxggxagavaxxffxdgadaxdgaavxfxxdaaxxfxvxavadfxadfxagxxadaxxgxxxdgxxxavxxxaxxagxxaavxdffxafgdaaxgxgavaxfxdavxxffagaxgxaxgdfgxdxvxfagxxxddgdagxxafgvaxaaxdaaxxfaxvafxgaaxxfxxfgxdgvgxxadgagxxagxavafgxfgxgaggagfvxaaxxfagfgxdxfagxxxddgdagxxafgvaxaaxdaavgaxfxvxxagxavxxxagxavxxxfgxfxvxxffxxvaxfagxxavxdffvaxaaxdaggxafgaxxdfvfvxxgvffxdgaxaavxxxxgvxdfgxfagxxxfxxgvgvxaggxxxafgdaxfagxxfgxvxxdgdgxfxagdxxxfagxxvaxfgafvfvagxdgxxxxvagfffgxdxfxfagxxxddgdagxxafgvaxaaxdaavxxxfxvxxxxfgfvaxvaagxxgvgxxxfgxfagxxffvaxaxfxdfgxfagxxxfxxgvgvxaggxxxafgdagxxafgffxdfvxfagxxfvaxvaagxxgvgxxxfggxxadaxxfvgafgxdfvxfagxxxddgdagxxafgxafgdaagxxxvxavafgxdxfxxxafgdxgvffxdxfagxxgvvaxdfvxfagxxxddgdaxxgvfvaxvaagxxgvgxxxfgdgxdxdgdxxdaxaxfagaxgxxafgdaxvxxgvxxvaxadaavgaxfxfagxxffdaaxdafgxdxfvaagxdxvaxxfxafgdaxfagxxffvadfxdgdxxdfxddgaxxfxxdgffxaavxdgaxfxfagxxgggagvgvxxfgxfxafgdaxfagxxdaxxdfxfagvaxfagxxffagxadadagvaxfvxfxxdaxfagxxaxgvdgaxfgxxvaxaxfxafgdaxfagxxvaxfxxxadaffdxxdxddaxvxxxaxfagxxgvxafgdaxdfvxvagxaxfxfagxxffagxadavaxxxxfgxfagxxvagaggggxxvavafvgadgfvaxvaagxxgvgxxxfgxdfvxfagxaxfdaxaffxvxxgvxxxadggvxxxadaffaxfgxafgdaagxadaavgaxfggagxxgvxxdaxfagxxaxgvgxxagvdgaxfgxdgaxfxafgdaggxagvgvaxxxdaxfagxxgxdgxaaxdafvgadgdgdgxxfgdxxfagxagggvxdvavaxfxvxddfdgxafggdvaxvaxxfagxfxvxdgxxxfgvaxfxadxdxxxgvaxfgdxxaxfxfagxxxxfgdaxdfvxxxaggagdfdgxafggdxfxdxfagxxfvaxvaagagxdgavaxxxvagxxgvxxxfagxxffxvxaaxxfxxdafvxdgvxfagxxaxggxxxfgvgagggdxfxdggxagvgvffxfagxxgxxfxdxfagxxgxxagvgdxxxfaxfgagxavxxafgxaxfagxdvaxxxvagxdagxadaggxagadxagxfvaagxagvgdvaagxadaxfxagdxxfgxfagxxgxxfxdxfagxxvaagxagvgdfvxaggxfxdgvffxdfgxfagxxxdxfagxxgvvaaxdaxxxdfvxfagxxggxdvxxxxvagxxgvxxxfagxxffxvxxgvxxagxdaxvaxfxxdaxdfgxaavdgxdgggdxafgdaxfxagggddgxxxfagxxaxgvdgaxvxxxgvvagvxxgxxdvxxxdaxfagxxaxgvfvaxfgvagggaxfxdfvfvxafgdaxfagxxaxgvagaxdaxxvavagdaxfgfgxxdaxdgaxfxafgdaxfagxxaxgvfvdgxxvaaggggaxfaxfgxfxdvaxfgvaxdfvafvxdgvvaxadgxfaxfgdxxvagxxfgxfagxxxvaxfgdaxvxavaaxfgxfagxxxxxavaxfxavagxxxdgdgggxagxxxxagggvxdvavaxfagxxagxagvavxdgagvfvgvxdgxxfagxxvaagxagvgdfvxaggxfxdgvffavgaxfxfxddaxaffxfagxxgvxxxvxavaxdfgdgffxfagxxfvxaaxfgxfxxdadxxxxdfvxfagxxxddaxdgagvavxxggxagavaxxxfagxxxvaxfgdaagxadaavxagggdxxdaaxfgxfxdxfagxxfgxdgvxfagxafgdaxfagxxfgdagvxddfdfxxdaxdfvfvxafgdaaxxfxvxavadfdgxxxavaxafgxfxafgdavagafgfgffxdfgxfagxxxfxxgvgvxaggxxvaxafgxfaxxadxxdxfagxxavxdffvaxaaxdaffxxvaxfagxxxddgdagxxafgvaxaaxdaagxxxvxavaagxddgdaaxfgdxagaxvadxdgxavavaxafgdaxfagaxfggdaxfgdxxdfvgxxafgffffxxxagvvaxadxxdggxafgaxdxxdxdgaxfxfxddxxxxfvaxagvdaaxfgxxvafvxdgvffxdgafvxdgvxfxdgxxdgvgvxdxvfgxddxxdxafgdadfdgxaffavxavaxxavxadgdgaxggxafgvaxfaxdgdggvxdxvxafgdagvxddxxxdgaxxdxvaxdgdgxfaggvxdxvxfagxxfgxxxfaxxvxdgadgdadgaxgdxxxfxddxxdaxfvaxggxafgfgxdxffvaxvaagxvaxxfagffxdgaaxxvxdgadgdadgaxgdxxxfxdvaxxgvvxxxaxfgvaxdgxxxxvxaffffxdgaavxdgadxagxfgxxxxaavxxxxgvxfagxxxddgdagxxafgvaxaaxdaffxdgaxagvxxxadggvxxxadaffxagxxafgagxdxvxddgdaxvxavaaxxvagxxfgffxdgafvaxgvvaxfxfxdxdgdgxxxaxfgxaavxdxaxffvaxvxxxxafgdaffxdgafgxxxagvdgffxvxxgvxxgdaxdgdgxxdaxvagxxfgaxavgvxdgadxagxfxfagxxfvaxvaagaxfgxfxdxddxgvxxxxfgxafgdaagxxfgxxxagvdgffxfxdgvxxxfagxxavxdxaxfxfxddfaxxxggxxvaggxafgffxdgagvxxgxxxgxavxxgvaxggxafggvxxgxxxgxavxxgvxfagxxxfxaaxdgvadgxadfdfaxfgdxxafgdaavxafgdxaxfgdxxafgdaxfagxxxfagxvxagvxfavgvxxxagdaxfgdxxafgdaxfagxxfgxdaxvaxxxdfvxfagxxggdggaavavaxfgdxaxggxafggvxxgxxxgxavxxgvffxdgaxfaggvxdxvaxfgdxgxxxaxfgxfxdxfagxxavxdxvxvagxxgvxxxfagxxxvxxxfggxdaxdgxxdadgaxfgxxvaxvxxgvxxxafgdafvxxxxdgaxfgdxxfagxxxvagxddgxxavxdxaxfvaagaxvxxxgvxafgdaxfagxxfgxdaxvaxxxdfvffxdgaggdggaavavaxfgdxagaxgxdgaxgdxxggagxddfdfaxfgdxxaxfgvxxxxdaxdxvfgxafgdaxfagxxvaxvxxxxxfavdgxdxddavagxxxdgdgxadgdgxdvxxxgvgxxxggxafgffxdgagvxxxadgdgffgvxxgxxxgxavxxgvxfagxaxfxdgvdaaxdaaxfagavaxfxfxxdgdgaxxfxfxdffxdgaaxgvxxgxxxgxavxxgvxxvxxxgvffxfagaxfgdxfvgvxdgxxvagxxfgxvxxfvaxgvvaxfxvxxfgxfxfxddxxxxfagxxgvxfagxxxddgdagxxafgdgxdxdgdxxdaxaxfagaxgxxvaxxfagagaxvavagafgavgagvfgxxdaggxdfgfvaxdaxxfgxfdgxdvxaxfgdxxxffxxvaaxfvffxdgaxvxxgvxxgxffavxdffaxdaxfxagdxxffxdgaxdgaxfxafgdadxxagxavdgxxagxxvaxaaxdaavgaxfffxdgaxagvxxffxdgagvfvxaxfagxxgvvaxafgdaffxdgagvgxxdxfagxxgvvaxafgdaffxdgaxagvxxaxfgxadggagggdffavxdxaxfgxxaffaxdxxxxfxfagxxvaxagvdaaxfgxxvaaxgdfgxdxvxvagxxgvxxaxggxafgdxxxxffvxdgagvavxaaxxfvaxfxdxdaxagxavxxxgxaxfgxxdgxxfvxffvgvxdgxxfxddaxaffaxdfgaxfxfagxxgxaxfgvaxadgxfaxfgxfagxxavxdfddgxxxfgxxxdxxxxffvxdgagvfvgvxxvaagxdfgxxvaxdfgxxxfagxxxddgdagxxafgvaxaaxdaagaxvaagxddfxxxafgdaagaxvaggxdfgfvaxdaxxfgggxxagxadafgxxvxxxgvdxxdfgxxavgaxffgxdxvxfagxxffxvxxgvxxfvgvxxvaagxxfgaxfgdxxavaxvagxxfgxfagxxavgvxxxxxgxxgvaxvaxxvaxfxvxdxfagxxavxdffvaxaaxdaxfxvxdxfagxxxddgdagxxafgxadxgvxxxxdaffxdgadaaxdafgxfvaxfxxxadgxfagxxgxaxxvxdgadgdaxfagxxavxdffvaxaaxdaavgaxfaxavxdgadxagxfxfagxxvaxxxfagxafggdffxdgaxfagxxxddgdagxxafgvaxaaxdaagxxxvxavaxfxdxdvaaxgxdfdgxxxfxdxvxdfgdaxxgvxvagxxfgagxxagxadaxaxfxfxaaxfgxxdaaggagxaxdgaxxfffavgaxfagxxgdfgxxxvagxxagxadaxaxfxfxaaxfgxxdaaxxfxafgdaagxxgdfgxxxvaxxfxvxavafgxdxfdaaxvadxgvxaggxxfvgadgxafgdaaxxfggxagvgvaxxxdafgxddgxdvavaxdfvxfgvgaxxdfgvaxdaxx";
-
-    /*
+    // clear the file
+    utilities.ClearContents(file_solutions);
     for (int i = key_length_range_column_transpose.first; i <=  key_length_range_column_transpose.second; i++) {
+        utilities.WriteContents(file_solutions, "--columnTranspose key size ("+to_string(i)+")--\n");
         vector<pair<string, double>> TenBest;
         double highesValue = 1000000;
         string permutation_key = "";
@@ -255,7 +255,9 @@ void System::ADFGVX() {
                 int occurences = count(substrings.begin(), substrings.end(), s);
                 sum += occurences * (occurences-1);
             }
+            // calculate the index of coincidence
             double ic = (1/(n*(n-1)))*sum;
+            // each time we look at the 10 best value for the given key length.
             if(abs(ic - 0.0667) < highesValue) {
                 if (TenBest.size() < 10){
                     TenBest.push_back({key, abs(ic - 0.0667)});
@@ -268,99 +270,45 @@ void System::ADFGVX() {
                 }
             }
         }
-        for(auto ppp : TenBest){
-            cout << i << " " << ppp.first << " " << ppp.second << " " << DecryptSingleColumnTranspositionIntKey(ppp.first , Ciphertext) << endl;
-        }
-        //cout << i << " " << bestkey << " " << bestIC << " " << DecryptSingleColumnTranspositionIntKey(bestkey, Ciphertext) << endl;
-        //cout << "tried all possibilities for key lenght(" << to_string(i) << "): and found " << counter  << " possible solutions"<< endl;
-    }
-
-    map<string, double> occurences{};
-    vector<string> substrings{};
-    for(int index = 0; index < best.length(); index+=2) {
-        substrings.push_back(best.substr(index, 2));
-    }
-    set<string> singles;
-    for(string& s: substrings) {
-        singles.insert(s);
-    }
-    for(const string& s: singles) {
-        occurences.insert({s, (double) count(substrings.begin(), substrings.end(), s)/(double)substrings.size()});
-    }
-
-    multimap<double, string> multiMap;
-
-    for(auto& m: occurences){
-        multiMap.insert(make_pair(m.second, m.first));
-    }
+        for(auto best : TenBest){
+            string best_text  = DecryptSingleColumnTranspositionIntKey(best.first , Ciphertext);
+            utilities.WriteContents(file_solutions, "key: " + best.first + " | Ic: " + to_string(best.second) + " | plaintext:  " + best_text+"\n");
 
 
-
-    const std::map<string, double> letterFrequency = {
-            {"a", 0.0812},
-            {"b", 0.0149},
-            {"c", 0.0271},
-            {"d", 0.0432},
-            {"e", 0.1202},
-            {"f", 0.0230},
-            {"g", 0.0203},
-            {"h", 0.0592},
-            {"i", 0.0768},
-            {"j", 0.0010},
-            {"k", 0.0069},
-            {"l", 0.0398},
-            {"m", 0.0261},
-            {"n", 0.0695},
-            {"o", 0.0768},
-            {"p", 0.0182},
-            {"q", 0.0011},
-            {"r", 0.0602},
-            {"s", 0.0628},
-            {"t", 0.0910},
-            {"u", 0.0288},
-            {"v", 0.0111},
-            {"w", 0.0209},
-            {"x", 0.0017},
-            {"y", 0.0211},
-            {"z", 0.0007}
-    };
-
-
-    map<string, vector<string>> mappins;
-
-
-    for(auto pairke: multiMap){
-        vector<pair<string, double>> TenBest;
-        double highesValue = 1000000;
-        for(auto letterke: letterFrequency){
-            if(abs(letterke.second - pairke.first) < 0.01) {
-                TenBest.push_back({letterke.first, abs(letterke.second - pairke.first)});
+            // For each of these permutations, we also calculate the frequency of the pairs:
+            map<string, double> occurences{};
+            vector<string> substrings{};
+            for(int index = 0; index < best_text.length(); index+=2) {
+                substrings.push_back(best_text.substr(index, 2));
             }
+            set<string> singles;
+            for(string& s: substrings) {
+                singles.insert(s);
+            }
+            for(const string& s: singles) {
+                occurences.insert({s, (double) count(substrings.begin(), substrings.end(), s)/(double)substrings.size()});
+            }
+
+            multimap<double, string> multiMap;
+
+            for(auto& m: occurences){
+                multiMap.insert(make_pair(m.second, m.first));
+            }
+            // put the frequencies underneath the ciphertext in the file
+            utilities.WriteContents(file_solutions, "Frequenties: ");
+            for(auto m : multiMap){
+                utilities.WriteContents(file_solutions, m.second + " -> " + to_string(m.first) +" | ");
+            }
+            utilities.WriteContents(file_solutions,  "\n\n");
         }
-        vector<string> vals;
-        for(auto kaka : TenBest){
-            vals.push_back(kaka.first);
-        }
-        mappins.insert({pairke.second, vals});
     }
 
-    for(auto m : multiMap){
-        cout << m.second << " -> " << m.first << endl;
-    }
-    for( auto val : mappins){
-        cout << val.first << " -> ";
-        for( auto value : val.second){
-            cout << value << " ";
-        }
-        cout << endl;
-    }*/
-    // TODO write the output to file.
+    // Thankfully, there is a solution with an Ic: 0.000454.
+    // we are going to decipher these manually like we did in class
+    // file: https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing
 
-    // manual https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing
-
+    // solution
     cout << ADFGVX.decode(Ciphertext, "012hbid3pl4gqxynfjuk5crms6789vaotzwe", "032145") << endl;
-
-
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     const auto d = end - begin;
@@ -369,6 +317,4 @@ void System::ADFGVX() {
     const auto secs = std::chrono::duration_cast<std::chrono::seconds>(d - hrs - mins);
     const auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(d - hrs - mins - secs);
     cout << "Ended\nTime: " << hrs.count()  << "h "<< mins.count()  << "m " <<  secs.count()  << "s " << ms.count()  << "ms" << endl;
-
-
 }
