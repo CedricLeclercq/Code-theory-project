@@ -1,6 +1,5 @@
 #include <cmath>
 #include <vector>
-#include <algorithm>
 #include <string>
 #include <cassert>
 #include <limits>
