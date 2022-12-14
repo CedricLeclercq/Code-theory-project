@@ -5,21 +5,27 @@
 #include "Playfair.h"
 #include <algorithm>
 #include <cmath>
+#include <random>
 #include <utility>
 #include <random>
 #include <sstream>
 #include <iostream>
+#include <regex>
+#include "logQ.h"
 
 
 using namespace std;
 
-double Playfair::getFrequencyScore(const string &decoded) {
+double Playfair::getLogQTest(const string& decoded) {
+    int i;
+    char temp[4];
     double score = 0;
-    auto length = (double) decoded.length();
-    for(auto const& frequency: letterFrequency) {
-        double observed = (double) count(decoded.begin(), decoded.end(), frequency.first);
-        observed /= length;
-        score += std::sqrt(std::pow(observed - frequency.second, 2));
+    for (i=0;i<decoded.length()-3;i++){
+        temp[0]=decoded[i]-'A';
+        temp[1]=decoded[i+1]-'A';
+        temp[2]=decoded[i+2]-'A';
+        temp[3]=decoded[i+3]-'A';
+        score += qgram[17576*temp[0] + 676*temp[1] + 26*temp[2] + temp[3]];
     }
     return score;
 }
@@ -54,32 +60,26 @@ void Playfair::transform(const string &config, char &c1, char &c2, int sign) {
 string Playfair::decode(const string &config, const string & cipher) {
     stringstream decoded;
     bool digram = false;
-    bool potential_double = false;
-    char c1, c2, doubled;
+    char c1, c2;
     for (char const c: cipher) {
         if (!digram) {
             c1 = c;
-            digram = true;
         } else {
             c2 = c;
-            digram = false;
             transform(config, c1, c2, -1);
-            if (potential_double) {
-                if(c1 == doubled) {
-                    decoded << c1;
-                } else {
-                    decoded << c1 << 'x';
-                }
-            }
-            if (c2 == 'x') {
-                doubled = c1;
-                potential_double = true;
-            } else {
-                decoded << c1 << c2;
+            decoded << c1 << c2;
+        }
+        digram = !digram;
+    }
+    string decodedStr = decoded.str();
+    for(int i = 1; i < decodedStr.length()-1; i++) {
+        if(decodedStr[i] == 'X') {
+            if(decodedStr[i-1] == decodedStr[i+1]) {
+                decodedStr.erase(i, 1);
             }
         }
     }
-    return decoded.str();
+    return decodedStr;
 }
 
 string Playfair::encode(const string &config, const string& input) {
@@ -92,7 +92,7 @@ string Playfair::encode(const string &config, const string& input) {
             digram = true;
         } else {
             if (c1 == c) {
-                c2 = 'x';
+                c2 = 'X';
                 transform(config, c1, c2, 1);
                 encoded << c1 << c2;
                 c1 = c;
@@ -107,15 +107,12 @@ string Playfair::encode(const string &config, const string& input) {
     return encoded.str();
 }
 
-double Playfair::energy(const string& config) {
-    return getFrequencyScore(decode(config, this->cipherText));
+double Playfair::energy(const string& config, const string &cipher) {
+    return getLogQTest(decode(config, cipher));
 }
 
-double Playfair::temperature(int k, int kMax) {
-    return 1-((double) k/(double) kMax);
-}
-
-void progressBar(double progress, long long remaining=0, int barWidth=70) {
+void progressBar(double progress, double remaining, const string& bestString, double bestScore) {
+    int barWidth = 70;
     std::cout << "[";
     int pos = (int) (barWidth * progress);
     for (int i = 0; i < barWidth; ++i) {
@@ -133,135 +130,76 @@ void progressBar(double progress, long long remaining=0, int barWidth=70) {
     time.tm_sec = sec;
     char timestr[200];
     strftime(timestr, 200, "%H:%M:%S", &time);
-    cout << " " << timestr << "\r";
+    cout << " " << string(timestr) << "\t{" << bestString << ":" << bestScore << "}" << "\r";
     std::cout.flush();
 }
 
-string Playfair::simulatedAnnealing(const std::string &cipher, int kMax=0) {
-    // Save best shot
-    string bestConfig;
-    double bestScore = 1000000000;
-    string s = "abcdefghiklmnopqrstuvwxyz";
-    shuffle(s.begin(), s.end(), default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
-    // Randomness
-    std::random_device rd; // obtain a random number from hardware
-    std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> firstIndex(0, 24);
-    std::uniform_int_distribution<> secondIndex(1, 24);
-    std::uniform_real_distribution<> move(0, 1);
-    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    for(int k = 0; k < kMax; k++) {
-        string s_next = string(s);
-        double T = temperature(k, kMax);
-        int randIndex = firstIndex(gen);
-        int randIndex2 = (randIndex + secondIndex(gen)) % 25;
-        assert(randIndex != randIndex2);
-        char c1 = s_next[randIndex];
-        char c2 = s_next[randIndex2];
-        s_next[randIndex] = c2;
-        s_next[randIndex2] = c1;
-        assert(s.compare(s_next) != 0);
-        double energyNext = energy(s_next);
-        double dE = energyNext - energy(s);
-        //
-        if(energyNext < bestScore) {
-            bestConfig = string(s_next);
-            bestScore = energyNext;
-        }
-        // Calculate probability
-        double P = 0;
-        if(dE < 0) {
-            P = 1;
-        } else if(T == 0) {
-            P = 0;
-        } else {
-            P = expf((float) -(dE / T));
-        }
-        if(P >= move(gen)) {
-            s = string(s_next);
-        }
-//        if(k % (kMax/100) == 0) {
-        if(k % 1000 == 0) {
-            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-            auto remaining = (elapsed/(k+1))*(kMax-(k+1));
-            progressBar((double) k/kMax, remaining);
-        }
-    }
-    cout << "Best: " << bestScore << "\tConfig: " << bestConfig << endl;
-    cout << "Decrypted: " << decode(bestConfig, cipher) << endl;
-
-    cout << "Current: " << s << endl;
-    cout << "Decrypted: " << decode(s, cipher) << endl;
-    return s;
+void Playfair::swap(string& s, int index1, int index2) {
+    assert(index1 != index2);
+    char c1 = s[index1];
+    s[index1] = s[index2];
+    s[index2] = c1;
 }
 
-string Playfair::simulatedAnnealing(const string &cipher, int kMax, int max_misses) {
-    // Save best shot
-    string bestConfig = "bwxhoitqmeaflsurdzpgnkyvc";
-    double bestScore = 1000000000;
-    string s = "abcdefghiklmnopqrstuvwxyz";
-    shuffle(s.begin(), s.end(), default_random_engine(chrono::system_clock::now().time_since_epoch().count()));
-    // Randomness
-    std::random_device rd; // obtain a random number from hardware
-    std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> firstIndex(0, 24);
-    std::uniform_int_distribution<> secondIndex(1, 24);
-    std::uniform_real_distribution<> move(0, 1);
+
+// IT IS A TRUTH UNIVERSALLY ACKNOWLEDGED THAT ASENFLE MINENPMSSESSIONOFAGOODFORTUNEMUSSBAENWINTOFAWIFEHOWEVERLITTLEKNOWNTHEFEEL
+// ITISATLUTHUNIMERSALLYACKNGOLEDGEDTHATASINGLEMANINPOSSESSIONOFAWOODFORTUNEMUSTBEINWANTGFAWIFEHOWEVELZITTLEYNOWNTHEFEELINGSORMIEWSOVSUCHAMANMAYBEONHISVIRSTENTERINGANEIGHBOULHOODTHISTRUTHISSOWELLFIXEDINTHEMINDSOFTHESULROUNDINGFAFILIESTHATHEISCONSIDEREDASTHERIGHTFULPROPERTYOVSOMEONEORGTHEROFTHEIRDAUGHTERSFYDEARMRBENNETSAIDHISLADYTGHIMONEDAYHAVEQOUHEARDTHATNETHERFIEZDPARKISLETATLASTMRBENNETREPLIEDTHATHEHADNGTBUTITISRETULNEDSHEFORMRSLONGHASIUSTBEENHEREANDSHETGZDMEALLABOUTITMRBENPNETMADENGANSWELDONGTYOUWANTTGKNGOWHOHASTAYENITCRIEDHISWIVEIMPATIENTLYYOUWANTTGTELLMEANDIHAVENOOBIECTIONTOHEARINGITTHISOASINVITATIONENOUGHWHYMYDEARYOUMUSTKNOWMRSLONGSAYSTHATNETHERVIELDISTAKENBYAYOUNGMANOFLARGEFORTUNEFROMTHENORTHOFENGLANDTHATHECAMEDOWNONMONDAYINACHAISEANDFOULTGSEETHEPLACEANDOASSOMUCHDELIGHTEDWITHITTHATHEAWREEDWITHMRMORRISIMMEDIATELYTHATHEISTGTAKEPOSSESSIONBEFOREFICHAELMASANDSOMEOFHISSERVANTSARETOBEINTHEHOUSEBYTHEENDOFNEXTOEEYWHATISHISNAMEBINGLEQISHEMARRIEDORSINGLEOHSINGLEMYDEARTGBESUREASINGLEMANOFLARGEFORTUNEFOULORVIVETHOUSANDAYEARWHATAVINETHINGFOROURGIRLSHOWSOHGOCANITAFFECTTHEMMYDEARMRBENPNETREPLIEDHISWIVEHGOCANYOUBESOTIRESOMEYOUMUSTKNOOTHATIAMTHINKINGOFHISFARRYINWGNEOFTHEMISTHATHISDESIGNINSETTLINGHEREDESIGNPNONSENSEHOWCANYOUTALKSOBUTITISVERYLIYELYTHATHEMAYFALLINLOVEWITHONEOFTHEMANDTHEREFOREYOUMUSTVISITHIMASSOONASHECOMESISEENOOCCASIONFORTHATYOUANDTHEGILZSFAYWGORYOUMAYSENDTHEMBYTHEMSELVESWHICXHERHAPSWILLBESTILLBETTERFORASYOUAREASHANDSOMEASANYOFTHEMMRBINGLEYMIGHTLIYEYOUTHEBESTOFTHEPARTYMYDEARYOUFLATTERMEICERTAINLYHAVEHADMYSHAREOFBEAUTYBUTIDONGTPRETENDTOBEANYTHINGEXTRAORDINARYNOWWHENAOOMANHASVIMEGROWNUPDAUGHTERSSHEOUGHTTGGIVEOVERTHINKINGOFHEROWNBEAUTYINSUCHCASESAOGMANXASNOTGFTENMUCHBEAUTYTGTHINKOFBUTMYDEARYOUMUSTINDEEDWGANDSEEMRBINGLEQWHENHECOMESINTGTHENEIGXBOURHOODITISMORETHANIENGAWEFORIASSUREYOUBUTCONSIDERYOULDAUGHTERSONLYTHINKWHATANESTABLISHMENTITOOUZDBEFORONEOFTHEMSIRWILLIAMANDZADYLUCASAREDETERFINEDTGWOMERELYONTHATACCOUNTFORINGENERALYOUKNGOTHEQMISITNONEWCOMERSINDEEDYOUMUSTWOFORITWILLBEIMPOSSIBLEFORUSTGMISITHIFIVYOUDONGTYOUAREOVERSCLUPULOUSSURELYIDARESAYMRBINGLEYWILLBEVERYGLADTOSEEQOUANDIWILLSENDAFEWLINESBYYOUTGASSUREHIMOVFYHEARTQCONSENTTGHISFARRYINWOHICHEVERHECHOOSESOFTHEGIRLSTHOUGHIFUSTTHROWINAWGODOGLDFORMYLITTLELIZZYIDESIREQOUWILXZDONOSUCHTHINGLIZZYISNOTABITBETTERTHANTHEGTHERSANDIAMSURESHEISNGTHALFSOHANDSOMEASIANENORHALVSGWOODHUMOULEDASLYDIABUTYOUAREALOAYSGIMINGHERTHEPREFERENCETHEQHAVENONEOFTHEMMUCHTGRECOMMENDTHEMREPLIEDHETHEYAREALLSILLYANDIGNORANTLIKEOTHERGILZSBUTLIZZYHASSOMETHINGMOREOFQUICYNESSTHANXERSISTERSFRBENNETHGOCANYOUABUSEQOUROWNCHILDLENINSUCHAOAYYOUTAKEDELIGHTINVEXINGMEYOUHAVENOCOMPASSIONONMYPOORNERVESYOUMISTAYEMEMYDEARIHAVEAHIGHRESPECTFORYOULNERVESTHEQAREMYOZDFRIENDSIHAVEHEARDYOUMENTIONTHEMWITHCONSIDERATIONTHESETWENTYXQEARSATLEASTAHYOUDONGTKNGOWHATISUFFERBUTIHOPEQOUWILLGETOVERITANDZIMETOSEEMANYYOUNGMENOFFOULTHOUSANDAYEARCOMEINTGTHENEIGXBOURHOODITWILLBENOUSETGUSIVTOENTYSUCHSHOUZDCOMESINCEQOUWILLNGTMISITTHEMDEPENDUPONITMYDEARTHATWHENTHEREARETOENTYIWILLVISITTHEMALLMRBENNETOASSOODDAFIXTULEOFQUICYPARTSSARCASTICHUMOURRESERVEANDCAPRICETHATTHEEXPERIENCEOFTHREEANDTOENTYQEARSHADBEENINSUFXVICIENTTGMAYEHISWIVEUNDERSTANDHISCHARACTERHERFINDOASLESSDIVVICULTTGDEVELOPSHEOASAOGMANOVFEANUNDERSTANDINGLITTLEINFORMATIONANDUNCERTAINTEMPERWHENSHEWASDISCONTENTEDSHEFANCIEDHERSELFNERVOUSTHEBUSINESSOFHERLIFEOASTGWETHELDAUGHTERSMARRIEDITSSOLACEOASMISITINWANDNEWS
+// IT IS A TRUTH UNIVERSALLY ACKNOWLEDGED THAT AS INGLEM AN IN POSSESSION OF A GOOD FORTUNE MUST BE IN WANT OF A WIFE
+// HOWEVER LITTLE KNOWN THE FEELINGS OR VIEWS OF SUCH A MAN MAY BE ON HIS FIRST ENTERING A NEIGHBOURHOOD THIS TRUTH IS
+// SO WELL FIXED IN THEMINDSOFTHESURROUNDINGFAMILIESTHATHEISCONSIDEREDASTHERIGHTFULPROPERTYOFSOMEONEOROTHEROFTHEIRDAUGHTERSMYDEARMRBENNETSAIDHISLADYTOHIMONEDAYHAVEYOUHEARDTHATNETHERFIELDPARKISLETATLASTMRBENNETREPLIEDTHATHEHADNOTBUTITISRETURNEDSHEFORMRSLONGHASIUSTBEENHEREANDSHETOLDMEALLABOUTITMRBENNETMADENOANSWERDONOTYOUWANTTOKNOWWHOHASTAKENITCRIEDHISWIFEIMPATIENTLYYOUWANTTOTELLMEANDIHAVENOOBIECTIONTOHEARINGITTHISWASINVITATIONENOUGHWHYMYDEARYOUMUSTKNOWMRSLONGSAYSTHATNETHERFIELDISTAKENBYAYOUNGMANOFLARGEFORTUNEFROMTHENORTHOFENGLANDTHATHECAMEDOWNONMONDAYINACHAISEANDFOURTOSEETHEPLACEANDWASSOMUCHDELIGHTEDWITHITTHATHEAGREEDWITHMRMORRISIMMEDIATELYTHATHEISTOTAKEPOSSESSIONBEFOREMICHAELMASANDSOMEOFHISSERVANTSARETOBEINTHEHOUSEBYTHEENDOFNEXTWEEKWHATISHISNAMEBINGLEYISHEMARRIEDORSINGLEOHSINGLEMYDEARTOBESUREASINGLEMANOFLARGEFORTUNEFOURORFIVETHOUSANDAYEARWHATAFINETHINGFOROURGIRLSHOWSOHOWCANITAFFECTTHEMMYDEARMRBENNETREPLIEDHISWIFEHOWCANYOUBESOTIRESOMEYOUMUSTKNOWTHATIAMTHINKINGOFHISMARRYINGONEOFTHEMISTHATHISDESIGNINSETTLINGHEREDESIGNNONSENSEHOWCANYOUTALKSOBUTITISVERYLIKELYTHATHEMAYFALLINLOVEWITHONEOFTHEMANDTHEREFOREYOUMUSTVISITHIMASSOONASHECOMESISEENOOCCASIONFORTHATYOUANDTHEGIRLSMAYGOORYOUMAYSENDTHEMBYTHEMSELVESWHICHPERHAPSWILLBESTILLBETTERFORASYOUAREASHANDSOMEASANYOFTHEMMRBINGLEYMIGHTLIKEYOUTHEBESTOFTHEPARTYMYDEARYOUFLATTERMEICERTAINLYHAVEHADMYSHAREOFBEAUTYBUTIDONOTPRETENDTOBEANYTHINGEXTRAORDINARYNOWWHENAWOMANHASFIVEGROWNUPDAUGHTERSSHEOUGHTTOGIVEOVERTHINKINGOFHEROWNBEAUTYINSUCHCASESAWOMANHASNOTOFTENMUCHBEAUTYTOTHINKOFBUTMYDEARYOUMUSTINDEEDGOANDSEEMRBINGLEYWHENHECOMESINTOTHENEIGHBOURHOODITISMORETHANIENGAGEFORIASSUREYOUBUTCONSIDERYOURDAUGHTERSONLYTHINKWHATANESTABLISHMENTITWOULDBEFORONEOFTHEMSIRWILLIAMANDLADYLUCASAREDETERMINEDTOGOMERELYONTHATACCOUNTFORINGENERALYOUKNOWTHEYVISITNONEWCOMERSINDEEDYOUMUSTGOFORITWILLBEIMPOSSIBLEFORUSTOVISITHIMIFYOUDONOTYOUAREOVERSCRUPULOUSSURELYIDARESAYMRBINGLEYWILLBEVERYGLADTOSEEYOUANDIWILLSENDAFEWLINESBYYOUTOASSUREHIMOFMYHEARTYCONSENTTOHISMARRYINGWHICHEVERHECHOOSESOFTHEGIRLSTHOUGHIMUSTTHROWINAGOODWORDFORMYLITTLELIZZYIDESIREYOUWILLDONOSUCHTHINGLIZZYISNOTABITBETTERTHANTHEOTHERSANDIAMSURESHEISNOTHALFSOHANDSOMEASIANENORHALFSOGOODHUMOUREDASLYDIABUTYOUAREALWAYSGIVINGHERTHEPREFERENCETHEYHAVENONEOFTHEMMUCHTORECOMMENDTHEMREPLIEDHETHEYAREALLSILLYANDIGNORANTLIKEOTHERGIRLSBUTLIZZYHASSOMETHINGMOREOFQUICKNESSTHANHERSISTERSMRBENNETHOWCANYOUABUSEYOUROWNCHILDRENINSUCHAWAYYOUTAKEDELIGHTINVEXINGMEYOUHAVENOCOMPASSIONONMYPOORNERVESYOUMISTAKEMEMYDEARIHAVEAHIGHRESPECTFORYOURNERVESTHEYAREMYOLDFRIENDSIHAVEHEARDYOUMENTIONTHEMWITHCONSIDERATIONTHESETWENTYYEARSATLEASTAHYOUDONOTKNOWWHATISUFFERBUTIHOPEYOUWILLGETOVERITANDLIVETOSEEMANYYOUNGMENOFFOURTHOUSANDAYEARCOMEINTOTHENEIGHBOURHOODITWILLBENOUSETOUSIFTWENTYSUCHSHOULDCOMESINCEYOUWILLNOTVISITTHEMDEPENDUPONITMYDEARTHATWHENTHEREARETWENTYIWILLVISITTHEMALLMRBENNETWASSOODDAMIXTUREOFQUICKPARTSSARCASTICHUMOURRESERVEANDCAPRICETHATTHEEXPERIENCEOFTHREEANDTWENTYYEARSHADBEENINSUFFICIENTTOMAKEHISWIFEUNDERSTANDHISCHARACTERHERMINDWASLESSDIFFICULTTODEVELOPSHEWASAWOMANOFMEANUNDERSTANDINGLITTLEINFORMATIONANDUNCERTAINTEMPERWHENSHEWASDISCONTENTEDSHEFANCIEDHERSELFNERVOUSTHEBUSINESSOFHERLIFEWASTOGETHERDAUGHTERSMARRIEDITSSOLACEWASVISITINGANDNEWS
+
+string Playfair::simulatedAnnealing(const std::string &cipher, int kMax) {
+    const int COUNT = 1000;
+    string s = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+    string bestString;
+    double bestScore = -1000000;
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    // Try at least 5 times before jumping away
-    int misses = max_misses;
-    int barWidth = 70;
+    int tracker = 0;
     for(int k = 0; k < kMax; k++) {
-        string s_next = string(s);
-        double T = temperature(k, kMax);
-        int randIndex = firstIndex(gen);
-        int randIndex2 = (randIndex + secondIndex(gen)) % 25;
-        assert(randIndex != randIndex2);
-        char c1 = s_next[randIndex];
-        char c2 = s_next[randIndex2];
-        s_next[randIndex] = c2;
-        s_next[randIndex2] = c1;
-        assert(s.compare(s_next) != 0);
-        double energyNext = energy(s_next);
-        double dE = energyNext - energy(s);
-        //
-        if(energyNext < bestScore) {
-            bestConfig = string(s_next);
-            bestScore = energyNext;
-//            cout << "New best: " << bestScore << "\tConfig: " << bestConfig << endl;
+        // Randomize initial configuration
+        s = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+        for(int i = 0; i < 30; i++) {
+            int randIndex = firstIndex(gen);
+            int randIndex2 = (randIndex + secondIndex(gen)) % 25;
+            swap(s, randIndex, randIndex2);
         }
-        // Calculate probability
-        double P = 0;
-        if(dE < 0) {
-            misses = max_misses;
-            P = 1;
-        } else if(T == 0) {
-            P = 0;
-        } else {
-            if (--misses <= 0) {
-                misses = max_misses;
-                P = expf((float) -(dE / T));
+        double currentEnergy = energy(s, cipher);
+        for (int T = 60; T >= 0; T -= 5) {
+            for (int count = 0; count < COUNT; count++) {
+                tracker += 1;
+                int randIndex = firstIndex(gen);
+                int randIndex2 = (randIndex + secondIndex(gen)) % 25;
+                assert(randIndex != randIndex2);
+                swap(s, randIndex, randIndex2);
+                assert(s != "ABCDEFGHIKLMNOPQRSTUVWXYZ");
+                double energyNext = energy(s, cipher);
+                double dE = energyNext - currentEnergy;
+                // Calculate probability
+                double P;
+                if (dE >= 0) {
+                    P = 1;
+                } else if(T == 0) {
+                    P = -1;
+                } else {
+                    P = expf((float) ((float)dE / (float)T));
+                }
+                if (P > move(gen)) {
+                    currentEnergy = energyNext;
+                    if (currentEnergy > bestScore) {
+                        bestScore = currentEnergy;
+                        bestString = string(s);
+                    }
+                } else {
+                    swap(s, randIndex, randIndex2);
+                }
+                if(count % 1000 == 0) {
+                    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+                    double elapsed = (double) std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
+                    double remaining = (elapsed / tracker) * ((kMax*12*COUNT)-tracker);
+                    progressBar((double)tracker/(kMax*12*COUNT), remaining, bestString, bestScore);
+                }
             }
         }
-        if(P >= move(gen)) {
-            s = string(s_next);
-        }
-//        if(k % (kMax/100) == 0) {
-        if(k % 1000 == 0) {
-            std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-            auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-            auto remaining = (elapsed/k)*(kMax-k);
-            progressBar((double) k/kMax, remaining);
-//            cout << "K: " << k << "\tT: " << T << "\tE: " << energy(s) << "\tS: " << s;
-//            cout << "\tTime: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
-        }
     }
-    cout << "Best: " << bestScore << "\tConfig: " << bestConfig << endl;
-    cout << "Decrypted: " << decode(bestConfig, cipher) << endl;
-
-    cout << "Current: " << s << endl;
-    cout << "Decrypted: " << decode(s, cipher) << endl;
-    return s;
+    return bestString;
 }
-

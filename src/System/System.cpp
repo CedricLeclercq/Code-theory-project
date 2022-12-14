@@ -119,20 +119,107 @@ void loadCipherText(const string& filename, string& cipherText) {
 void System::runPlayfair() {
     string cipherText;
     loadCipherText("input/02-OPGAVE-playfair.txt", cipherText);
-    std::transform(cipherText.begin(), cipherText.end(), cipherText.begin(),
-                   [](unsigned char c){ return std::tolower(c); });
+//    std::transform(cipherText.begin(), cipherText.end(), cipherText.begin(),
+//                   [](unsigned char c){ return std::tolower(c); });
 
-    for(int i = 0; i < 20; i++) {
-        std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-        Playfair playfair = Playfair(cipherText);
-        string outcome = playfair.simulatedAnnealing(1000000);
-        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-        cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
-        cout << endl << "[=========================================================================================]"
-             << endl << endl;
-    }
+    std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    Playfair playfair{};
+//        string outcome = playfair.hillClimbing(cipherText, 100000);
+    string outcome = playfair.simulatedAnnealing(cipherText, 10);
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
+    cout << endl << "[=========================================================================================]"
+         << endl << endl;
+
+
+    Playfair pf{};
+    std::string config("STCHLFGKPRMOQXZVWYNUIAEBD");
+    string decoded = pf.decode(config, cipherText);
+    cout << pf.getLogQTest(decoded) << decoded << endl;
+//    string configs[]{
+//        // Run 15
+//        "sfzrnicmlagbpxewdovuhkqyt",
+//        "fzmqypldhxncatwsbegvoruik",
+//        "xhvyswurmnkibfelaodgztpcq",
+//        "bxhgkmouidzqtecrlfwvpynas",
+//        "bopfzqmlhvegruwtadnicyxsk",
+//        "aicnsgewtpouybdfmxhlzqvrk",
+//        "yvsxpzotdulqmknfgerawibch",
+//        "qrnglfmeikouatcyzdbwpvshx",
+//        "bluocnraghvxfpyzwtidskemq",
+//        "kpyvwrnzfmdglciosxhbutqae",
+//        "xekqvductmyopswrniablgzfh",
+//        "safktgibweoumynhdvxpqrzlc",
+//        "mlzqohyvgfcxpeuwdsatbrkni",
+//        "mifwtznbrgqelychuakodvsxp",
+//        "iymfpczdouglwkrsxqhetbvna",
+//        "cydzqokimbhxprlavgseuwnft",
+//        "bznrlmqegyioupwactdkhfsvx",
+//        "fwpdxmhtuvosbnlgieayzcqrk",
+//        "mtgswraeukzbnicphldxyfqov",
+//        "mwylknfruhdgztqvoxbpsaeic",
+//        "dvptbrlzgkicqosuwnaemxhyf",
+//        "luzofdtmaqxpysvwnkchrebig",
+//        "zwlcvhpqnyisratgkxebmdouf",
+//        "pzydxsqheunokawmcvbltgfir",
+//        "qsehxmnarbfdgclotiuypkwvz",
+//        "taiclngmvykrpwzbofhxdseuq",
+//        "dtgcerafwuybokmvhsxpnqzli",
+//        "wsaicygebkvotqpzdurlxhnfm",
+//        "tsgyuncirafmpldbqexohvwzk",
+//        "zrmqleughknaitcbosfwpdvyx",
+//        "ytmvbdglzaxrckesnioupfwqh",
+//        "flopminaeuqyzbvrktcdwxhgs",
+//        "tbflvgridkownzcsyexqamuph",
+//        "earunfikghydxpvqtwobcslmz",
+//        "mrihuvykzwflacdgxebotqnps",
+//        "fyxonhswuigqreatplbdmkzvc",
+//        "hriqbulaenzkscdyxfpvgwmot",
+//        "ecgibuwotmnkzqyrxfplavdsh",
+//        "oqvxbuiaenkpfyhwstrglmczd",
+//        "akonfsycgzhxpdluvrimewbtq",
+//        // Run16
+//        "wlqkdvbyxhengoausrctpfmzi",
+//        "vysxprzewmuiadnoqglcbftkh",
+//        "ymgrcxhobwqseutliadnzfpvk",
+//        "qwlvzytgpkxbrhfonuiecmsad",
+//        "eglarboksmyfxhvtiwudcqznp",
+//        "uzlvytwhbdepqkxangosimcfr",
+//        "hzwiuqkcotmfdeavyxpsblrgn",
+//        "dfpvyogeczukmrlhswbxatinq",
+//        "dxpewglsanzyctfqkruohvmib",
+//        "whbilxpydzrqfovsmegkutnac",
+//        "wiaegcnutoxfdplvbhmzyrsqk",
+//        "vpxesqwrinfbkotzlymghcdau",
+//        "xfpvylsnmgwbdzrceiqoktahu",
+//        "fiwogydzcmrnlqbuaktevsxph",
+//        "tfianmzcepvykurdlgsbwxhoq",
+//        "swxhbvoqtcgilandpzemfkyur",
+//        "nsvdqubyzhrlxfpaiwotegkcm",
+//        "unaoexpdyzrctqfsgiblwhmvk",
+//        "aoulcnqhdwebszkfpvyxitgmr",
+//        "rwnzsibultchadgfyexqkvopm",
+//        "uwyohtfkbqspxevnrdacimlgz",
+//        "acnptrvbywgkolmiduzhefsxq",
+//        "oatpgcnmyvbkwzhriuldfesxq",
+//        "svctbikfgowxpednrhauqyzml",
+//        "lafinybzrqvowuhktmscxedgp",
+//        "zbrkeotucapvyxfdsglimqhwn",
+//        "flrpxqogdwtaenksibcvhumzy",
+//        "gtrpkymqlzhfbvxunewosaidc",
+//        "lmbypsfvxhouiwagrezdqtnkc",
+//        "ksgzhxfvypwuiodlnacmrteqb",
+//        "bnoaprugilmfwtdvhkczqeysx",
+//        "arunofklzgiwmdtechqbsxpvy",
+//        };
+//    for(const std::string& s: configs) {
+//        cout << s << " " << pf.getFrequencyScore(pf.decode(s, cipherText)) << " " << pf.decode(s, cipherText) << endl;
+//    }
+
+
+
 //    string config = "anclusfzvdgoqkribmytewhxp";
-//    stringstream s;
-//    Playfair playfair1(cipherText);
-//    cout << playfair1.decode(config) << endl;
+//    string text = "Test";
+//    Playfair pf{};
+//    cout << pf.decode(config, pf.encode(config, text)) << endl;
 }
