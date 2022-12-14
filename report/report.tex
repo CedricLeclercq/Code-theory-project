@@ -6,6 +6,7 @@
 \usepackage{titlesec}
 \usepackage{hyperref}
 \graphicspath{ {./images/} }
+\usepackage{float}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -61,9 +62,138 @@ Then we will calculate the entropy value ( from the table) of these doubles and 
 \\
 Then we take the final key and use it to find the plaintext. Then calculate the entropy of the resulting text. If it looks like English, we write it to a file. \\
 (I noted that this doesn't always work for small texes, but the texes we got were large enough to find a correct solution each time).
-
 \section{playfair}
 \section{adfgvx}
+\subsection{About}
+This cipher is called ADFGVX because only these 6 letters are used in the ciphertext. These letters were chosen because their Morse code is so vastly different. The ADFGVXcode uses a fixed agreed substitution table, where each letter or digit is replaced by a digram.  After this substitution is done another single-column transposition is done with a keyword.
+\subsection{Single-column transposition}
+So we will first have to reverse the column tranposition. As mentioned earlier with Vigenereplus, there are a lot of possibilities. So we will have to find a way to make a selection. We do this by going through all possible permutations of up to 10 lengths (otherwise it takes a long time) and selecting the text closest to English.\\
+\\
+we calculate the index or coinxidece of each transposed text. We then consider the bigrams as 1 letter. If this index of coinxidece is similar to english (0.0667), we write the result to a file. I also write a list of the percentage of occurrence for every bigram to a file. This will make the next part much easier.
+\subsection{Manuel solution}
+Now we are going to look in the file and select the text with the smallest error (and therefore most similar to english). Fortunately, we found a text with an error (0.000454) that was much smaller than the other possibilities. So this one was almost certainly the correct transposed text.\\
+\\
+Now comes the hardest part. We have to match the bigrams to their corresponding letter. We do this manually as we saw in the first lesson. We have created a spreadsheet that will help us do that. This spreadsheet shows the occurences of the letters in english and the occurences of the bigrams in text.
+after a bit of trail and error, we obtained the following substitution table:
+\begin{table}[H]
+\begin{tabular}{lllllll}
+\textbf{} &
+  \textbf{A} &
+  \textbf{D} &
+  \textbf{F} &
+  \textbf{G} &
+  \textbf{V} &
+  \textbf{X} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{A}} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{h} &
+  \multicolumn{1}{l|}{b} &
+  \multicolumn{1}{l|}{i} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{D}} &
+  \multicolumn{1}{l|}{d} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{p} &
+  \multicolumn{1}{l|}{l} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{g} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{F}} &
+  \multicolumn{1}{l|}{q} &
+  \multicolumn{1}{l|}{x} &
+  \multicolumn{1}{l|}{y} &
+  \multicolumn{1}{l|}{n} &
+  \multicolumn{1}{l|}{f} &
+  \multicolumn{1}{l|}{j} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{G}} &
+  \multicolumn{1}{l|}{u} &
+  \multicolumn{1}{l|}{k} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{c} &
+  \multicolumn{1}{l|}{r} &
+  \multicolumn{1}{l|}{m} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{V}} &
+  \multicolumn{1}{l|}{s} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{v} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{X}} &
+  \multicolumn{1}{l|}{a} &
+  \multicolumn{1}{l|}{o} &
+  \multicolumn{1}{l|}{t} &
+  \multicolumn{1}{l|}{z} &
+  \multicolumn{1}{l|}{w} &
+  \multicolumn{1}{l|}{e} \\ \cline{2-7}
+\end{tabular}
+\end{table}
+(the empty squares can be filled with the numbers 0-9.)
 \section{enigma}
+\section{Plaintext Solutions}
+\subsection{vigenerePlus}
+ColumnTransposeKey: \texttt{264573810}\\
+VigenereKey: \texttt{charlie}\\
+plaintext: \texttt{01-SOLUTION-vigenerePlus.txt}
+\subsection{playfair}
+\subsection{adfgvx}
+ColumnTransposeKey: \textfff{032145}\\
+substitution table:
+\\
+\begin{table}[H]
+\begin{tabular}{lllllll}
+\textbf{} &
+  \textbf{A} &
+  \textbf{D} &
+  \textbf{F} &
+  \textbf{G} &
+  \textbf{V} &
+  \textbf{X} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{A}} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{h} &
+  \multicolumn{1}{l|}{b} &
+  \multicolumn{1}{l|}{i} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{D}} &
+  \multicolumn{1}{l|}{d} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{p} &
+  \multicolumn{1}{l|}{l} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{g} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{F}} &
+  \multicolumn{1}{l|}{q} &
+  \multicolumn{1}{l|}{x} &
+  \multicolumn{1}{l|}{y} &
+  \multicolumn{1}{l|}{n} &
+  \multicolumn{1}{l|}{f} &
+  \multicolumn{1}{l|}{j} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{G}} &
+  \multicolumn{1}{l|}{u} &
+  \multicolumn{1}{l|}{k} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{c} &
+  \multicolumn{1}{l|}{r} &
+  \multicolumn{1}{l|}{m} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{V}} &
+  \multicolumn{1}{l|}{s} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{...} &
+  \multicolumn{1}{l|}{v} \\ \cline{2-7}
+\multicolumn{1}{l|}{\textbf{X}} &
+  \multicolumn{1}{l|}{a} &
+  \multicolumn{1}{l|}{o} &
+  \multicolumn{1}{l|}{t} &
+  \multicolumn{1}{l|}{z} &
+  \multicolumn{1}{l|}{w} &
+  \multicolumn{1}{l|}{e} \\ \cline{2-7}
+\end{tabular}
+\end{table}
+plaintext: \textfff{03-SOLUTION-adfgvx.txt}
+\subsection{enigma}
 
 \end{document}
