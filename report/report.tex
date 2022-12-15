@@ -131,15 +131,15 @@ Another way to maybe find "FU" was to extend the crib, which I also tried. Howev
 
 \section{ADFGVX (Whole group)}
 \subsection{About}
-This cipher is called ADFGVX because only these 6 letters are used in the ciphertext. These letters were chosen because their Morse code is so vastly different. The ADFGVXcode uses a fixed agreed substitution table, where each letter or digit is replaced by a digram.  After this substitution is done another single-column transposition is done with a keyword.
+This cipher is called ADFGVX because only these 6 letters are used in the cipher text. These letters were chosen because their Morse code is so vastly different. The ADFGVX-code uses a fixed agreed substitution table, where each letter or digit is replaced by a digram.  After this substitution is done another single-column transposition is done with a keyword.
 \subsection{Single-column transposition}
-So we will first have to reverse the column tranposition. As mentioned earlier with Vigenereplus, there are a lot of possibilities. So we will have to find a way to make a selection. We do this by going through all possible permutations of up to 10 lengths (otherwise it takes a long time) and selecting the text closest to English.\\
-\\
-we calculate the index or coinxidece of each transposed text. We then consider the bigrams as 1 letter. If this index of coinxidece is similar to english (0.0667), we write the result to a file. I also write a list of the percentage of occurrence for every bigram to a file. This will make the next part much easier.
-\subsection{Manuel solution}
-Now we are going to look in the file and select the text with the smallest error (and therefore most similar to english). Fortunately, we found a text with an error (0.000454) that was much smaller than the other possibilities. So this one was almost certainly the correct transposed text.\\
-\\
-Now comes the hardest part. We have to match the bigrams to their corresponding letter. We do this manually as we saw in the first lesson. We have created a spreadsheet that will help us do that. \hyperlink{https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing}{This spreadsheet} shows the occurrences of the letters in English and the occurrences of the bigrams in text. After a bit of trail and error, we obtained the following substitution table:
+We will first have to reverse the column transposition. As mentioned earlier with VigenėrePlus, there are a lot of possibilities. We will have to find a way to make a selection. We do this by going through all possible permutations up to length 10 (otherwise it takes a long time) and selecting the texts closest to English.\\
+
+We calculate the index or coincidence of each transposed text. We then consider the bigrams as one letter. If this index of coincidence is similar to english (0.0667), we write the result to a file. A list of the percentage occurrence gets written to a file for every bigram. This will make the next part much easier.
+\subsection{Manual solution}
+Now we are going to look in the file and select the text with the smallest error (and therefore most similar to english). Fortunately, we found a text with an error (0.000454) that was much smaller than the other possibilities, this one was almost certainly the correct transposed text.\\
+
+Now the hardest part. We have to match the bigrams to their corresponding letter. We do this manually as we saw in the first lesson. We have created a spreadsheet that will help us do that. \hyperlink{https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing}{This spreadsheet} shows the occurrences of the letters in English and the occurrences of the bigrams in text. After a bit of trail and error, we obtained the following substitution table:
 \begin{table}[H]
 \begin{tabular}{lllllll}
 \textbf{} &
@@ -199,9 +199,14 @@ Now comes the hardest part. We have to match the bigrams to their corresponding 
 
 \section{Plaintext Solutions}
 \subsection{VigenerePlus}
+Extract: From The witches - Roald Dahl\\
 ColumnTransposeKey: \texttt{264573810}\\
 VigenereKey: \texttt{charlie}\\
+
 \subsection{Playfair}
+Extract: From Jane Austen - Pride and prejudice\\
+Key: IANEUSTBCDFGHKLMOPQRVWXYZ\\
+Best possible score: -21160,4
 
 \subsection{Enigma}
 
@@ -211,8 +216,9 @@ Rotor starting position: \{F,E,J\}\\
 Plug board: \{(BY)(DW)(FU)(HS)(JQ)(LO)\}\\
 
 \subsection{ADFGVX}
+Extract: From The Old Man and the Sea
 ColumnTransposeKey: \texttt{032145}\\
-substitution table:
+Substitution table:
 \\
 \begin{table}[H]
 \begin{tabular}{lllllll}

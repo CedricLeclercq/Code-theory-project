@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 15:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 16:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -617,39 +617,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 128--129
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 136--139
+Underfull \hbox (badness 10000) in paragraph at lines 136--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 140--195
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+Underfull \hbox (badness 10000) in paragraph at lines 202--205
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--212
+Underfull \hbox (badness 10000) in paragraph at lines 213--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--269
+Underfull \hbox (badness 10000) in paragraph at lines 219--275
 
  []
 
 [8] (./report.aux)
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 21BF2A8DA1585E196200C389FBC042E8;4826.
+(rerunfilecheck)             Checksum: E6E55670BF64FA6DECCDEA8B9939D4D8;4826.
  ) 
 Here is how much of TeX's memory you used:
- 10660 strings out of 478994
- 161813 string characters out of 5858183
+ 10661 strings out of 478994
+ 161821 string characters out of 5858183
  477200 words of memory out of 5000000
- 27977 multiletter control sequences out of 15000+600000
+ 27978 multiletter control sequences out of 15000+600000
  408981 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,10n,79p,1579b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -670,10 +670,10 @@ exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
 live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
 e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (8 pages, 244259 bytes).
+Output written on report.pdf (8 pages, 244108 bytes).
 PDF statistics:
- 245 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
+ 244 PDF objects out of 1000 (max. 8388607)
+ 216 compressed objects within 3 object streams
  38 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
