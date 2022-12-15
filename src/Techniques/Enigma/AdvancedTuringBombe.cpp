@@ -265,6 +265,7 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
              * after, it can only get turned on by UF or by itself, but FU and UF do not have any other transitions
              * (Since first (L_1, L_2) - (L_2, L_1) => This transition they have: (F, U) - (U, F))
              * (\forall (L1) -L- (L2)... They are not in the crib graph so they cannot every connect :(
+             * I just found FU by brute force the remaining alphabet letters that were not in sigma
              */
             Enigma enigma(this->p0_perm,this->p1_perm, this->p2_perm, this->p3_perm, this->p4_perm,
                           stekkerbord,
