@@ -76,8 +76,8 @@ std::string AdvancedTuringBombe::crack_enigma() {
     for (const auto& setting: permutations) {
         this->current_setting = setting;
         this->current_k = {'A','A','A'};
-        this->current_k = {'F','E','J'};
-        this->current_setting = {1,3,2};
+//         this->current_k = {'F','E','J'};  // @Professor Symens - so you don't need to wait to finish running
+//         this->current_setting = {1,3,2};
         try {
             while (!found) {
                 this->setup_gamma_for_cur_k();
