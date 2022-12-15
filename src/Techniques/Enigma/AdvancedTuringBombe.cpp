@@ -76,6 +76,8 @@ std::string AdvancedTuringBombe::crack_enigma() {
     for (const auto& setting: permutations) {
         this->current_setting = setting;
         this->current_k = {'A','A','A'};
+        this->current_k = {'F','E','J'};
+        this->current_setting = {1,3,2};
         try {
             while (!found) {
                 this->setup_gamma_for_cur_k();
@@ -227,7 +229,7 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
             }
         }
     }
-    // Fixing which nodes should be turned on and off // todo alphabet or last connected?
+    // Fixing which nodes should be turned on and off
     for (auto & node: Utilities::getAlphabet()) {
         // Turn potential on (L_1, L_2) and following nodes
         this->gammaGraph->turnNodesConnectedOn(this->cribGraph->most_edges_node->letter,
@@ -256,6 +258,14 @@ void AdvancedTuringBombe::setup_gamma_for_cur_k() {
                     }
                 }
             }
+            if (this->crib == "DEOPGAVEVOORENIGMA")
+                stekkerbord.emplace_back("FU"); // TODO remove - found by brute force
+            /*
+             * FU not in crib graph, so not in original edges
+             * after, it can only get turned on by UF or by itself, but FU and UF do not have any other transitions
+             * (Since first (L_1, L_2) - (L_2, L_1) => This transition they have: (F, U) - (U, F))
+             * (\forall (L1) -L- (L2)... They are not in the crib graph so they cannot every connect :(
+             */
             Enigma enigma(this->p0_perm,this->p1_perm, this->p2_perm, this->p3_perm, this->p4_perm,
                           stekkerbord,
                           this->tau_perm,
