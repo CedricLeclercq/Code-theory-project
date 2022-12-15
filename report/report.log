@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 16:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 16:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -626,6 +626,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
+
+Overfull \hbox (38.05174pt too wide) in paragraph at lines 142--195
+\OT1/cmr/m/n/10 (https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEX
+ixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing)
+ []
+
 [7]
 Underfull \hbox (badness 10000) in paragraph at lines 202--205
 
@@ -646,34 +652,30 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: E6E55670BF64FA6DECCDEA8B9939D4D8;4826.
  ) 
 Here is how much of TeX's memory you used:
- 10661 strings out of 478994
- 161821 string characters out of 5858183
+ 10660 strings out of 478994
+ 161721 string characters out of 5858183
  477200 words of memory out of 5000000
  27978 multiletter control sequences out of 15000+600000
  408981 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  71i,10n,79p,1640b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{https://docs.google.com/spreadsheets/d/18L9Xed-bF
-H-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing} has been referenced but do
-es not exist, replaced by a fixed one
-
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
-sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
-r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr
-/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/l
-ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/loc
-al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
-/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
-exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
-live/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
-/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (8 pages, 244143 bytes).
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loc
+al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
+/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/t
+exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
+ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (8 pages, 244120 bytes).
 PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 216 compressed objects within 3 object streams
- 38 named destinations out of 1000 (max. 500000)
+ 242 PDF objects out of 1000 (max. 8388607)
+ 214 compressed objects within 3 object streams
+ 37 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
