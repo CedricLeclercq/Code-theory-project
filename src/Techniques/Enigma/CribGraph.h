@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 #include "../../Utilities/Utilities.h"
 
 
@@ -22,6 +23,7 @@ struct CribGraph {
     std::string meaning;
     std::vector<CribNode*> nodes;
     CribNode * most_edges_node;
+    char replaced_of_most_edge;
     std::vector<char> connectedWithMostEdges;
     std::vector<std::tuple<CribNode*, CribNode*, int>> transitions;
 
@@ -67,6 +69,8 @@ struct CribGraph {
                 std::max_element(result.begin(), result.end(),[]
                 (const pair<CribNode*,int>& p1, const pair<CribNode*, int>& p2) {
             return p1.second < p2.second;})->first;
+        size_t location = this->crib.find(this->most_edges_node->letter);
+        this->replaced_of_most_edge = this->meaning[location];
 
         for (auto transition: this->transitions) {
             if (std::get<0>(transition) == this->most_edges_node) {

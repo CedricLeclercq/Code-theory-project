@@ -5,6 +5,8 @@
 #include "Playfair.h"
 #include <algorithm>
 #include <cmath>
+#include <chrono>
+#include <cassert>
 #include <random>
 #include <utility>
 #include <random>

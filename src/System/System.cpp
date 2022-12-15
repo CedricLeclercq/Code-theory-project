@@ -89,9 +89,8 @@ void System::runVigenerePlus(const string & arg) {
 
 }
 
-void System::runEnigma() {
-    // Defining all the variables from the assignment
-    std::string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+void System::runEnigma() {// Defining all the variables from the assignment
+    std::string alphabet = Utilities::getAlphabet();
 
     std::string rotor0 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";        /// Rotor 0 string
     std::string rotor1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";        /// Rotor 1 string
@@ -109,57 +108,10 @@ void System::runEnigma() {
     std::vector<std::string> perm3 = Utilities::convertToPermutation(alphabet, rotor3);
     std::vector<std::string> perm4 = Utilities::convertToPermutation(alphabet, rotor4);
     std::vector<std::string> permr = Utilities::convertToPermutation(alphabet, reflector);
-    std::vector<std::string> stekkerbord = {"AP", "CM", "DE", "GL", "JZ", "TW"};
 
-    // Hardcoding for testing
-    perm0 = {"BJ","CDKLHUP","ESZ","FIXVYOMW","GR","NT"};
-    perm1 = {"AELTPHQXRU", "BKNW", "CMOY", "DFG", "IV", "JZ", "S"};
-    perm2 = {"ABDHPEJT", "CFLVMZOYQIRWUKXSG"};
-    perm3 = {"ATV", "BHKOXYDQMNFI", "CEULWZG", "JRP"};
-    perm4 = {"AXQCNDTHSGEIOVLWMUJKRFPB"};
-    permr = {"AY", "BR", "CU", "DH", "EQ", "FS", "GL", "IP", "JX", "KN", "MO", "TZ", "VW"};
-    stekkerbord = {"AP", "CM", "DE", "GL", "JZ", "TW"};
-
-
-//    std::vector<int> rotor_choice = {1,0,4};
-//    std::vector<char> current_pos = {'B', 'E', 'X'};
-//    auto * enigma = new Enigma(perm0,
-//                               perm1,
-//                               perm2,
-//                               perm3,
-//                               perm4,
-//                               stekkerbord,
-//                               permr,
-//                               {},
-//                               rotor_choice,
-//                               current_pos);
-//
-//    std::string test_encrypt = "PASOPVOORSALAMANDER";
-//    std::string result{};
-//    for (auto ch: test_encrypt) {
-//        result += enigma->encryptLetter(ch);
-//    }
-//
-//    std::cout << "+============================================+" << std::endl;
-//    std::cout << "RESULT: " << result << std::endl;
-//    std::cout << "+============================================+" << std::endl;
 
     auto * bombe = new AdvancedTuringBombe(perm0,perm1,perm2,perm3,perm4,permr, crib, coded_text);
     bombe->crack_enigma();
-
-
-
-//    Utilities::convertToPermutation("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "THEQUICKBROWNFXJMPSVLAZYDG");
-//
-//    // TODO Testing
-//     crib = "KEINEZUSAETZEZUMVORBERIQT";
-//    coded_text = "DAEDAQOZSIQMMKBILGMPWHAIV";
-//
-//
-//    // Creating enigma object
-//    auto * enigma = new Enigma(rotors, reflector, crib, coded_text);
-//
-//    delete enigma;
 }
 
 void loadCipherText(const string& filename, string& cipherText) {

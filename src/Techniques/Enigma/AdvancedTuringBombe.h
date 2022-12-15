@@ -5,7 +5,7 @@
 #ifndef CODE_THEORY_ADVANCEDTURINGBOMBE_H
 #define CODE_THEORY_ADVANCEDTURINGBOMBE_H
 
-#include<vector>
+#include <vector>
 #include <string>
 #include <chrono>
 #include "GammaGraph.h"

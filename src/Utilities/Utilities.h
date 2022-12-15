@@ -49,8 +49,6 @@ public:
     vector<string> simplePermutations(const string& s);
 
     static std::vector<std::vector<int>> createEnigmaRotorPermutations(std::vector<int> all_rotors);
-
-    static double IOC(const string & Ciphertext);
 };
 
 
