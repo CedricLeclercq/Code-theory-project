@@ -14,7 +14,7 @@
 \contentsline {subsection}{\numberline {3.1}Setting up the crib graph}{5}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Looping with the $\Gamma _k$ graph}{5}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Evaluating $\Gamma _k$ als a permutation graph}{5}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Troubles with $\sigma $ causes solving with brute force}{5}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.4}Troubles with $\sigma $ causes solving with brute force}{6}{subsection.3.4}%
 \contentsline {section}{\numberline {4}ADFGVX (Whole group)}{7}{section.4}%
 \contentsline {subsection}{\numberline {4.1}About}{7}{subsection.4.1}%
 \contentsline {subsection}{\numberline {4.2}Single-column transposition}{7}{subsection.4.2}%

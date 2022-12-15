@@ -110,7 +110,7 @@ Secondly, for every edge $L_1$ with $L_2$ with weight $l$ in our crib graph we m
 
 \subsection{Evaluating $\Gamma_k$ als a permutation graph}
 
-When we iterate over $k$, we need to evaluate whether $k$ is actually the correct setting. We do this by checking if $\Gamma_k$ is (almost) a permutation graph. I say "almost" because our crib might not be long enough, not every row or/and column might have a one. We therefore check whether $\max ($value $,1) = 1$. The interrelated components are checked as normally (so two vertices connected always have the same value). When we find such a graph, we declare success, we found $k$ and we can extract the correct plugboard $\sigma$ from $\Gamma_k$.
+When we iterate over $k$, we need to evaluate whether $k$ is actually the correct setting. We do this by checking if $\Gamma_k$ is (almost) a permutation graph. I say "almost" because our crib might not be long enough, not every row or/and column might have a one. We therefore check whether $\max ($value $,1) = 1$. The interrelated components are checked as normally (so two vertices connected always have the same value). When we find such a graph, we declare success, we found $k$ and we can extract the correct plugboard $\sigma$ from $\Gamma_k$. To do this, we need to make one vertex true. All the vertices connected to a vertex that is true will also become true. We do this by looping over all the $L_2 \in $ the Latin alphabet and individually turn the vertex $(L_1, L_2)$ on, with $L_1$ the vertex in the crib graph with the most edges connected to it. We then finally evaluate each of these iterations to be a permutation graph as described above.
 
 \subsection{Troubles with $\sigma$ causes solving with brute force}
 

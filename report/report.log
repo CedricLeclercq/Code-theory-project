@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 16:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.12.14)  15 DEC 2022 18:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -591,12 +591,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
 
-
+[5]
 Underfull \hbox (badness 10000) in paragraph at lines 119--120
 
  []
 
-[5]
+
 Underfull \hbox (badness 10000) in paragraph at lines 121--123
 
  []
@@ -672,7 +672,7 @@ al/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local
 exlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
 ive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
 ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (8 pages, 244120 bytes).
+Output written on report.pdf (8 pages, 244522 bytes).
 PDF statistics:
  242 PDF objects out of 1000 (max. 8388607)
  214 compressed objects within 3 object streams
