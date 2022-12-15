@@ -128,15 +128,9 @@ void System::runPlayfair() {
     Playfair playfair{};
     string outcome = playfair.simulatedAnnealing(cipherText, 10);
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    cout << "Best configuration found: " << outcome << endl;
+    cout << "Decoded: " << playfair.decode(outcome, cipherText) << endl;
     cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count() << "ms" << endl;
-    cout << endl << "[=========================================================================================]"
-         << endl << endl;
-
-    Playfair pf{};
-    std::string config("STCHLFGKPRMOQXZVWYNUIAEBD");
-    string decoded = pf.decode(config, cipherText);
-    cout << pf.getLogQTest(decoded) << decoded << endl;
-
 }
 
 bool compare(const pair<string , double>&i, const pair<string, double>&j)
