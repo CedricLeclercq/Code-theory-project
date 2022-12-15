@@ -122,7 +122,7 @@ void loadCipherText(const string& filename, string& cipherText) {
 
 void System::runPlayfair() {
     string cipherText;
-    loadCipherText("input/02-OPGAVE-playfair.txt", cipherText);
+    loadCipherText("../../input/02-OPGAVE-playfair.txt", cipherText);
 
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     Playfair playfair{};
