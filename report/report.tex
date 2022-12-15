@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \graphicspath{ {./images/} }
 \usepackage{float}
+\usepackage[margin=1in]{geometry}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -28,7 +29,7 @@
 
 \newpage
 
-\section{vigenerePlus}
+\section{VigenerePlus}
 \subsection{About}
 ViginairePlus is a chipher in which first viginaire and then single column transposition is applied. Two different keywords are used in this process.\\
 \\
@@ -62,8 +63,34 @@ Then we will calculate the entropy value ( from the table) of these doubles and 
 \\
 Then we take the final key and use it to find the plaintext. Then calculate the entropy of the resulting text. If it looks like English, we write it to a file. \\
 (I noted that this doesn't always work for small texes, but the texes we got were large enough to find a correct solution each time).
-\section{playfair}
-\section{adfgvx}
+
+\section{Playfair}
+
+\subsection{Preparation}
+Before I started implementing the Playfair cracking algorithm, I first created an encode and decode algorithm. I've decided to go with a string representation of the matrix to make it easier to pass, edit and represent configurations. In order to apply the Playfair operations to the matrix to decode/encode digrams, I've made a transform function which does just this. Putting these functions together, we get the following:
+
+\subsection{Approach 1: Bruteforce all permutations}
+My first (very naive) approach, was to generate every possible configuration. I'd then calculate how much the decoded text differed from an English text based on the mean squared error of the decoded text's letter frequencies and the letter frequencies of the English alphabet. And of course, this took ages. I've let the algorithm run until the permutation algorithm reached the letter 'p'. Since it already took an hour to reach this point, permutating all up to the letter 'a' would have taken forever. This approach would require the cracking algorithm to check 26! combinations, which is way too much. Since I also didn't know which language the text was written in, I've let it calculate the frequency score of each language, which added up to the total time.
+
+\subsection{Approach 2: Generate keys from a dictionary}
+Bruteforcing every permutation wouldn't work, so for the next attempt, I tried to narrow down the key-space. Keys or configurations for the Playfair algorithm are usually constructed as follows: Choose a word, change j's to i's, remove duplicated letters and append the rest of the alphabet. This gave me the idea to take all the words in the English alphabet and generate keys from these words. Luckily, the feedback moment took place at the right time to prevent me from spending and losing a lot of time on this ridiculous idea, since the configuration doesn't necessarily need to be an actual word.
+
+\subsection{Approach 3: Hillclimbing with MSE}
+The next approach seemed more promising. During the feedback moment, I've been given the advice to try hillclimbing or simulated annealing with the mean squared error or the vector product of the letter frequencies. I've also been told that the encrypted text was written in English, which narrowed down the checks a lot. For this new approach, I've ran this hillclimbing algorithm starting with different initial configuration for a few million times with a sufficient high depth, but this didn't yield any useful results either.
+
+\subsection{Approach 4: Simulated annealing with MSE}
+My fourth approach was to use simulated annealing with the MSE. After doing some research, I started writing the algorithm which wasn't straightforward to do. With kMax set to 1.000.000, the results of this algorithm were already looking better, but it still didn't find the right configuration. The best scores always floated around 0.25. By using the flags -O3 and -pthread, the code could be executed relatively fast, but it still required around 16-17 minutes to complete one iteration of the algorithm. I let the algorithm run several nights, with around 20 iterations per night. Unfortunately, still none of the outcomes yielded a good result that came close to the solution.\\
+
+\noindent As a variation on this approach, I tried combining simulated annealing with hillclimbing by making sure the algorithm could only jump to a 'worse' state if it couldn't find a better solution for some amount of consecutive iterations. Yet this didn't work either.
+
+\subsection{Approach 5: Simulated annealing with index of coincidence}
+Since I still couldn't get a decent result with recognizable words, I asked some older students which approach they suggested to try next since it still didn't work and I was out of ideas. That's how I got to know about the IC, short for 'index of coincidence'. I changed the energy function of the simulated annealing to return the absolute difference between the decoded text's IC and the English IC (0.0667). This gave extremely low scores which gave me good hopes, yet after running for much more iterations, nothing close to the solution was found.
+
+\subsection{Approach 6: Simulated annealing with log-quad test}
+Since none of the previous approached seemed to work while I thought I implemented everything correctly, I searched online for other approaches. After surfing the internet for a while, I finally encountered a method that gave good results, namely the log-quad test. The log-quad test is, just like the letter frequency and index of coincidence, a measurement of how likely it is that a given text is proper English. For each group of 4 consecutive letters in the message, the chance of this combination of 4 letters occurring in an English text is added up. This yields very low values to work with, so the log values are used instead. After running this algorithm just a few times, I could finally discover some English looking words. I noticed that there were still a lot of X's present, which indicated that my decode function wasn't properly working. I checked the function and indeed, after rewriting this function and rerunning this algorithm, I quickly found the solution! With an energy score of around -2116, the configuration "GHKLFOPQRMWXYZVANEUITBCDS" decoded the ciphertext successfully, which happened to be an extract from Jade Austen's Pride and Prejudice. Together with the help from Elias and Cédric, we managed to find the optimal parameters for the simulated annealing algorithm. With these parameters and compiler flags, the system can successfully crack the given encoded ciphertext about 50\% of the time in 10 seconds (with an M1 chip). The algorithm can be tested by running the main code-theory target with 'Playfair' as argument.
+
+
+\section{ADFGVX}
 \subsection{About}
 This cipher is called ADFGVX because only these 6 letters are used in the ciphertext. These letters were chosen because their Morse code is so vastly different. The ADFGVXcode uses a fixed agreed substitution table, where each letter or digit is replaced by a digram.  After this substitution is done another single-column transposition is done with a keyword.
 \subsection{Single-column transposition}
@@ -73,8 +100,7 @@ we calculate the index or coinxidece of each transposed text. We then consider t
 \subsection{Manuel solution}
 Now we are going to look in the file and select the text with the smallest error (and therefore most similar to english). Fortunately, we found a text with an error (0.000454) that was much smaller than the other possibilities. So this one was almost certainly the correct transposed text.\\
 \\
-Now comes the hardest part. We have to match the bigrams to their corresponding letter. We do this manually as we saw in the first lesson. We have created a spreadsheet that will help us do that. This spreadsheet shows the occurences of the letters in english and the occurences of the bigrams in text.
-after a bit of trail and error, we obtained the following substitution table:
+Now comes the hardest part. We have to match the bigrams to their corresponding letter. We do this manually as we saw in the first lesson. We have created a spreadsheet that will help us do that. \hyperlink{https://docs.google.com/spreadsheets/d/18L9Xed-bFH-7W2jY9kgeEXixlJdJMib6p8IxcVjUxeQ/edit?usp=sharing}{This spreadsheet} shows the occurrences of the letters in English and the occurrences of the bigrams in text. After a bit of trail and error, we obtained the following substitution table:
 \begin{table}[H]
 \begin{tabular}{lllllll}
 \textbf{} &
@@ -129,14 +155,13 @@ after a bit of trail and error, we obtained the following substitution table:
 \end{tabular}
 \end{table}
 (the empty squares can be filled with the numbers 0-9.)
-\section{enigma}
+\section{Enigma}
 \section{Plaintext Solutions}
-\subsection{vigenerePlus}
+\subsection{VigenerePlus}
 ColumnTransposeKey: \texttt{264573810}\\
 VigenereKey: \texttt{charlie}\\
-plaintext: \texttt{01-SOLUTION-vigenerePlus.txt}
-\subsection{playfair}
-\subsection{adfgvx}
+\subsection{Playfair}
+\subsection{ADFGVX}
 ColumnTransposeKey: \texttt{032145}\\
 substitution table:
 \\
@@ -193,7 +218,6 @@ substitution table:
   \multicolumn{1}{l|}{e} \\ \cline{2-7}
 \end{tabular}
 \end{table}
-plaintext: \texttt{03-SOLUTION-adfgvx.txt}
-\subsection{enigma}
+\subsection{Enigma}
 
 \end{document}
